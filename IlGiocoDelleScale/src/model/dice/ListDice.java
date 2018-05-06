@@ -12,7 +12,9 @@ public interface ListDice {
 	
 	Dice multiFaceDice(int numberOfFace);
 	
-	Dice specialDice(List<Pair<Optional<Integer>,Optional<Integer>>> list);
+	Dice specialTwentyDice(List<Pair<Optional<Integer>,Optional<Integer>>> list);
+	
+	Dice specialClassicDice(List<Pair<Optional<Integer>,Optional<Integer>>> list);
 	
 	Dice totalPersonalazide(List<Pair<Optional<Integer>,Optional<Integer>>> list,int number);
 	
