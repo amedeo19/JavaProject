@@ -44,7 +44,7 @@ public class TwentyFaceDice implements Dice{
 	public Dice build() {
 		this.checkDone();
         this.done = true;
-        return new ClassicDice();
+        return new TwentyFaceDice();
 	}
 
 	@Override
