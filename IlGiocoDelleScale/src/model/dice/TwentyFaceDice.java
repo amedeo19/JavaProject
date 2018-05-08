@@ -9,6 +9,9 @@ public class TwentyFaceDice implements Dice{
 	final private int MAXNUMBER=20;
     private boolean done = false;
     
+    public TwentyFaceDice() {
+	}    
+    
     private void checkDone(){
         if (this.done){
             throw new IllegalStateException("You have already built");
