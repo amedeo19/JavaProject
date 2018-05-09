@@ -1,13 +1,19 @@
 package model.pawns;
 
+import java.util.Optional;
+
+import enumeration.Characters;
+
 public class PawnsImpl implements Pawns{
 
 	
 	public int START=0; 
 	public int positions;
+	public Optional<Characters> character;
 	
 	public PawnsImpl() {
 		this.positions=this.START;
+		this.character=Optional.empty();
 	}
 	
 	@Override
@@ -29,6 +35,16 @@ public class PawnsImpl implements Pawns{
 			return false;
 		}
 		return true;
+	}
+
+	@Override
+	public void setPawn(Characters car) {
+		this.character=Optional.ofNullable(car);
+	}
+
+	@Override
+	public Characters getPawn() {
+		return this.character.get();
 	}
 
 	
