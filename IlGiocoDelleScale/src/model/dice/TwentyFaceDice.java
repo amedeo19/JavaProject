@@ -26,7 +26,8 @@ public class TwentyFaceDice implements Dice{
 	
 	@Override
 	public int roll() {
-		this.checkNotDone();final Random randomNumber = new Random();
+		this.checkNotDone();
+		final Random randomNumber = new Random();
 		this.number = Optional.of(randomNumber.nextInt(this.MAXNUMBER) + 1);
 		return this.getNumber();
 	}
