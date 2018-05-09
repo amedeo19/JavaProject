@@ -1,6 +1,6 @@
 package enumeration;
 
-public enum Pawns {
+public enum Characters {
 	
 
 	Bagheera,
@@ -11,3 +11,4 @@ public enum Pawns {
 	
 	KingLouie;
 }
+
