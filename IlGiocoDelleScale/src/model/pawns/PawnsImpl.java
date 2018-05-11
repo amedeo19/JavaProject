@@ -3,12 +3,13 @@ package model.pawns;
 import java.util.Optional;
 
 import enumeration.Characters;
+import utilities.Pair;
 
 public class PawnsImpl implements Pawns{
 
 	
-	public int START=0; 
-	public int positions;
+	public Pair<Integer, Integer> START=new Pair<Integer, Integer>(0, 0); 
+	public Pair<Integer,Integer> positions;
 	public Optional<Characters> character;
 	
 	public PawnsImpl() {
@@ -17,12 +18,12 @@ public class PawnsImpl implements Pawns{
 	}
 	
 	@Override
-	public int getPosition() {
+	public Pair<Integer,Integer> getPosition() {
 		return this.positions;
 	}
 
 	@Override
-	public void setPosition(int pos) {
+	public void setPosition(Pair<Integer,Integer> pos) {
 		if (!checkPossible(pos)){
 			throw new IllegalStateException("You can't go in that position");
 		}
@@ -30,8 +31,8 @@ public class PawnsImpl implements Pawns{
 	}
 
 	@Override
-	public boolean checkPossible(int pos) {
-		if (pos<this.START){
+	public boolean checkPossible(Pair<Integer, Integer> pos) {
+		if (pos.getFst()<this.START.getFst() || pos.getSnd()<this.START.getSnd()){
 			return false;
 		}
 		return true;
