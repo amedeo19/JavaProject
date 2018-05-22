@@ -1,8 +1,6 @@
 package model.dice;
 
-import java.util.List;
-import java.util.Optional;
-import utilities.Pair;
+import java.util.Map;
 
 public interface ListDice {
 
@@ -12,10 +10,10 @@ public interface ListDice {
 	
 	Dice multiFaceDice(int numberOfFace);
 	
-	Dice specialTwentyDice(List<Pair<Optional<Integer>,Optional<Integer>>> list);
+	Dice specialTwentyDice(Map<Integer,Integer> map);
 	
-	Dice specialClassicDice(List<Pair<Optional<Integer>,Optional<Integer>>> list);
+	Dice specialClassicDice(Map<Integer,Integer> map);
 	
-	Dice totalPersonalazide(List<Pair<Optional<Integer>,Optional<Integer>>> list,int number);
+	Dice totalPersonalazide(Map<Integer,Integer> map ,int number);
 	
 }
