@@ -1,8 +1,6 @@
 package model.model;
 
-import java.util.Optional;
 import java.util.function.Supplier;
-
 import model.data.Data;
 import model.movements.Movements;
 import model.movements.MovementsImpl;
