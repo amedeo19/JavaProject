@@ -6,19 +6,21 @@ import java.util.Random;
 public class TwentyFaceDice implements Dice{
 
 	private Optional<Integer> number;
-	final private int MAXNUMBER=20;
+	final private int MAXNUMBER=20; // static?
     private boolean done = false;
     
     public TwentyFaceDice() {
 	}    
     
     private void checkDone(){
-        if (this.done){
+        
+    	if (this.done){
             throw new IllegalStateException("You have already built");
         }
     }
     
-    private void checkNotDone(){
+    private void checkNotDone(){// rifare
+    	
     	if (!this.done){
             throw new IllegalStateException("You haven't already built");
         }
@@ -26,6 +28,7 @@ public class TwentyFaceDice implements Dice{
 	
 	@Override
 	public int roll() {
+		
 		this.checkNotDone();
 		final Random randomNumber = new Random();
 		this.number = Optional.of(randomNumber.nextInt(this.MAXNUMBER) + 1);
@@ -34,18 +37,21 @@ public class TwentyFaceDice implements Dice{
 
 	@Override
 	public void setNumber(int number) {
+		
 		this.checkNotDone();
 		this.number=Optional.of(number);
 	}
 
 	@Override
 	public int getNumber() {
+		
 		this.checkNotDone();
 		return this.number.get();
 	}
 
 	@Override
 	public Dice build() {
+		
 		this.checkDone();
         this.done = true;
         return new TwentyFaceDice();
@@ -53,6 +59,10 @@ public class TwentyFaceDice implements Dice{
 
 	@Override
 	public int viewNum() {
+	
+		if (!this.done){
+			return MAXNUMBER;
+		}
 		return this.getNumber();
 	}
 
