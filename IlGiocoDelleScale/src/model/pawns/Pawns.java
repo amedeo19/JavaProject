@@ -1,17 +1,17 @@
 package model.pawns;
 
-import enumeration.Characters;
-import utilities.Pair;
+import java.util.List;
+import java.util.Observer;
 
-public interface Pawns {
+public interface Pawns{
 
-	public Pair<Integer,Integer> getPosition();
+	public int getPosition();
 	
-	public void setPosition(Pair<Integer,Integer> pos);
+	public void setPosition(int pos);
+	
+	public void setState(boolean state);
+	
+	public boolean getState();
 
-	public boolean checkPossible(Pair<Integer, Integer> pos);
-	
-	public void setPawn(Characters car);
-	
-	public Characters getPawn();
+	public void addObserverList(List<Observer> obsList);
 }

@@ -1,30 +1,20 @@
 package model.model;
 
-import java.util.List;
-import model.dice.Dice;
-import utilities.Pair;
+import model.data.Data;
+import model.pawns.Pawns;
 
 public interface Model {
-
-	public void setSnakes(List<Pair<Integer,Integer>> snakeslist);
 	
-	public void setLadders(List<Pair<Integer,Integer>> ladderslist);
+	public void check();
 	
-	public void setBase(int base);
+	public boolean checkWin(Pawns p);
 	
-	public void setHeight(int height);
+	public void startGame(Data data);
 	
-	public void setDice(List<Dice> dicelist);
-
-	public List<Pair<Integer,Integer>> getSnakes();
+	public int movePawn(Pawns p);
 	
-	public List<Pair<Integer,Integer>> getLadder();
+	public void endGame();
 	
-	public int getBase();
+	public void changeDone();
 	
-	public int getHeight();
-	
-	public List<Dice> getDice();
-	
-	public void build();
 }
