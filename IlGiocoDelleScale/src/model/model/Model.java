@@ -1,25 +1,20 @@
 package model.model;
 
-import java.util.List;
-import model.dice.Dice;
+import model.data.Data;
 import model.pawns.Pawns;
 
 public interface Model {
 	
-	public void isDone(boolean value);
+	public void check();
 	
-	public void setDice(List<Dice> dicelist);
+	public boolean checkWin(Pawns p);
 	
-	public void setFinish(int finish);
-		
-	public int getFinishNumber();
-	
-	public List<Dice> getDice();
-	
-	public void reset();
-	
-	public void build();
+	public void startGame(Data data);
 	
 	public int movePawn(Pawns p);
+	
+	public void endGame();
+	
+	public void changeDone();
 	
 }
