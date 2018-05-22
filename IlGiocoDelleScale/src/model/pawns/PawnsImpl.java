@@ -1,51 +1,49 @@
 package model.pawns;
 
-import java.util.Optional;
+import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
 
-import enumeration.Characters;
-import utilities.Pair;
 
-public class PawnsImpl implements Pawns{
+public class PawnsImpl extends Observable implements Pawns{
 
 	
-	public Pair<Integer, Integer> START=new Pair<Integer, Integer>(0, 0); 
-	public Pair<Integer,Integer> positions;
-	public Optional<Characters> character;
+	private final int START=0; 
+	private int positions;
+	private boolean state;
 	
 	public PawnsImpl() {
 		this.positions=this.START;
-		this.character=Optional.empty();
+//		this.state=false;   vediamo se c'è bisogno
 	}
 	
 	@Override
-	public Pair<Integer,Integer> getPosition() {
+    public void setState(boolean state) {
+        this.state = state;
+        setChanged();
+        notifyObservers();
+    }
+ 
+    @Override
+    public boolean getState() {
+        return this.state;
+    }
+	
+	@Override
+	public int getPosition() {
 		return this.positions;
 	}
 
 	@Override
-	public void setPosition(Pair<Integer,Integer> pos) {
-		if (!checkPossible(pos)){
-			throw new IllegalStateException("You can't go in that position");
-		}
+	public void setPosition(int pos) {
 		this.positions=pos;
 	}
 
 	@Override
-	public boolean checkPossible(Pair<Integer, Integer> pos) {
-		if (pos.getFst()<this.START.getFst() || pos.getSnd()<this.START.getSnd()){
-			return false;
+	public void addObserverList(List<Observer> obsList) {
+		if (!obsList.isEmpty()){
+			obsList.forEach(o->this.addObserver(o));
 		}
-		return true;
-	}
-
-	@Override
-	public void setPawn(Characters car) {
-		this.character=Optional.ofNullable(car);
-	}
-
-	@Override
-	public Characters getPawn() {
-		return this.character.get();
 	}
 
 	
