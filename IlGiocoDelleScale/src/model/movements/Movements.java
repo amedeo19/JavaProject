@@ -15,6 +15,6 @@ public interface Movements {
 	
 	public void reset();
 	
-	public boolean checkWin(Pawns p);
+	public boolean checkWin(int pos);
 	
 }
