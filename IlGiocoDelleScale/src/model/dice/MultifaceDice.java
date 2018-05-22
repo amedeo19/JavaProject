@@ -4,8 +4,8 @@ public class MultifaceDice implements Dice{
 
 	private final Dice dice;
 	private final int face;
-	private final int MAXFACE=20;
-	private final int MINFACE=4;
+	private final static int MAXFACE=20;
+	private final static int MINFACE=4;
 	private boolean done=false;
 	
 	public MultifaceDice(int numberOfFace,Dice dice) {
@@ -25,7 +25,7 @@ public class MultifaceDice implements Dice{
 	public int roll() {
 		this.done=true;
 		int number;
-		do {
+		do {  // RIFARE
 			number=this.dice.roll();
 		}while (!this.checkResult(number));
 		return this.getNumber();
