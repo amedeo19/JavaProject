@@ -1,12 +1,10 @@
 package model.dice;
 
-import java.util.List;
-import java.util.Optional;
-import utilities.Pair;
+import java.util.Map;
 
 public class ListDiceImpl implements ListDice{
 
-	private final int MAXCLASSIC=6;
+	private static final int MAXCLASSIC=6; // static add
 	
 	@Override
 	public Dice classicDice() {
@@ -24,18 +22,18 @@ public class ListDiceImpl implements ListDice{
 	}
 
 	@Override
-	public Dice specialTwentyDice(List<Pair<Optional<Integer>, Optional<Integer>>> list) {
-		return new SpecialDice(list, this.classicDice());
+	public Dice specialTwentyDice(Map<Integer,Integer> map) {
+		return new SpecialDice(map, this.classicDice());
 	}
 	
 	@Override
-	public Dice specialClassicDice(List<Pair<Optional<Integer>, Optional<Integer>>> list) {
-		return new SpecialDice(list, this.multiFaceDice(MAXCLASSIC));
+	public Dice specialClassicDice(Map<Integer,Integer> map ) {
+		return new SpecialDice(map, this.multiFaceDice(MAXCLASSIC));
 	}
 
 	@Override
-	public Dice totalPersonalazide(List<Pair<Optional<Integer>,Optional<Integer>>> list, int number) {
-		return new SpecialDice(list, this.multiFaceDice(number));
+	public Dice totalPersonalazide(Map<Integer,Integer> map , int number) {
+		return new SpecialDice(map, this.multiFaceDice(number));
 	}
 
 
