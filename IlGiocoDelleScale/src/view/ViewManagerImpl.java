@@ -10,12 +10,13 @@ public class ViewManagerImpl implements ViewManager {
 	private ViewManagerImpl() {
 	}
 	
+	
 	public ImageView getImage(final String path) {
 		return new ImageView(this.ReadFile(path));
 	}
 	
 	@Override
-	public Object ReadFile(String path) {
+	public Image ReadFile(final String path) {
 		try {
 			return new Image(ViewManagerImpl.class.getResourceAsStream("/" + path));
 		} catch (Exception exception){
@@ -29,4 +30,8 @@ public class ViewManagerImpl implements ViewManager {
 		// TODO Auto-generated method stub
 	}
 
+	public static ViewManagerImpl get() {
+		return SINGLETON;
+	}
+	
 }
