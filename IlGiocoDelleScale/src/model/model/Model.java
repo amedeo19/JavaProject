@@ -5,6 +5,8 @@ import model.pawns.Pawns;
 
 public interface Model {
 	
+	public Model getLog();
+	
 	public void check();
 	
 	public boolean checkWin(Pawns p);
