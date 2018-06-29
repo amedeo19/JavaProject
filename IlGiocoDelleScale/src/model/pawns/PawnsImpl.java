@@ -3,14 +3,18 @@ package model.pawns;
 import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
+import view.ViewManagerImpl;
+//import javafx.scene.image.ImageView;
+import view.Size;
 
 
 public class PawnsImpl extends Observable implements Pawns{
 
 	
-	private final int START=0; 
+	private final int START=0;
 	private int positions;
 	private boolean state;
+	//private final ViewManagerImpl Pawn;
 	
 	public PawnsImpl() {
 		this.positions=this.START;
