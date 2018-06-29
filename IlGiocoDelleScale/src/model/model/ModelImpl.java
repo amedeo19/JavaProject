@@ -22,7 +22,7 @@ public class ModelImpl implements Model{
 		private static final ModelImpl SINGLETON = new ModelImpl();
 	}
 	
-	public static ModelImpl getLog() {
+	public ModelImpl getLog() {
 		return LazyHolder.SINGLETON;
 	}
 
