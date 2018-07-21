@@ -1,6 +1,7 @@
 package controller;
 
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -74,12 +75,21 @@ public class ControllerImpl implements Controller {
         }
     }
 	
-	public void start() {
-		this.control = true;
+	
+	@Override
+	public void FinishGame() throws IOException{
+		if(this.control) {
+			this.game.endGame();
+		} else {
+			throw new IllegalStateException();
+		}
+		
 	}
 	
 	
-	
+	public void start() {
+		this.control = true;
+	}
 	
 	
 	
