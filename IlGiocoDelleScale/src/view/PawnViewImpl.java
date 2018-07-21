@@ -27,6 +27,7 @@ public class PawnViewImpl extends ImageView implements PawnView {
 	public PawnViewImpl(final Characters character, final Pawns p, final int pos) {
 		super();
 		this.pawn = p;
+		this.pos = START;
 		this.character = character;
 		Tooltip.install(this, new Tooltip(character.toString()));
 		this.setPreserveRatio(true);
@@ -48,7 +49,7 @@ public class PawnViewImpl extends ImageView implements PawnView {
 			this.setImage(new Image(this.getClass().getResourceAsStream("/Pawns/BagheraLaPanteraNera.png")));
 			break;
 		}
-		this.pos= pos;
+		this.pos = pos;
 		p.setPosition(this.pos);
 	}
 	
@@ -57,11 +58,16 @@ public class PawnViewImpl extends ImageView implements PawnView {
 	public Characters getPawn() {
 		return this.character;
 	}
+	
+	
+	public void SetInitPos() {
+		this.pos = START;
+	}
 
 
 
 	@Override
-	public void MovePawn(Pawns p) {
+	public void MovePawn(Pawns p, int pos) {
 		
 	}
 
