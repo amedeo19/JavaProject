@@ -10,4 +10,12 @@ public interface Data {
 	
 	public List<Dice> getDice();
 	
+	public void setDice(List<Dice> dicelist);
+	
+	public void setFinish(int finish);
+	
+	public void reset();
+	
+	public void build();
+	
 }
