@@ -14,6 +14,6 @@ public interface ListDice {
 	
 	Dice specialClassicDice(Map<Integer,Integer> map);
 	
-	Dice totalPersonalazide(Map<Integer,Integer> map ,int number);
+	Dice totalPersonalized(Map<Integer,Integer> map ,int number); // Personalized
 	
 }
