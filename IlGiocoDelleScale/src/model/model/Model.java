@@ -4,9 +4,7 @@ import model.data.Data;
 import model.pawns.Pawns;
 
 public interface Model {
-	
-	public void check();
-	
+
 	public boolean checkWin(Pawns p);
 	
 	public void startGame(Data data);
@@ -15,6 +13,7 @@ public interface Model {
 	
 	public void endGame();
 	
-	public void changeDone();
+	public void build();
 	
+	public void reset();
 }
