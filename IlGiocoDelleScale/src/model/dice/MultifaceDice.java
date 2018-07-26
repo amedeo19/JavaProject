@@ -1,66 +1,77 @@
 package model.dice;
 
+import java.util.Optional;
+import java.util.Random;
+import java.util.function.Supplier;
+
 public class MultifaceDice implements Dice{
 
-	private final Dice dice;
+	private Optional<Integer> number;
+	private boolean build=false;
 	private final int face;
+	private final Random randomNumber = new Random();
 	private final static int MAXFACE=20;
 	private final static int MINFACE=4;
-	private boolean done=false;
+	private static final Supplier<RuntimeException> minError = () -> new IllegalStateException("Too low numbers");
+	private static final Supplier<RuntimeException> maxError = () -> new IllegalStateException("Too much numbers");
+	private static final Supplier<RuntimeException> buildError = () -> new IllegalStateException("Build Error");
+	private static final Supplier<RuntimeException> rollError = () -> new IllegalStateException("Roll Error");
+
 	
-	public MultifaceDice(int numberOfFace,Dice dice) {
+	public MultifaceDice(int numberOfFace) {
+		
 		super();
-		this.dice=dice;
 		this.face=numberOfFace;
 	}
 	
-	public boolean isDone(){
-		if (!this.done){
-			throw new IllegalStateException("You haven't already roll");
+	private void isBuilt(){
+		if (!this.build){
+			throw rollError.get();
 		}
-		return false;
 	}
+
+    private void checkNotBuilt(){
+    	
+    	if (this.build){
+            throw buildError.get();
+        }
+    }
 	
 	@Override
 	public int roll() {
-		this.done=true;
-		int number;
-		do {  // RIFARE
-			number=this.dice.roll();
-		}while (!this.checkResult(number));
+		
+		this.isBuilt();
+		this.setNumber(this.randomNumber.nextInt(this.face) + 1);
 		return this.getNumber();
 	}
 	
-	public boolean checkResult(int number){
-		if (number>this.face){
-			return false;
-		}
-		this.setNumber(number);
-		return true;
-	}
-
 	@Override
 	public void setNumber(int number) {
-		this.isDone();
-		this.dice.setNumber(number);
+	
+		this.isBuilt();;
+		this.number=Optional.of(number);
 	}
 
 	@Override
 	public int getNumber() {
-		this.isDone();
-		return this.dice.getNumber();
+		
+		this.isBuilt();
+		return this.number.get();
 	}
 
 	@Override
-	public Dice build() {
+	public void build() {
+		
 		if (this.face<MINFACE){
-			throw new IllegalStateException("Too low numbers");
+			throw minError.get();
 		}else if (this.face>MAXFACE){
-			throw new IllegalStateException("Too much numbers");
+			throw maxError.get();
 		}
-		return dice.build();
-	}
 
+		this.checkNotBuilt();
+		this.build=true;
+	}
+	
 	@Override
 	public int viewNum() {
 		return this.getNumber();
