@@ -8,7 +8,7 @@ public interface Dice {
 	
 	public int getNumber();
 	
-	public Dice build();
+	public void build();
 	
 	public int viewNum();
 }
