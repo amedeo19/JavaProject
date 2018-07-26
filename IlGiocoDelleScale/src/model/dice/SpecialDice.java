@@ -8,7 +8,7 @@ public class SpecialDice implements Dice{
 
 	private final Dice dice;
 	private int Special;
-	private boolean done=false;
+	private boolean build=false;
 	private final static int MIN=1;
 	private final static int MAX=20;
 	private final static int MINSECOND=-10;
@@ -16,20 +16,21 @@ public class SpecialDice implements Dice{
 	private Optional<Map<Integer,Integer>>map;
 	private static final Supplier<RuntimeException> keyError = () -> new IllegalStateException("Error with some first numbers");
 	private static final Supplier<RuntimeException> valueError = () -> new IllegalStateException("Error with some second numbers");
-	private static final Supplier<RuntimeException> buildError = () -> new IllegalStateException("You haven't already roll");
+	private static final Supplier<RuntimeException> buildError = () -> new IllegalStateException("You haven't already built");
 	
 	public SpecialDice(Map<Integer,Integer> map,Dice dice) { // map
+		
 		super();
 		this.Special=0;
 		this.dice= dice;
 		this.map=Optional.ofNullable(map);
 	}
 	
-	public boolean isDone(){
-		if (!this.done){
+	public void isDone(){
+		
+		if (!this.build){
 			throw buildError.get();
 		}
-		return false;
 	}
 	
 	public boolean checkIsSpecial(int number){
@@ -63,13 +64,14 @@ public class SpecialDice implements Dice{
 	}
 	
 	public int getSpecial(){
+		
 		this.isDone();
 		return this.Special; 
 	}
 	
 	@Override
 	public int roll() {
-		this.done=true;
+		
 		int number=this.dice.roll();
 		this.setSpecial(number);
 		this.setNumber(this.getSpecial()+number);
@@ -78,23 +80,27 @@ public class SpecialDice implements Dice{
 	
 	@Override
 	public int viewNum(){		
+		
 		return this.getNumber()-this.getSpecial();
 	}
 
 	@Override
 	public void setNumber(int number) {
+		
 		this.isDone();
 		this.dice.setNumber(number);
 	}
 
 	@Override
 	public int getNumber() {
+		
 		this.isDone();
 		return this.dice.getNumber();
 	}
 
 	@Override
-	public Dice build() {
+	public void build() {
+		
 		if (this.map.isPresent()){
 			
 			if (this.map.get().entrySet().stream().anyMatch(x->x.getKey()<MIN) || this.map.get().entrySet().stream().anyMatch(x->x.getKey()>MAX)){
@@ -104,7 +110,9 @@ public class SpecialDice implements Dice{
 				throw valueError.get();
 			}
 		}
-		return dice.build();
+		
+		this.dice.build();
+		this.build=true;
 	}
 
 }
