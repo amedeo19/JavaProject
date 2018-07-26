@@ -3,10 +3,7 @@ package model.data;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Supplier;
-
 import model.dice.Dice;
-import model.movements.Movements;
-import model.movements.MovementsImpl;
 
 public class DataImpl implements Data{
 
