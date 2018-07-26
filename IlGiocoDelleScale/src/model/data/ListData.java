@@ -9,6 +9,4 @@ public interface ListData {
 	
 	Data personalizedMode(int cellNumber,List<Dice> diceList);
 	
-	public void checkList();
-	
 }
