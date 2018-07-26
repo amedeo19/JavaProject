@@ -8,65 +8,81 @@ import model.pawns.Pawns;
 
 public class ModelImpl implements Model{
 
-	Movements move;
-	boolean done;
-	private static final Supplier<RuntimeException> initError = () -> new IllegalStateException("Init Error");
-	
+	private Movements move;
+	private boolean build;
+	private static final Supplier<RuntimeException> modelError = () -> new IllegalStateException("Model not built");
+	private static final Supplier<RuntimeException> buildError = () -> new IllegalStateException("Model already built");
 	
 	public ModelImpl() { 
-		this.move=MovementsImpl.getLog();
+		this.move=MovementsImpl.getMovements();
 	}
 	
 
-	private static class LazyHolder { // Singleton bene??
-		private static final ModelImpl SINGLETON = new ModelImpl();
+	private static final Model SINGLETON = new ModelImpl();
+	
+	public static Model getModel() {
+        return SINGLETON;
 	}
 	
-	public static ModelImpl getLog() {
-		return LazyHolder.SINGLETON;
+	private void isDone() {
+		
+		if (!this.build){
+			throw modelError.get();
+		}
 	}
-
+	
+	private void checkNotDone() {
+		
+		if (this.build){
+			throw buildError.get();
+		}
+	}
+	
 	@Override
 	public synchronized int movePawn(Pawns p) {
 		
-		this.check();
+		this.isDone();
 		this.move.changePosition(p);
 		p.setState(!p.getState());
-		System.out.println(p.getPosition());
 		return p.getPosition();
 	}
 
 	@Override
 	public void startGame(Data data) {
 		
+		this.checkNotDone();
 		this.move.setData(data);
-		this.changeDone();
+		this.move.build();
+		this.build();
 	}
 
 	@Override
 	public void endGame() {
 		
-		this.changeDone();
+		this.isDone();
 		this.move.reset();
-	}
-
-	@Override
-	public void check() {
-		if (!this.done){
-			throw initError.get();
-		}
-	}
-
-	@Override
-	public void changeDone() {
-		this.done=!this.done;
+		this.reset();
 	}
 
 	@Override
 	public synchronized boolean checkWin(Pawns p) {
 		
-		this.check();
+		this.isDone();
 		return this.move.checkWin(p.getPosition());
+	}
+
+	@Override
+	public void build() {
+		
+		this.checkNotDone();
+		this.build=true;
+	}
+
+	@Override
+	public void reset() {
+
+		this.isDone();
+		this.build=false;
 	}
 	
 	
