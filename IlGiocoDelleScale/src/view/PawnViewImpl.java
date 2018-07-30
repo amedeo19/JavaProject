@@ -36,7 +36,7 @@ public class PawnViewImpl extends ImageView implements PawnView {
 		case Baloo:
 			this.setImage(new Image(this.getClass().getResourceAsStream("/Pawns/Balooo.png")));
 			break;
-		case Bagheera:
+		case Baghera:
 			this.setImage(new Image(this.getClass().getResourceAsStream("/Pawns/BagheraLaPanteraNera.png")));
 			break;
 		case ShereKhan:
