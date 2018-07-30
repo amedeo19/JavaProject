@@ -14,11 +14,13 @@ import java.util.stream.IntStream;
 
 public class Gui implements Initializable {
 	ObservableList<Integer> num = FXCollections.observableArrayList(1,2,3,4);
+	@FXML
 	public Button Start;
 	@FXML 
 	public ChoiceBox numPlayer;
 	public void SelectPawns() {
-		
+		Object num2 = numPlayer.getValue();
+		System.out.println(num2);
 	}
     @Override
     public void initialize(URL location, ResourceBundle resources) {
