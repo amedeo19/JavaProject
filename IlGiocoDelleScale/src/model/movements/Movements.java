@@ -1,6 +1,5 @@
 package model.movements;
 
-import model.data.Data;
 import model.pawns.Pawns;
 
 public interface Movements {
@@ -9,15 +8,6 @@ public interface Movements {
 	
 	public int dicePosition(int initialPosition, int diceNumber);
 	
-	public void setData(Data data);
-	
-	public Data getData();
-	
-	public void reset();
-	
-	public boolean checkWin(int pos);
-	
-	public void build();
-	
+	public boolean checkWin(int pos);	
 	
 }
