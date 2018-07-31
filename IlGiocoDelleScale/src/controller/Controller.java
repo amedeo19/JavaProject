@@ -1,18 +1,14 @@
 package controller;
 
-public class Controller {
+import java.io.IOException;
 
-	private static final Controller SINGLETON = new Controller();
+public interface Controller {
+
 	
+	public void play();
 	
+	public void start();
 	
-	
-	public static Controller getController() {
-        return SINGLETON;
-    }
-	
-	public void start() {
-        
-    }
-	
+	public void FinishGame() throws IOException;
+
 }

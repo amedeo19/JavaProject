@@ -2,10 +2,10 @@ package controller;
 
 public class Main {
 	
-	private final Controller controller;
+	private final ControllerImpl controller;
 	
 	private Main() {
-		this.controller = Controller.getController();
+		this.controller = ControllerImpl.getController();
 	}
 	
 	private void start() {

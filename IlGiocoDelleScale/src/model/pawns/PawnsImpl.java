@@ -3,11 +3,19 @@ package model.pawns;
 import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
+<<<<<<< HEAD
 import java.util.function.Supplier;
+=======
+import view.ViewManagerImpl;
+//import javafx.scene.image.ImageView;
+import view.Size;
+
+>>>>>>> 07cf84e0d1b48b6703d0eef2e481e0d59e7f04e9
 
 public class PawnsImpl extends Observable implements Pawns{
 
 	
+<<<<<<< HEAD
 	private static final int START=0; 
 	private int positions;
 	private boolean state;
@@ -15,6 +23,12 @@ public class PawnsImpl extends Observable implements Pawns{
 	private static final Supplier<RuntimeException> pawnError = () -> new IllegalStateException("Pawn not built");
 	private static final Supplier<RuntimeException> buildError = () -> new IllegalStateException("Pawn already built");
 
+=======
+	private final int START=0;
+	private int positions;
+	private boolean state;
+	//private final ViewManagerImpl Pawn;
+>>>>>>> 07cf84e0d1b48b6703d0eef2e481e0d59e7f04e9
 	
 	public PawnsImpl() {
 		
