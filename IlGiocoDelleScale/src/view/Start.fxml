@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="437.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.Gui">
+   <children>
+      <Button fx:id="Start" layoutX="269.0" layoutY="351.0" mnemonicParsing="false" onAction="#SelectPawns" text="Start" />
+      <ImageView fitHeight="157.0" fitWidth="656.0" layoutX="75.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../res/snl_logo.png" />
+         </image>
+      </ImageView>
+      <ChoiceBox fx:id="numPlayer" layoutX="225.0" layoutY="264.0" prefWidth="150.0" />
+   </children>
+</AnchorPane>

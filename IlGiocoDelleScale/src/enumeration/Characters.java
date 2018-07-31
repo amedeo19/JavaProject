@@ -3,7 +3,7 @@ package enumeration;
 public enum Characters {
 	
 
-	Bagheera,
+	Baghera,
 	
 	Baloo,
 	
