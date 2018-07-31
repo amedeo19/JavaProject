@@ -14,8 +14,4 @@ public interface Pawns{
 	public boolean getState();
 
 	public void addObserverList(List<Observer> obsList);
-	
-	public void build();
-	
-	public void reset();
 }
