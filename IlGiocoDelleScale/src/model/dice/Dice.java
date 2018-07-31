@@ -8,8 +8,6 @@ public interface Dice {
 	
 	public int getNumber();
 	
-	public void build();
-	
 	public int viewNum();
 }
 
