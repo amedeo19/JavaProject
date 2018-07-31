@@ -10,7 +10,6 @@ public class ListDataImpl implements ListData{
 
 	private static final int CLASSIC=100;
 	private List<Dice> diceList = new ArrayList<>();
-	private Data data;
 	
 	@Override
 	public Data classicMode() {
@@ -23,12 +22,7 @@ public class ListDataImpl implements ListData{
 	public Data personalizedMode(int cellNumber, List<Dice> diceList) {
 
 		this.diceList=diceList;
-		this.diceList.forEach(d->d.build());
-		this.data = DataImpl.getData();
-		this.data.setDice(diceList);
-		this.data.setFinish(cellNumber);
-		this.data.build();
-		return this.data;
+		return new DataImpl(diceList, cellNumber);
 	}
 
 
