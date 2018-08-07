@@ -3,13 +3,13 @@ package enumeration;
 public enum Characters {
 	
 
-	Baghera("character.baghera"),
+	Baghera("Baghera"),
 	
-	Baloo("character.baloo"),
+	Baloo("Baloo"),
 	
-	ShereKhan("character.sharekhan"),
+	ShereKhan("Shere Khan"),
 	
-	KingLouie("character.kinglouie");
+	KingLouie("King Louie");
 	
 	
 	private final String character;

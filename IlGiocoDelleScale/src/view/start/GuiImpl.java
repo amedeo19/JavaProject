@@ -1,4 +1,4 @@
-package view;
+package view.start;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -18,6 +18,8 @@ public class GuiImpl extends Application {
         primaryStage.setTitle("Scale e Serpenti");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
+        
+        
     }
 
 

@@ -1,4 +1,4 @@
-package view;
+package view.playerselect;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -8,24 +8,25 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 
 import java.net.URL;
+import java.util.Arrays;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class Gui implements Initializable {
-	ObservableList<Integer> num = FXCollections.observableArrayList(1,2,3,4);
+import enumeration.Characters;
+
+public class PlayerSelect implements Initializable {
+	ObservableList<Characters> cha = FXCollections.observableArrayList(Arrays.asList(Characters.values()));
 	@FXML
-	public Button Start;
+	public Button StartGame1;
 	@FXML 
-	public ChoiceBox numPlayer;
-	public void SelectPawns() {
-		Object num2 = numPlayer.getValue();
-		System.out.println(num2);
+	public ChoiceBox<Characters> character;
+	public void StartGame() {
+		System.out.print(cha);
 	}
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        this.numPlayer.setItems(num);
-        this.numPlayer.setValue(1);
+    	 this.character.setItems(cha);
+    	 this.character.setValue(Characters.Baghera);
     }
-
 }
