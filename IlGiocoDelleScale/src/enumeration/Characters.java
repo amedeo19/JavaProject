@@ -3,12 +3,25 @@ package enumeration;
 public enum Characters {
 	
 
-	Baghera,
+	Baghera("character.baghera"),
 	
-	Baloo,
+	Baloo("character.baloo"),
 	
-	ShereKhan,
+	ShereKhan("character.sharekhan"),
 	
-	KingLouie;
+	KingLouie("character.kinglouie");
+	
+	
+	private final String character;
+	
+	
+	Characters(final String character){
+		this.character = character;
+	}
+	
+	
+	public String toString() {
+		return this.character;
+	}
 }
 
