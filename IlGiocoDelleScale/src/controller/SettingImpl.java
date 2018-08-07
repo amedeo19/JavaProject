@@ -1,31 +1,40 @@
 package controller;
 
-import java.util.List;
+import model.data.Data;
 
-import enumeration.Characters;
-import model.dice.Dice;
-
-public class Settings {
+public class SettingImpl implements Setting {
 
 	private final int NumPlayers;
-	private List<Dice> DiceList;
+	private Data data;
+	private int turn;
+	private final static int Start=0;
 	
-	
-	
-	public Settings(final int NumPlayers, List<Dice> DiceList) {
+	public SettingImpl(final int NumPlayers, Data data) {
 		this.NumPlayers = NumPlayers;
-		this.DiceList = DiceList;
+		this.data = data;
+		this.turn=Start;
 	}
 	
-	
+	@Override
 	public int getNumPlayers() {
 		return this.NumPlayers;
 	}
 	
-	
-	public List<Dice> GetDiceList(){
-		return this.DiceList;
+	@Override
+	public Data getData(){
+		return this.data;
 	}
 	
+	@Override
+	public int moveTurn() {
+		this.turn=this.turn++;
+		return (this.turn % this.NumPlayers);
+	}
+
+
+	@Override
+	public int getTurn() {
+		return this.turn;
+	}
 	
 }
