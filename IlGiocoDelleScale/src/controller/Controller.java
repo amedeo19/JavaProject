@@ -4,16 +4,15 @@ import java.io.IOException;
 import java.util.List;
 
 import model.dice.Dice;
+import model.pawns.Pawns;
 
 public interface Controller {
 
 	
-	public void rollDice();
-	
-	public void start();
+	public void start(List<Dice> list, int lastNumber, List<Pawns> Pawns);
 	
 	public void FinishGame() throws IOException;
 	
-	public void Play(int NumPlayers, List<Dice> DiceList);
+	public void Play();
 
 }

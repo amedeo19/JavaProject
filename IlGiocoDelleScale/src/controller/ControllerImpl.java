@@ -11,6 +11,7 @@ import model.data.DataImpl;
 import model.data.ListData;
 import model.data.ListDataImpl;
 import model.dice.Dice;
+import model.dice.ListDice;
 import model.dice.ListDiceImpl;
 import model.model.*;
 import model.pawns.Pawns;
@@ -18,65 +19,34 @@ import model.pawns.PawnsImpl;
 
 public class ControllerImpl implements Controller {
 
-	private static final ControllerImpl SINGLETON = new ControllerImpl();
+	
 	private final Model game;
-	private int turn;
 	private boolean control;	//dadi
 	List<Dice> diceList;
+	private int numCell;
 	List<Pawns> PawnsList;			//per ogni pedone occorre aggiungere un numero identificativo per gestire il turno
 	int lastNumber;
-	private final Data data;
-	private final ListData list;
-	private final Pawns p;
-	private Optional<Settings> setting;
-	
-	
-	
-	public ControllerImpl(List<Dice> list, int lastNumber, List<Pawns> Pawns) {
-		this.game = new ModelImpl();
-		this.turn = 0;
-		this.diceList = list;
-		this.PawnsList = Pawns;
-		this.lastNumber = lastNumber;
-		this.setting = Optional.empty();
-		this.list = new ListDataImpl();
-		this.list.personalizedMode(lastNumber, diceList);
-		this.data = new DataImpl(this.diceList, this.lastNumber);
-		this.p = new PawnsImpl();
-	}
+	private Data data;
+	private Optional<SettingImpl> setting;
+	private Optional<Pawns> p;
 
 
 	public ControllerImpl() {
 		this.game = new ModelImpl();
-		this.turn = 0;
+		this.p=Optional.empty();
 		this.setting = Optional.empty();
-		this.list = new ListDataImpl();
-		this.diceList.add(new ListDiceImpl().classicDice());
-		this.data = new DataImpl(this.diceList, 100);
-		this.p = new PawnsImpl();
+		//this.diceList.add(new ListDiceImpl().classicDice());
 	}
-
-
-	public static ControllerImpl getController() {
-        return SINGLETON;
-    }
 	
-	
-	public void rollDice() {
-        if(control) {
-			this.game.getLog();
-	        this.game.startGame(data);
-	        Pawns k = this.PawnsList.get(turn);
-	        int a = this.game.movePawn(k);
-	        int b = this.data.getFinishNumber();		//cosi prendo il risultato dell'ultimo lancio di quel dado
-	        k.setPosition(a);
-	        k.setState(false);
-	        if (this.turn < this.setting.get().getNumPlayers() - 1) {
-	        	this.turn++;
-	        } else {
-	        	this.turn=0;
-	        }
-	        if(this.game.checkWin(k)) {
+	@Override
+	public void Play() {
+        
+		if(control) {
+	        this.p = Optional.of(this.PawnsList.get(this.setting.get().getTurn()));
+	        int newPos = this.game.movePawn(this.p.get());			//prendo la pos finale
+	        this.p.get().setState(false);
+	        this.setting.get().moveTurn();
+	        if(this.game.checkWin(this.p.get())) {
 	        	try {
 					this.FinishGame();
 				} catch (IOException e) {
@@ -91,8 +61,8 @@ public class ControllerImpl implements Controller {
 	
 	@Override
 	public void FinishGame() throws IOException{
-		if(this.control) {
-			this.game.endGame();
+		if(this.control) {									//finestra che permette di uscire o tornare al menu iniziale
+			
 		} else {
 			throw new IllegalStateException();
 		}
@@ -100,25 +70,21 @@ public class ControllerImpl implements Controller {
 	}
 	
 	
-	public void start() {
+	public void start(List<Dice> list, int numCell, List<Pawns> Pawns) {	
+		
+		this.PawnsList=Pawns;
+		this.diceList=list;
+		this.numCell=numCell;
+		this.data= new DataImpl(this.diceList, this.numCell);
+		this.setting = Optional.of(new SettingImpl(this.PawnsList.size(), this.data));
+		this.game.startGame(this.data);
+	}
+
+	public void startController() {
 		this.control = true;
+		//this.view.start();
 	}
 
-
-	@Override
-	public void Play (int NumPlayers, List<Dice> DiceList) {
-		if(this.control) {
-			this.setting = Optional.of(new SettingBuilder()
-					.NumPlayers(NumPlayers)
-					.Dice(DiceList)
-					.build());
-			
-			this.turn = 0;
-			
-		} else {
-			throw new IllegalStateException();
-		}
-	}
 	
 	
 	
