@@ -29,38 +29,36 @@ public class Gui implements Initializable {
 	List<Text> TextList=new ArrayList<>();
 	List<ChoiceBox<Characters>> PawnList=new ArrayList<>();
 	@FXML
-	public Text Text1;
+	private Text Text1;
 	@FXML
-	public Text TextP1;
+	private Text TextP1;
 	@FXML
-	public Text TextP2;
+	private Text TextP2;
 	@FXML
-	public Text TextP3;
+	private Text TextP3;
 	@FXML
-	public Text TextP4;
+	private Text TextP4;
 	@FXML
-	public Text PawnSelection;
+	private Text PawnSelection;
 	@FXML
-	public ImageView Logo;
+	private ImageView Logo;
 	@FXML
-	public Button GoToPlayerSelect;
+	private Button GoToPlayerSelect;
 	@FXML 
-	public ChoiceBox numPlayer;
+	private ChoiceBox<Integer> numPlayer;
 	@FXML
-	public Button Exit;
+	private Button Exit;
 	@FXML
-	public Button Back;
+	private Button Back;
 	@FXML
-	public ChoiceBox<Characters> PawnP1;
+	private ChoiceBox<Characters> PawnP1;
 	@FXML
-	public ChoiceBox<Characters> PawnP2;
+	private ChoiceBox<Characters> PawnP2;
 	@FXML
-	public ChoiceBox<Characters> PawnP3;
+	private ChoiceBox<Characters> PawnP3;
 	@FXML
-	public ChoiceBox<Characters> PawnP4;
-	public void StartGame() {
-		System.out.print(cha);
-	}
+	private ChoiceBox<Characters> PawnP4;
+	
 	public void SelectPawns() {
 		int numPlayers = (int) numPlayer.getValue();
 		for (int i=0;i<numPlayers;i++) {
@@ -113,6 +111,7 @@ public class Gui implements Initializable {
    	 	this.PawnP3.setValue(Characters.Baghera);
    	 	this.PawnP4.setItems(cha);
 	 	this.PawnP4.setValue(Characters.Baghera);
+
 	 	TextP1.setVisible(false);
 	 	TextP2.setVisible(false);
 	 	TextP3.setVisible(false);
