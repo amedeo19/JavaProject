@@ -15,11 +15,12 @@ public class SpecialDice implements Dice{
 	private Optional<Map<Integer,Integer>>map;
 	private static final Supplier<RuntimeException> keyError = () -> new IllegalStateException("Error with some first numbers");
 	private static final Supplier<RuntimeException> valueError = () -> new IllegalStateException("Error with some second numbers");	
+
 	public SpecialDice(Map<Integer,Integer> map,Dice dice) { // map
 		
 		super();
 		this.Special=0;
-		this.dice= dice;
+		this.dice=dice;
 		this.map=Optional.ofNullable(map);
 		if (this.map.isPresent()){
 			

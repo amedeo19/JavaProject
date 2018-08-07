@@ -20,8 +20,8 @@ public class PawnsImpl extends Observable implements Pawns{
     public void setState(boolean state) {
       
 		this.state = state;
-        this.setChanged();
-        this.notifyObservers();
+        setChanged();
+        notifyObservers();
     }
  
     @Override
