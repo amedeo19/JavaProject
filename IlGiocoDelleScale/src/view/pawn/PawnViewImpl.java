@@ -1,4 +1,4 @@
-package view;
+package view.pawn;
 
 import enumeration.Characters;
 import java.util.ArrayList;
