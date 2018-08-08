@@ -8,8 +8,8 @@ public class DataImpl implements Data{
 
 	List<Dice> diceList;
 	int lastNumber;
-	private final static int MINFINISH=30;
-	private final static int MAXFINISH=200;
+	private final static int MINFINISH=64;
+	private final static int MAXFINISH=400;
 	private static final int MAXDICE=3;
 	private static final Supplier<RuntimeException> diceError = () -> new IllegalStateException("Too many Dice");
 	private static final Supplier<RuntimeException> cellError = () -> new IllegalStateException("Error with number of cell");
