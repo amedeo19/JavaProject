@@ -1,4 +1,4 @@
-package view;
+package view.Pawn;
 
 import enumeration.Characters;
 import java.util.ArrayList;
@@ -24,7 +24,7 @@ public class PawnViewImpl extends ImageView implements PawnView {
 	private static int pos;
 	
 	
-	public PawnViewImpl(final Characters character, final Pawns p, final int pos) {
+	public PawnViewImpl(final Characters character, final Pawns p) {
 		super();
 		this.pawn = p;
 		this.pos = START;
@@ -49,8 +49,7 @@ public class PawnViewImpl extends ImageView implements PawnView {
 			this.setImage(new Image(this.getClass().getResourceAsStream("/Pawns/BagheraLaPanteraNera.png")));
 			break;
 		}
-		this.pos = pos;
-		p.setPosition(this.pos);
+		
 	}
 	
 	
@@ -65,17 +64,13 @@ public class PawnViewImpl extends ImageView implements PawnView {
 	}
 
 
-
-	@Override
-	public void MovePawn(Pawns p, int pos) {
-		
-	}
-
-
 	@Override
 	public int getPosition() {
 		return this.pos;
 	}
 
+	public void UpDate(int NewPos) {
+		
+	}
 
 }
