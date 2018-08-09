@@ -13,6 +13,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
+import model.board.Coordinate;
+import model.converter.Converter;
+import model.converter.ConverterImpl;
 import model.data.Data;
 import model.data.DataImpl;
 import model.data.ListData;
@@ -36,6 +39,7 @@ public class ControllerImpl implements Controller {
 	private Data data;
 	private Optional<SettingImpl> setting;
 	private Optional<Pawns> p;
+	private Converter converse;
 
 
 	public ControllerImpl() {
@@ -111,6 +115,7 @@ public class ControllerImpl implements Controller {
 		this.PawnsList=Pawns;
 		this.diceList=list;
 		this.numCell=numCell;
+		this.converse = new ConverterImpl((int)Math.sqrt(this.numCell));
 		this.data= new DataImpl(this.diceList, this.numCell);
 		this.setting = Optional.of(new SettingImpl(this.PawnsList.size(), this.data));
 		this.game.startGame(this.data);
@@ -119,6 +124,17 @@ public class ControllerImpl implements Controller {
 	public void startController() {
 		this.control = true;
 		//this.view.start();
+	}
+
+	@Override
+	public int ConverteToInt(Coordinate coordinate) {
+		return this.converse.convert(coordinate);
+	}
+
+	@Override
+	public Coordinate ConverteToCoordinate(int pos) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	
