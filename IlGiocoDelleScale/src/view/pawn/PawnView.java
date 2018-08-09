@@ -1,4 +1,4 @@
-package view.Pawn;
+package view.pawn;
 
 
 import enumeration.Characters;
