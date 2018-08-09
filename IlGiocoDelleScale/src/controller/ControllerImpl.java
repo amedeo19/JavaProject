@@ -74,33 +74,6 @@ public class ControllerImpl implements Controller {
 	public void FinishGame(int turn) throws IOException{
 		if(this.control) {				//finestra che permette di uscire o tornare al menu iniziale
 			
-			JFrame gui = new JFrame();
-			final JButton ritorna = new JButton("menù principale");
-			final JButton exit = new JButton("exit");
-			final JPanel tasti = new JPanel(new GridLayout(500, 500));
-			final JTextArea vinto = new JTextArea("Hai vinto");
-			final JTextArea perso = new JTextArea("Hai perso");
-			gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			gui.getContentPane().add(BorderLayout.SOUTH, tasti);
-			gui.setSize(500, 500);
-			tasti.add(exit);
-			tasti.add(ritorna);
-			
-			switch(turn) {
-			case 1: gui.getContentPane().add(BorderLayout.CENTER, vinto);
-			case 2: gui.getContentPane().add(BorderLayout.CENTER, perso);
-			}
-			
-			exit.addActionListener(e -> {
-				System.exit(0);
-			});
-			
-			ritorna.addActionListener(e -> {
-				//this.view.start();
-			});
-			
-			gui.pack();
-			gui.setVisible(true);
 			
 			
 		} else {
