@@ -11,7 +11,7 @@ public interface Controller {
 	
 	public void start(List<Dice> list, int lastNumber, List<Pawns> Pawns);
 	
-	public void FinishGame() throws IOException;
+	public void FinishGame(int turn) throws IOException;
 	
 	public void Play();
 
