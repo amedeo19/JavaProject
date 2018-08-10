@@ -2,18 +2,23 @@ package model.converter;
 
 import model.board.Coordinate;
 
-public class Odd implements ConverterStrategy{
+public class Odd extends AbstractConverter{
 
-	private final int width; 
-	
 	public Odd(int width) {
 		
-		this.width=width;
+		super(width);
 	}
 	
 	@Override
 	public int getNumber(Coordinate coordinate) {
-		return ((coordinate.getY()*10)+(this.width-(coordinate.getX()+1)));
+		return ((coordinate.getY()*super.getWidth())+(super.getWidth()-(coordinate.getX()+1)));
 	}
 
+	@Override
+	public Coordinate getCoordinate(int num) {
+		
+		return new Coordinate((super.getWidth()-(num -(this.getHeight(num)*super.getWidth()))-1), (this.getHeight(num)));
+	}
+
+	
 }

@@ -102,12 +102,13 @@ public class ControllerImpl implements Controller {
 
 	@Override
 	public int ConverteToInt(Coordinate coordinate) {
-		return this.converse.convert(coordinate);
+		return this.converse.toInt(coordinate);
 	}
 
 	@Override
 	public Coordinate ConverteToCoordinate(int pos) {
-		return null;
+
+		return this.converse.toCoordinate(pos);
 	}
 
 	
