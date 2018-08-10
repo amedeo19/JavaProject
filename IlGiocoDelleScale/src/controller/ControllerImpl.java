@@ -40,6 +40,7 @@ public class ControllerImpl implements Controller {
 	private Optional<SettingImpl> setting;
 	private Optional<Pawns> p;
 	private Converter converse;
+	private Coordinate coordinate;
 
 
 	public ControllerImpl() {
@@ -106,7 +107,6 @@ public class ControllerImpl implements Controller {
 
 	@Override
 	public Coordinate ConverteToCoordinate(int pos) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
