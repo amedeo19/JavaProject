@@ -12,13 +12,13 @@ public class Even extends AbstractConverter{
 	@Override
 	public int getNumber(Coordinate coordinate) {
 	
-		return ((coordinate.getY()*super.getWidth())+((coordinate.getX())+1));
+		return ((coordinate.getY()*super.getWidth())+((coordinate.getX())));
 	}
 
 	@Override
 	public Coordinate getCoordinate(int num) {
 		
-		return new Coordinate((num -(this.getHeight(num)*super.getWidth())+1), (this.getHeight(num)));
+		return new Coordinate((num -(this.getHeight(num)*super.getWidth())), (this.getHeight(num)));
 	}
 
 	
