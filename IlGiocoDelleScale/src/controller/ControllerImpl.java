@@ -1,12 +1,13 @@
 package controller;
 
 
-import java.awt.BorderLayout;
-import java.awt.GridLayout;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -29,24 +30,33 @@ import model.pawns.PawnsImpl;
 
 public class ControllerImpl implements Controller {
 
-	
+	private Map mapSpecial;
 	private final Model game;
 	private boolean control;	//dadi
 	List<Dice> diceList;
+	Map<Optional<Integer>, Dice> DiceMap;
 	private int numCell;
 	List<Pawns> PawnsList;			//per ogni pedone occorre aggiungere un numero identificativo per gestire il turno
+	List<Character> CharacterList;
 	int lastNumber;
 	private Data data;
 	private Optional<SettingImpl> setting;
 	private Optional<Pawns> p;
 	private Converter converse;
-	private Coordinate coordinate;
+	private Coordinate Newcoordinate;
 
 
 	public ControllerImpl() {
 		this.game = new ModelImpl();
 		this.p=Optional.empty();
 		this.setting = Optional.empty();
+		this.DiceMap = new HashMap<>();
+		this.mapSpecial=new HashMap<>();
+		this.mapSpecial.put(4, 3);
+		this.mapSpecial.put(8, -5);
+		this.mapSpecial.put(12, 7);
+		this.mapSpecial.put(16, -2);
+		this.mapSpecial.put(20, 10);
 		//this.diceList.add(new ListDiceImpl().classicDice());
 	}
 	
@@ -56,6 +66,8 @@ public class ControllerImpl implements Controller {
 		if(control) {
 	        this.p = Optional.of(this.PawnsList.get(this.setting.get().getTurn()));
 	        int newPos = this.game.movePawn(this.p.get());			//prendo la pos finale
+	        this.Newcoordinate = this.ConverteToCoordinate(newPos);				//mandare alla view le coordinate finali della pedina
+	        
 	        this.p.get().setState(false);
 	        this.setting.get().moveTurn();
 	        if(this.game.checkWin(this.p.get())) {
@@ -76,7 +88,7 @@ public class ControllerImpl implements Controller {
 		if(this.control) {				//finestra che permette di uscire o tornare al menu iniziale
 			
 			
-			
+			this.control = false;
 		} else {
 			throw new IllegalStateException();
 		}
@@ -84,16 +96,18 @@ public class ControllerImpl implements Controller {
 	}
 	
 	
-	public void start(List<Dice> list, int numCell, List<Pawns> Pawns) {	
+	public void start(Map<Optional<Integer>, Dice> DiceMap, int numCell, List<Character> Character) {	
 		
-		this.PawnsList=Pawns;
-		this.diceList=list;
+		this.CharacterList=Character;
+		this.DiceMap = DiceMap;
+		this.ConverteListDice(this.DiceMap);
 		this.numCell=numCell;
 		this.converse = new ConverterImpl((int)Math.sqrt(this.numCell));
 		this.data= new DataImpl(this.diceList, this.numCell);
 		this.setting = Optional.of(new SettingImpl(this.PawnsList.size(), this.data));
 		this.game.startGame(this.data);
 	}
+	
 
 	public void startController() {
 		this.control = true;
@@ -107,8 +121,33 @@ public class ControllerImpl implements Controller {
 
 	@Override
 	public Coordinate ConverteToCoordinate(int pos) {
-
 		return this.converse.toCoordinate(pos);
+	}
+	
+	public void ConverteListDice(Map<Optional<Integer>, Dice> DiceMap) {
+//		this.DiceMap.values().forEach(e -> {
+//			this.diceList.addAll(this.DiceMap.values());
+//		});
+		
+		ListDice diceBuilder = new ListDiceImpl();
+		@SuppressWarnings("unchecked")
+		List<Optional<Integer>> list = (List<Optional<Integer>>) this.mapSpecial.keySet().stream().collect(Collectors.toList());
+		
+		for (int i=0;i<this.DiceMap.size();i++) {
+			if (this.DiceMap.get(i).equals("Multiface")) {
+				this.diceList.add(diceBuilder.multiFaceDice(list.get(i).get()));
+			}else if (this.DiceMap.get(i).equals("Total Personalized")) {
+				this.diceList.add(diceBuilder.totalPersonalized(this.mapSpecial,list.get(i).get()));
+			}else if (this.DiceMap.get(i).equals("Special Dice")) {
+				this.diceList.add(diceBuilder.specialClassicDice(this.mapSpecial));
+			}else if (this.DiceMap.get(i).equals("Special Twenty")) {
+				this.diceList.add(diceBuilder.specialTwentyDice(this.mapSpecial));
+			}else if(this.DiceMap.get(i).equals("Classic")) {
+				this.diceList.add(diceBuilder.classicDice());
+			}else {
+				this.diceList.add(diceBuilder.twentyFaceDice());
+			}
+		}
 	}
 
 	
