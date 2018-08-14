@@ -22,7 +22,7 @@ public class DiceMapImpl{
                 	.collect(Collectors.toMap(i -> i, i -> Dice + i + PNG));
 	}
 	
-	public Map<Integer, String> getDiceMap() {
+	public static Map<Integer, String> getDiceMap() {
 		
 		return diceMap;
 	}
