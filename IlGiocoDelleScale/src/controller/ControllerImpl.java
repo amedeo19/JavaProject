@@ -6,27 +6,19 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.Set;
 import java.util.stream.Collectors;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JTextArea;
-
+import enumeration.Characters;
 import model.board.Coordinate;
 import model.converter.Converter;
 import model.converter.ConverterImpl;
 import model.data.Data;
 import model.data.DataImpl;
-import model.data.ListData;
-import model.data.ListDataImpl;
 import model.dice.Dice;
 import model.dice.ListDice;
 import model.dice.ListDiceImpl;
 import model.model.*;
 import model.pawns.Pawns;
-import model.pawns.PawnsImpl;
 
 public class ControllerImpl implements Controller {
 
@@ -34,10 +26,10 @@ public class ControllerImpl implements Controller {
 	private final Model game;
 	private boolean control;	//dadi
 	List<Dice> diceList;
-	Map<Optional<Integer>, Dice> DiceMap;
+	Map<Optional<Integer>, enumeration.Dice> DiceMap;
 	private int numCell;
 	List<Pawns> PawnsList;			//per ogni pedone occorre aggiungere un numero identificativo per gestire il turno
-	List<Character> CharacterList;
+	List<Characters> CharacterList;
 	int lastNumber;
 	private Data data;
 	private Optional<SettingImpl> setting;
@@ -96,7 +88,7 @@ public class ControllerImpl implements Controller {
 	}
 	
 	
-	public void start(Map<Optional<Integer>, Dice> DiceMap, int numCell, List<Character> Character) {	
+	public void start(Map<Optional<Integer>, enumeration.Dice> DiceMap, int numCell, List<Characters> Character) {	
 		
 		this.CharacterList=Character;
 		this.DiceMap = DiceMap;
@@ -106,6 +98,13 @@ public class ControllerImpl implements Controller {
 		this.data= new DataImpl(this.diceList, this.numCell);
 		this.setting = Optional.of(new SettingImpl(this.PawnsList.size(), this.data));
 		this.game.startGame(this.data);
+		
+		this.CharacterList.forEach(e -> {
+			System.out.println(e);
+		});
+		this.DiceMap.forEach((x, y) -> {
+			System.out.println("Nella DiceMap i valori sono: " + x + "assegnati a " + y);
+		});
 	}
 	
 
@@ -124,7 +123,7 @@ public class ControllerImpl implements Controller {
 		return this.converse.toCoordinate(pos);
 	}
 	
-	public void ConverteListDice(Map<Optional<Integer>, Dice> DiceMap) {
+	public void ConverteListDice(Map<Optional<Integer>, enumeration.Dice> DiceMap) {
 //		this.DiceMap.values().forEach(e -> {
 //			this.diceList.addAll(this.DiceMap.values());
 //		});
