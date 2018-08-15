@@ -1,18 +1,11 @@
 package view.pawn;
 
 
-import enumeration.Characters;
-import model.pawns.Pawns;
+import javafx.fxml.Initializable;
+import model.board.Coordinate;
 
-public interface PawnView {
+public interface PawnView extends Initializable{
 	
-	
-	void SetInitPos();
-	
-	
-	Characters getPawn();
-	
-	
-	int getPosition();
+	public void update(Coordinate coordinate);
 	
 }

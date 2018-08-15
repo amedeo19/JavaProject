@@ -2,23 +2,23 @@ package controller;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import enumeration.Characters;
+import javafx.fxml.Initializable;
 import model.board.Coordinate;
 
-public interface Controller {
+public interface Controller extends Initializable{
 
 	
-	public void start(Map<Optional<Integer>, enumeration.Dice> DiceMap, int lastNumber, List<Characters> Character);
+	public void start(List<String> diceList, List<Optional<Integer>> faceList, int lastNumber, List<Characters> Character);
 	
-	public void FinishGame(int turn) throws IOException;
+	public void finishGame(int turn) throws IOException;
 	
-	public void Play();
+	public void play();
 	
-	public int ConverteToInt(Coordinate coordinate);
+	public int convertToInt(Coordinate coordinate);
 	
-	public Coordinate ConverteToCoordinate(int pos);
+	public Coordinate convertToCoordinate(int pos);
 
 
 }
