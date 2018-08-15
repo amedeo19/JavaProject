@@ -19,16 +19,14 @@ public class PawnViewImp implements PawnView {
 	private Label viewPawn;
 	@FXML
 	private ImageView image;
-	private Pawns pawn;
-	private Characters character;
-	private Coordinate coordinate;
+
+	private static final int Start=0;
 
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		
-		this.viewPawn.setLocation(this.coordinate.getX(), this.coordinate.getY());
-		this.pawn = new PawnsImpl();
+		this.viewPawn.setLocation(Start, Start);
 		this.viewPawn.setVisible(true);
 		
 	}
@@ -37,8 +35,7 @@ public class PawnViewImp implements PawnView {
 	@Override
 	public void update(Coordinate coordinate) {
 
-		this.coordinate = coordinate;
-		this.viewPawn.setLocation(this.coordinate.getX(), this.coordinate.getY());
+		this.viewPawn.setLocation(coordinate.getX(), coordinate.getY());
 		
 	}
 

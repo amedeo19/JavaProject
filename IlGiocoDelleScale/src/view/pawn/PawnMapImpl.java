@@ -7,11 +7,8 @@ public class PawnMapImpl {
 	private static Map<Integer, String> PawnMap;
 	private static final String Pawn = "file://../res/Pawns/";
 	private static final String PNG = ".png";
+	
 	public PawnMapImpl() {
-		
-//		PawnMap = IntStream.range(Start, End + 1)
-//				.boxed()
-//				.collect(Collectors.toMap(i -> i, i -> Pawn + this.character.toString() + PNG));
 		
 		PawnMap.put(1, Pawn + "bagheraLaPanteraNera" + PNG);
 		PawnMap.put(2, Pawn + "balooo" + PNG);
