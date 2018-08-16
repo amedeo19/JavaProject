@@ -1,4 +1,4 @@
-package view.pawn;
+package utilities.pawn;
 
 
 import java.io.File;

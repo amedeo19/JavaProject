@@ -10,10 +10,7 @@ public class DiceMapImpl{
 	private static final int Start=1;
 	private static final int End=20;
 	private static final String Dice = "file://../res/dice/dice";
-	private static final String PNG = ".png";
-	
-	
-	
+	private static final String PNG = ".png";	
 	
 	public DiceMapImpl() {
 		

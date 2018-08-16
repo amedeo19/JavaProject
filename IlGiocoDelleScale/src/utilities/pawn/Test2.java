@@ -1,4 +1,4 @@
-package view.pawn;
+package utilities.pawn;
 
 
 import javafx.application.Application;
@@ -26,8 +26,8 @@ public class Test2 extends Application {
 			Group root = new Group();
 			PawnView ImagePawn = new PawnViewImp();
 			PawnView ImagePawn2 = new PawnViewImp();
-			ImagePawn.setImage(1);
-			ImagePawn2.setImage(2);
+			ImagePawn.setImage(3);
+			ImagePawn2.setImage(1);
 //			ImageView imageView = new ImageView();
 //			ImageView imageView2 = new ImageView();
 			ImageView imageView = ImagePawn.getImage();

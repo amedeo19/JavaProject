@@ -1,11 +1,12 @@
-package view.pawn;
+package utilities.pawn;
 
 
-import javafx.fxml.Initializable;
-import model.board.Coordinate;
+import javafx.scene.image.ImageView;
 
-public interface PawnView extends Initializable{
+public interface PawnView {
 	
-	public void update(Coordinate coordinate);
+	public void setImage(int num);
+	
+	public ImageView getImage();
 	
 }

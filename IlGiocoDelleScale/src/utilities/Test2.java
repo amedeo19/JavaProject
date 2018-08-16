@@ -26,8 +26,8 @@ public class Test2 extends Application {
 			Group root = new Group();
 			DiceImage ImageDice = new DiceImageImpl();
 			DiceImage ImageDice2 = new DiceImageImpl();
-			ImageDice.setImage(1);
-			ImageDice2.setImage(2);
+			ImageDice.setImage(5);
+			ImageDice2.setImage(19);
 //			ImageView imageView = new ImageView();
 //			ImageView imageView2 = new ImageView();
 			ImageView imageView = ImageDice.getImage();
