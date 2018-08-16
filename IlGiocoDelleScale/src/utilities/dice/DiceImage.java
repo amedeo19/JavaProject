@@ -1,4 +1,4 @@
-package utilities;
+package utilities.dice;
 
 import javafx.scene.image.ImageView;
 
