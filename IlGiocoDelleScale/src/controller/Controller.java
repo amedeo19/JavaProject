@@ -6,6 +6,7 @@ import java.util.Optional;
 import enumeration.Characters;
 import javafx.fxml.Initializable;
 import model.board.Coordinate;
+
 public interface Controller extends Initializable{
 
 	

@@ -10,7 +10,6 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
-
 import enumeration.Characters;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -42,7 +41,7 @@ public class ControllerImpl implements Controller {
 	private Optional<SettingImpl> setting;
 	private Optional<Pawns> p;
 	private Converter converse;
-	private Coordinate Newcoordinate;	
+	private Coordinate Newcoordinate;
 	
 	@FXML
 	private Button button;
@@ -59,7 +58,7 @@ public class ControllerImpl implements Controller {
 		this.mapSpecial.put(12, 7);
 		this.mapSpecial.put(16, -2);
 		this.mapSpecial.put(20, 10);
-		//this.diceList.add(new ListDiceImpl().classicDice());
+		this.button.setVisible(true);
 	}
 	
 	@Override

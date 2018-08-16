@@ -1,4 +1,4 @@
-package utilities;
+package utilities.dice;
 
 
 import javafx.application.Application;
