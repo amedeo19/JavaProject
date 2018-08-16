@@ -1,4 +1,4 @@
-package model.board;
+package enumeration;
 
 public enum UpsideDownType {
 	SNAKE,
