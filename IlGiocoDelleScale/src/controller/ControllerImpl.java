@@ -42,11 +42,11 @@ public class ControllerImpl implements Controller {
 	List<enumeration.Dice> diceList;
 	List<Dice> listOfDice;
 	List<Optional<Integer>> faceList;
-	private int numCell;
 	List<Pawns> PawnsList;			//per ogni pedone occorre aggiungere un numero identificativo per gestire il turno
 	List<Characters> CharacterList;
 	int lastNumber;
 	private Data data;
+	private int numCell;
 	private Optional<SettingImpl> setting;
 	private Optional<Pawns> p;
 	private Converter converse;
@@ -111,7 +111,7 @@ public class ControllerImpl implements Controller {
 	}
 	
 	
-	public void start(List<enumeration.Dice> diceList, List<Optional<Integer>> faceList, int numCell, List<Characters> Character, MapDimension dimension, MapDifficulty difficulty) {	
+	public void start(List<enumeration.Dice> diceList, List<Optional<Integer>> faceList, List<Characters> Character, MapDimension dimension, MapDifficulty difficulty) {	
 		
 		this.CharacterList=Character;
 		this.difficulty = difficulty;
@@ -120,7 +120,6 @@ public class ControllerImpl implements Controller {
 		this.diceList = diceList;
 		this.faceList = faceList;
 		this.ConvertListDice();
-		this.numCell=numCell;
 		this.converse = new ConverterImpl((int)Math.sqrt(this.numCell));
 		this.data= new DataImpl(this.listOfDice, this.numCell);
 		// Pawn
