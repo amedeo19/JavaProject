@@ -115,7 +115,8 @@ public class Gui implements Initializable {
 	
 	private int numDices;
 	private int numPlayers;
-	private static final int cellNumber=100;
+	private MapDimension dimension;
+	private MapDifficulty difficulty;
 	private Controller controller = new ControllerImpl();
 
 	
@@ -152,7 +153,9 @@ public class Gui implements Initializable {
 		Difficulty.setVisible(false);
 		Dimension.setVisible(false);
 		System.out.println(this.Difficulty.getValue());
-		System.out.println(this.Dimension.getValue());
+		dimension=this.Dimension.getValue();
+		difficulty=this.Difficulty.getValue();
+		
 		
 	}
 	public void Exit() {
@@ -270,7 +273,7 @@ public class Gui implements Initializable {
 	public void StartGame() {
 		for (int i=0;i<this.numDices;i++) {
 			switch (i) {
-				case 0: this.listFace.add(Optional.ofNullable(Integer.parseInt(FaceN1.getText())));
+				case 0: if isPresent() this.listFace.add(Optional.ofNullable(Integer.parseInt(FaceN1.getText())));
 						this.listOfDice.add(Dice1.getValue());
 						break;
 				case 1: this.listFace.add(Optional.ofNullable(Integer.parseInt(FaceN2.getText())));
@@ -281,10 +284,10 @@ public class Gui implements Initializable {
 						break;
 			}
 		}
-		//this.controller.start(listOfDice, listFace, cellNumber, chaselect);
+		this.controller.start(listOfDice, listFace, chaselect, dimension, difficulty);
 	}
 
-    @Override
+    @Override    
     public void initialize(URL location, ResourceBundle resources) {
         this.numPlayer.setItems(num);
         this.numPlayer.setValue(1);
