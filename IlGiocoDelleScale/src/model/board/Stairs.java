@@ -17,7 +17,7 @@ public class Stairs extends AbsrtactObject{
 
 
 	@Override
-	public UpsideDownImpl getObjectStairs() {
+	public UpsideDownImpl getObjectStairs(int x, int y) {
 		return null;
 	}
 
@@ -29,7 +29,7 @@ public class Stairs extends AbsrtactObject{
 
 
 	@Override
-	public UpsideDownImpl getObjectSnake() {
+	public UpsideDownImpl getObjectSnake(int x, int y) {
 		// TODO Auto-generated method stub
 		return null;
 	}

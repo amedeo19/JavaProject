@@ -15,19 +15,16 @@ public class Snake extends AbsrtactObject{
 		return new UpsideDownImpl(start, stop, UpsideDownType.SNAKE);
 	}
 
-	@Override
-	public UpsideDownImpl getObjectSnake() {
+	public UpsideDownImpl getObjectSnake(int x, int y) {
+		// TODO Auto-generated method stub
+		return getSnake();
+	}
+
+	public UpsideDownImpl getObjectStairs(int x, int y) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
-	public UpsideDownImpl getObjectStairs() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public UpsideDownImpl snake() {
 		// TODO Auto-generated method stub
 		return null;
@@ -38,4 +35,6 @@ public class Snake extends AbsrtactObject{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
 }
