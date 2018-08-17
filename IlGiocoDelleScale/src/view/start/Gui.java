@@ -3,10 +3,7 @@ package view.start;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
@@ -17,22 +14,14 @@ import javafx.stage.Stage;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import java.util.ResourceBundle;
-import java.util.stream.Collectors;
 
 import controller.Controller;
 import controller.ControllerImpl;
 
-import java.util.stream.*;
-
-import enumeration.Characters;
-import enumeration.Dice;
-import enumeration.MapDifficulty;
-import enumeration.MapDimension;
+import enumeration.*;
 
 public class Gui implements Initializable {
 	//liste di oggetti utili all'inizializzazione della partita
@@ -139,7 +128,6 @@ public class Gui implements Initializable {
 						break;
 			}
 		}
-		System.out.println(this.TextList.size());
 		this.TextList.forEach(e->e.setVisible(true));
 		this.PawnList.forEach(e->e.setVisible(true));
 		numPlayer.setVisible(false);
@@ -152,7 +140,6 @@ public class Gui implements Initializable {
 		TextDimension.setVisible(false);
 		Difficulty.setVisible(false);
 		Dimension.setVisible(false);
-		System.out.println(this.Difficulty.getValue());
 		dimension=this.Dimension.getValue();
 		difficulty=this.Difficulty.getValue();
 		
@@ -163,7 +150,6 @@ public class Gui implements Initializable {
 	}
 	public void Update() {
 		this.numDices = (int) DiceNumber.getValue();
-		System.out.println(numDices);
 		Dice2.setVisible(false);
 		Dice3.setVisible(false);
 		FaceN1.setVisible(false);
@@ -182,6 +168,10 @@ public class Gui implements Initializable {
 						break;
 			}
 		}
+		Update.setVisible(false);
+		Update1.setVisible(true);
+		DiceNumber.setDisable(true);
+
 	}
 	public void Update1() {
 	Dice typeDice1 = Dice1.getValue();
@@ -200,6 +190,12 @@ public class Gui implements Initializable {
 	if ((typeDice3.toString().equals("Multiface")) || (typeDice3.toString().equals("Total Personalized"))) {
 		FaceN3.setVisible(true);
 	}
+	StartGame.setVisible(true);
+	Update1.setVisible(false);
+	Dice1.setDisable(true);
+	Dice2.setDisable(true);
+	Dice3.setDisable(true);
+
 	}
 	public void Back() {
 		numPlayer.setVisible(true);
@@ -237,6 +233,10 @@ public class Gui implements Initializable {
 		this.Difficulty.setValue(MapDifficulty.EASY);
 		Dimension.setVisible(true);
 		this.Dimension.setValue(MapDimension.SMALL);
+		Dice1.setDisable(false);
+		Dice2.setDisable(false);
+		Dice3.setDisable(false);
+		DiceNumber.setDisable(false);
 
 	}
 	public void SelectDice(){
@@ -254,7 +254,6 @@ public class Gui implements Initializable {
 						break;
 			}
 		}
-		System.out.println(chaselect);
 		this.TextList.forEach(e->e.setVisible(false));
 		this.PawnList.forEach(e->e.setVisible(false));
 		numPlayer.setVisible(false);
@@ -264,27 +263,45 @@ public class Gui implements Initializable {
 		PawnSelection.setVisible(false);
 		DiceNumber.setVisible(true);
 		Update.setVisible(true);
-		Update1.setVisible(true);
 		GoToDiceSelect.setVisible(false);
-		StartGame.setVisible(true);
 		DiceSelection.setVisible(true);
 
 		}
 	public void StartGame() {
+		FaceN1.getText();
 		for (int i=0;i<this.numDices;i++) {
 			switch (i) {
-				case 0: if isPresent() this.listFace.add(Optional.ofNullable(Integer.parseInt(FaceN1.getText())));
+				case 0: this.setListFace(FaceN1);
 						this.listOfDice.add(Dice1.getValue());
 						break;
-				case 1: this.listFace.add(Optional.ofNullable(Integer.parseInt(FaceN2.getText())));
+				case 1: this.setListFace(FaceN2);
 						this.listOfDice.add(Dice2.getValue());
 						break;
-				case 2: this.listFace.add(Optional.ofNullable(Integer.parseInt(FaceN3.getText())));
+				case 2: this.setListFace(FaceN3);
 						this.listOfDice.add(Dice3.getValue());
 						break;
 			}
 		}
 		this.controller.start(listOfDice, listFace, chaselect, dimension, difficulty);
+		this.clearList();
+		this.close();
+	}
+	private void clearList() {
+		this.listOfDice.clear();
+		this.listFace.clear();
+		this.chaselect.clear();
+	}
+	private void setListFace(TextField face){
+		if(!face.getText().isEmpty()) {
+			this.listFace.add(Optional.of(Integer.parseInt(face.getText())));
+		}else {
+			this.listFace.add(Optional.empty());
+		}
+	}
+	private void close() {
+		Stage stage = (Stage) StartGame.getScene().getWindow();
+	    stage.hide();
+	    
 	}
 
     @Override    
