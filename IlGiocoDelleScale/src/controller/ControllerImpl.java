@@ -96,7 +96,7 @@ public class ControllerImpl implements Controller {
 		
 	}
 	
-	
+	@Override
 	public void start(List<String> diceList, List<Optional<Integer>> faceList, int numCell, List<Characters> Character) {	
 		
 		this.CharacterList=Character;
