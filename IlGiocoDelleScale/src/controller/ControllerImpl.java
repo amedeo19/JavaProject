@@ -116,6 +116,8 @@ public class ControllerImpl implements Controller {
 		this.CharacterList=Character;
 		this.difficulty = difficulty;
 		this.dimension = dimension;
+		this.numCell = this.dimension.getDimension();
+		System.out.println(this.numCell);
 		this.CreatePawn();
 		this.diceList = diceList;
 		this.faceList = faceList;
@@ -129,17 +131,14 @@ public class ControllerImpl implements Controller {
 	}
 	
 
-	public void startController() {
+	public void startController() throws Exception {
 		this.control = true;
 		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("ServerConfigChooser.fxml"));
-		    GuiImpl controller = new GuiImpl();
-		    loader.setController(controller);
-		    Parent root = (Parent) loader.load();
-
+			
 		    Stage stage = new Stage();
-		    stage.setScene(new Scene(root));
 		    stage.show();
+		    this.gui.start(stage);
+		    
 		} catch (IOException e){
 			e.printStackTrace();
 		}

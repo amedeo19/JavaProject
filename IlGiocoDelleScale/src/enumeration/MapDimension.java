@@ -21,7 +21,7 @@ public enum MapDimension {
 		return this.map;
 	}
 	
-	public int GetDimension() {
+	public int getDimension() {
 		return this.dimension;
 	}
 	

@@ -23,9 +23,11 @@ public interface Controller extends Initializable{
 	
 	public Coordinate convertToCoordinate(int pos);
 	
-	public void startController();
+	public void startController() throws Exception;
 	
 	public List<Characters> getCharacterList();
+	
+	public void ConvertListDice();
 
 
 }
