@@ -1,6 +1,6 @@
 package model.board;
 
-import enumeration.UpsideDownType;
+import enumeration.*;
 
 public interface UpsideDown {
 	
