@@ -107,8 +107,10 @@ public class ControllerImpl implements Controller {
 		
 	}
 	
+
 	
 	public void start(List<enumeration.Dice> diceList, List<Optional<Integer>> faceList, List<Characters> Character, MapDimension dimension, MapDifficulty difficulty) {	
+
 		
 		this.CharacterList=Character;
 		this.difficulty = difficulty;
