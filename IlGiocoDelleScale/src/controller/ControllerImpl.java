@@ -10,16 +10,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.ResourceBundle;
-import java.util.stream.Collectors;
 import enumeration.Characters;
 import enumeration.MapDifficulty;
 import enumeration.MapDimension;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.stage.Stage;
 import model.board.Coordinate;
 import model.converter.Converter;
 import model.converter.ConverterImpl;
@@ -54,6 +49,7 @@ public class ControllerImpl implements Controller {
 	private GuiImpl gui;
 	private MapDifficulty difficulty;
 	private MapDimension dimension;
+	private boolean multiplayer;
 	
 	@FXML
 	private Button button;
@@ -61,6 +57,7 @@ public class ControllerImpl implements Controller {
 
 	public ControllerImpl() {
 		this.game = new ModelImpl();
+		this.multiplayer = false;
 		this.gui = new GuiImpl();
 		this.p=Optional.empty();
 		this.setting = Optional.empty();
@@ -110,8 +107,10 @@ public class ControllerImpl implements Controller {
 		
 	}
 	
+
 	
 	public void start(List<enumeration.Dice> diceList, List<Optional<Integer>> faceList, List<Characters> Character, MapDimension dimension, MapDifficulty difficulty) {	
+
 		
 		this.CharacterList=Character;
 		this.difficulty = difficulty;
@@ -119,6 +118,7 @@ public class ControllerImpl implements Controller {
 		this.numCell = this.dimension.getDimension();
 		System.out.println(this.numCell);
 		this.CreatePawn();
+		this.checkMultiplayer();
 		this.diceList = diceList;
 		this.faceList = faceList;
 		this.ConvertListDice();
@@ -128,21 +128,16 @@ public class ControllerImpl implements Controller {
 		this.setting = Optional.of(new SettingImpl(this.PawnsList.size(), this.data));
 		this.game.startGame(this.data);
 		
+		//chiamare view di andre
+		//javafx.application.Application.launch(View.class);
+		
 	}
 	
 
 	public void startController() throws Exception {
 		this.control = true;
-		try {
-			
-		    Stage stage = new Stage();
-		    stage.show();
-		    this.gui.start(stage);
-		    
-		} catch (IOException e){
-			e.printStackTrace();
-		}
-		//this.view.start();
+		
+		javafx.application.Application.launch(GuiImpl.class);
 	}
 
 	@Override
@@ -180,8 +175,6 @@ public class ControllerImpl implements Controller {
 	
 	public void CreatePawn() {
 		Pawns p = new PawnsImpl();
-		System.out.println(p.getPosition());
-		
 		this.CharacterList.forEach(e -> {
 			this.PawnsList.add(new PawnsImpl());
 		});
@@ -193,9 +186,28 @@ public class ControllerImpl implements Controller {
 		
 	}
 
+	
 	public List<Characters> getCharacterList(){
 		return Collections.unmodifiableList(this.CharacterList);
 	}
+	
+	
+	public void checkMultiplayer() {
+		if(this.CharacterList.size() == 1) {		//caso single player, creo CPU
+			this.multiplayer = false;
+			this.PawnsList.add(new PawnsImpl());
+			if(this.CharacterList.equals(Characters.Baghera)) {
+				this.CharacterList.add(Characters.ShereKhan);
+			} else {
+				this.CharacterList.add(Characters.Baghera);
+			}
+		} else {
+			this.multiplayer = true;
+		}
+		
+		System.out.println(this.CharacterList);
+	}
+	
 	
 	
 	

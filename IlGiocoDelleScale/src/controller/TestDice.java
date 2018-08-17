@@ -34,15 +34,16 @@ public class TestDice {
 		faceList.add(Optional.of(5));
 		faceList.add(Optional.empty());
 		
-		Character.add(per.ShereKhan);
+		Character.add(per.KingLouie);
 		Character.add(per.Baghera);
 		
 		
-		System.out.println("sad\n" + diceList.size() +"\n"  );
+		System.out.println("sad\n" + diceList.size() );
 		System.out.println(faceList.size());
 		System.out.println(Character.toString());
+		System.out.println(difficulty.toString());
+		System.out.println(dimension.toString());
 		
-		controller.start(diceList, faceList, Character, dimension, difficulty);
 		
 		try {
 			controller.startController();
@@ -50,6 +51,8 @@ public class TestDice {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		controller.start(diceList, faceList, Character, dimension, difficulty);
 		
 	}
 	
