@@ -281,7 +281,7 @@ public class Gui implements Initializable {
 						break;
 			}
 		}
-		this.controller.start(dicemap, cellNumber, chaselect);
+		//this.controller.start(listOfDice, listFace, cellNumber, chaselect);
 	}
 
     @Override
