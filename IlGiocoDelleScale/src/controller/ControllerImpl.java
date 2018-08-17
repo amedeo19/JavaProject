@@ -4,6 +4,7 @@ package controller;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,8 +12,14 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 import enumeration.Characters;
+import enumeration.MapDifficulty;
+import enumeration.MapDimension;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.stage.Stage;
 import model.board.Coordinate;
 import model.converter.Converter;
 import model.converter.ConverterImpl;
@@ -24,13 +31,15 @@ import model.dice.ListDiceImpl;
 import model.model.*;
 import model.pawns.Pawns;
 import model.pawns.PawnsImpl;
+import view.start.Gui;
+import view.start.GuiImpl;
 
 public class ControllerImpl implements Controller {
 
 	private Map<Integer,Integer> mapSpecial;
 	private final Model game;
 	private boolean control;	//dadi
-	List<String> diceList;
+	List<enumeration.Dice> diceList;
 	List<Dice> listOfDice;
 	List<Optional<Integer>> faceList;
 	private int numCell;
@@ -42,6 +51,9 @@ public class ControllerImpl implements Controller {
 	private Optional<Pawns> p;
 	private Converter converse;
 	private Coordinate Newcoordinate;
+	private GuiImpl gui;
+	private MapDifficulty difficulty;
+	private MapDimension dimension;
 	
 	@FXML
 	private Button button;
@@ -49,16 +61,18 @@ public class ControllerImpl implements Controller {
 
 	public ControllerImpl() {
 		this.game = new ModelImpl();
+		this.gui = new GuiImpl();
 		this.p=Optional.empty();
 		this.setting = Optional.empty();
 		this.listOfDice = new ArrayList<Dice>();
+		this.CharacterList = new ArrayList<>();
+		this.PawnsList = new ArrayList<>();
 		this.mapSpecial=new HashMap<>();
 		this.mapSpecial.put(4, 3);
 		this.mapSpecial.put(8, -5);
 		this.mapSpecial.put(12, 7);
 		this.mapSpecial.put(16, -2);
 		this.mapSpecial.put(20, 10);
-		this.button.setVisible(true);
 	}
 	
 	@Override
@@ -97,9 +111,11 @@ public class ControllerImpl implements Controller {
 	}
 	
 	
-	public void start(List<String> diceList, List<Optional<Integer>> faceList, int numCell, List<Characters> Character) {	
+	public void start(List<enumeration.Dice> diceList, List<Optional<Integer>> faceList, int numCell, List<Characters> Character, MapDimension dimension, MapDifficulty difficulty) {	
 		
 		this.CharacterList=Character;
+		this.difficulty = difficulty;
+		this.dimension = dimension;
 		this.CreatePawn();
 		this.diceList = diceList;
 		this.faceList = faceList;
@@ -116,6 +132,18 @@ public class ControllerImpl implements Controller {
 
 	public void startController() {
 		this.control = true;
+		try {
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("ServerConfigChooser.fxml"));
+		    GuiImpl controller = new GuiImpl();
+		    loader.setController(controller);
+		    Parent root = (Parent) loader.load();
+
+		    Stage stage = new Stage();
+		    stage.setScene(new Scene(root));
+		    stage.show();
+		} catch (IOException e){
+			e.printStackTrace();
+		}
 		//this.view.start();
 	}
 
@@ -153,9 +181,11 @@ public class ControllerImpl implements Controller {
 	}
 	
 	public void CreatePawn() {
+		Pawns p = new PawnsImpl();
+		System.out.println(p.getPosition());
+		
 		this.CharacterList.forEach(e -> {
-			Pawns a = new PawnsImpl();
-			this.PawnsList.add(a);
+			this.PawnsList.add(new PawnsImpl());
 		});
 	}
 
@@ -165,6 +195,9 @@ public class ControllerImpl implements Controller {
 		
 	}
 
+	public List<Characters> getCharacterList(){
+		return Collections.unmodifiableList(this.CharacterList);
+	}
 	
 	
 	
