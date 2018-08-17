@@ -9,7 +9,12 @@ public class Main {
 	}
 	
 	private void start() {// Non puoi 
-		this.controller.startController();
+		try {
+			this.controller.startController();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public static void main(final String[] args) {
