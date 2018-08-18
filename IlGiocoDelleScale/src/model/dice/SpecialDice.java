@@ -65,7 +65,7 @@ public class SpecialDice extends MultifaceDice{
 		this.Special=0;
 	}
 	
-	public int getSpecial(){
+	private int getSpecial(){
 		
 		return this.Special; 
 	}
