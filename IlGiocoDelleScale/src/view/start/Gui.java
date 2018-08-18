@@ -3,10 +3,7 @@ package view.start;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
@@ -18,12 +15,14 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.ResourceBundle;
-import java.util.stream.Collectors;
-import java.util.stream.*;
 
-import enumeration.Characters;
-import enumeration.Dice;
+import java.util.Optional;
+import java.util.ResourceBundle;
+
+import controller.Controller;
+import controller.ControllerImpl;
+
+import enumeration.*;
 
 public class Gui implements Initializable {
 	ObservableList<Integer> num = FXCollections.observableArrayList(1,2,3,4);
@@ -89,6 +88,12 @@ public class Gui implements Initializable {
 	@FXML
 	private TextField FaceN3;
 	
+	private int numDices;
+	private int numPlayers;
+	private MapDimension dimension;
+	private MapDifficulty difficulty;
+	private Controller controller = new ControllerImpl();
+
 	public void SelectPawns() {
 		int numPlayers = (int) numPlayer.getValue();
 		for (int i=0;i<numPlayers;i++) {
@@ -107,7 +112,6 @@ public class Gui implements Initializable {
 						break;
 			}
 		}
-		System.out.println(this.TextList.size());
 		this.TextList.forEach(e->e.setVisible(true));
 		this.PawnList.forEach(e->e.setVisible(true));
 		numPlayer.setVisible(false);
@@ -116,6 +120,12 @@ public class Gui implements Initializable {
 		Text1.setVisible(false);
 	 	GoToDiceSelect.setVisible(true);
 		PawnSelection.setVisible(true);
+		TextDifficulty.setVisible(false);
+		TextDimension.setVisible(false);
+		Difficulty.setVisible(false);
+		Dimension.setVisible(false);
+		dimension=this.Dimension.getValue();
+		difficulty=this.Difficulty.getValue();
 
 		
 	}
@@ -123,8 +133,8 @@ public class Gui implements Initializable {
 		System.exit(0);
 	}
 	public void Update() {
-		int numDices = (int) DiceNumber.getValue();
-		System.out.println(numDices);
+
+		this.numDices = (int) DiceNumber.getValue();
 		Dice2.setVisible(false);
 		Dice3.setVisible(false);
 		FaceN1.setVisible(false);
@@ -143,6 +153,10 @@ public class Gui implements Initializable {
 						break;
 			}
 		}
+		Update.setVisible(false);
+		Update1.setVisible(true);
+		DiceNumber.setDisable(true);
+
 	}
 	public void Update1() {
 	Dice typeDice1 = Dice1.getValue();
@@ -161,6 +175,12 @@ public class Gui implements Initializable {
 	if ((typeDice3.toString().equals("Multiface")) || (typeDice3.toString().equals("Total Personalized"))) {
 		FaceN3.setVisible(true);
 	}
+	StartGame.setVisible(true);
+	Update1.setVisible(false);
+	Dice1.setDisable(true);
+	Dice2.setDisable(true);
+	Dice3.setDisable(true);
+
 	}
 	public void Back() {
 		numPlayer.setVisible(true);
@@ -183,9 +203,42 @@ public class Gui implements Initializable {
 		FaceN3.setVisible(false);
 		StartGame.setVisible(false);
 		DiceSelection.setVisible(false);
+   	 	this.PawnP1.setValue(Characters.Baghera);
+   	 	this.PawnP2.setValue(Characters.Baghera);
+   	 	this.PawnP3.setValue(Characters.Baghera);
+   	 	this.PawnP4.setValue(Characters.Baghera);
+   	 	this.numPlayer.setValue(1);
+	 	this.DiceNumber.setValue(1);
+	 	this.Dice1.setValue(Dice.CLASSIC);
+	 	this.Dice2.setValue(Dice.CLASSIC);
+	 	this.Dice3.setValue(Dice.CLASSIC);
+	 	TextDifficulty.setVisible(true);
+		TextDimension.setVisible(true);
+		Difficulty.setVisible(true);
+		this.Difficulty.setValue(MapDifficulty.EASY);
+		Dimension.setVisible(true);
+		this.Dimension.setValue(MapDimension.SMALL);
+		Dice1.setDisable(false);
+		Dice2.setDisable(false);
+		Dice3.setDisable(false);
+		DiceNumber.setDisable(false);
+
 	}
 	public void SelectDice(){
-		
+		this.chaselect.clear();
+		this.numPlayers = (int) numPlayer.getValue();
+		for (int i=0;i<numPlayers;i++) {
+			switch (i) {
+				case 0: this.chaselect.add(PawnP1.getValue());
+						break;
+				case 1:	this.chaselect.add(PawnP2.getValue());
+						break;
+				case 2: this.chaselect.add(PawnP3.getValue());
+						break;
+				case 3: this.chaselect.add(PawnP4.getValue());
+						break;
+			}
+		}
 		this.TextList.forEach(e->e.setVisible(false));
 		this.PawnList.forEach(e->e.setVisible(false));
 		numPlayer.setVisible(false);
@@ -195,13 +248,12 @@ public class Gui implements Initializable {
 		PawnSelection.setVisible(false);
 		DiceNumber.setVisible(true);
 		Update.setVisible(true);
-		Update1.setVisible(true);
 		GoToDiceSelect.setVisible(false);
-		StartGame.setVisible(true);
 		DiceSelection.setVisible(true);
 
 		}
 	public void StartGame() {
+<<<<<<< HEAD
 		Characters pawnP1 = PawnP1.getValue();
 		Characters pawnP2 = PawnP2.getValue();
 		Characters pawnP3 = PawnP3.getValue();
@@ -214,9 +266,45 @@ public class Gui implements Initializable {
 		int faceN2=Integer.parseInt(FaceN2.getText());
 		int faceN3=Integer.parseInt(FaceN3.getText());
 		
+=======
+		FaceN1.getText();
+		for (int i=0;i<this.numDices;i++) {
+			switch (i) {
+				case 0: this.setListFace(FaceN1);
+						this.listOfDice.add(Dice1.getValue());
+						break;
+				case 1: this.setListFace(FaceN2);
+						this.listOfDice.add(Dice2.getValue());
+						break;
+				case 2: this.setListFace(FaceN3);
+						this.listOfDice.add(Dice3.getValue());
+						break;
+			}
+		}
+		this.controller.start(listOfDice, listFace, chaselect, dimension, difficulty);
+		this.clearList();
+		this.close();
+	}
+	private void clearList() {
+		this.listOfDice.clear();
+		this.listFace.clear();
+		this.chaselect.clear();
+	}
+	private void setListFace(TextField face){
+		if(!face.getText().isEmpty()) {
+			this.listFace.add(Optional.of(Integer.parseInt(face.getText())));
+		}else {
+			this.listFace.add(Optional.empty());
+		}
+	}
+	private void close() {
+		Stage stage = (Stage) StartGame.getScene().getWindow();
+	    stage.hide();
+	    
+>>>>>>> 2d055cde410dc08a755f971a36f36daba8dcd181
 	}
 
-    @Override
+    @Override    
     public void initialize(URL location, ResourceBundle resources) {
         this.numPlayer.setItems(num);
         this.numPlayer.setValue(1);
