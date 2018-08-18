@@ -75,26 +75,14 @@ public class SpecialDice extends MultifaceDice{
 		
 		int number=super.roll();
 		this.setSpecial(number);
-		this.setNumber(this.getSpecial()+number);
-		return this.getNumber();
+		super.setNumber(this.getSpecial()+number);
+		return super.getNumber();
 	}
 	
 	@Override
 	public int viewNum(){		
 		
-		return this.getNumber()-this.getSpecial();
-	}
-
-	@Override
-	public void setNumber(int number) {
-		
-		super.setNumber(number);
-	}
-
-	@Override
-	public int getNumber() {
-		
-		return super.getNumber();
+		return super.getNumber()-this.getSpecial();
 	}
 	
 }
