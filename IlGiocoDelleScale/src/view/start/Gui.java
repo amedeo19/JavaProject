@@ -15,7 +15,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -25,10 +24,17 @@ import controller.ControllerImpl;
 import enumeration.*;
 
 public class Gui implements Initializable {
+	//liste di oggetti utili all'inizializzazione della partita
 	ObservableList<Integer> num = FXCollections.observableArrayList(1,2,3,4);
+	ObservableList<MapDifficulty> mapdiff = FXCollections.observableArrayList(Arrays.asList(MapDifficulty.values()));
+	ObservableList<MapDimension> mapdim = FXCollections.observableArrayList(Arrays.asList(MapDimension.values()));
 	ObservableList<Integer> numdice = FXCollections.observableArrayList(1,2,3);
+	ObservableList<Integer> numcell = FXCollections.observableArrayList(1,2,3,4);
 	ObservableList<Characters> cha = FXCollections.observableArrayList(Arrays.asList(Characters.values()));
 	ObservableList<Dice> dic = FXCollections.observableArrayList(Arrays.asList(Dice.values()));
+	ObservableList<Characters> chaselect = FXCollections.observableArrayList();
+	List<Dice> listOfDice = new ArrayList<>();
+	List<Optional<Integer>> listFace = new ArrayList<>();
 	List<Text> TextList=new ArrayList<>();
 	List<ChoiceBox<Characters>> PawnList=new ArrayList<>();
 	List<ChoiceBox<Dice>> DiceList=new ArrayList<>();
@@ -47,6 +53,10 @@ public class Gui implements Initializable {
 	private Text PawnSelection;
 	@FXML
 	private Text DiceSelection;
+	@FXML
+	private Text TextDifficulty;
+	@FXML
+	private Text TextDimension;
 	@FXML
 	private ImageView Logo;
 	@FXML
@@ -76,6 +86,10 @@ public class Gui implements Initializable {
 	@FXML
 	private ChoiceBox<Integer> DiceNumber;
 	@FXML
+	private ChoiceBox<MapDifficulty> Difficulty;
+	@FXML
+	private ChoiceBox<MapDimension> Dimension;
+	@FXML
 	private ChoiceBox<Dice> Dice1;
 	@FXML
 	private ChoiceBox<Dice> Dice2;
@@ -94,12 +108,14 @@ public class Gui implements Initializable {
 	private MapDifficulty difficulty;
 	private Controller controller = new ControllerImpl();
 
+	
 	public void SelectPawns() {
-		int numPlayers = (int) numPlayer.getValue();
+		this.numPlayers = (int) numPlayer.getValue(); //ciclo per mostrare solo un carto numero di choicebox da cui scegliere il personaggio
 		for (int i=0;i<numPlayers;i++) {
 			switch (i) {
 				case 0: this.TextList.add(TextP1);
 						this.PawnList.add(PawnP1);
+						
 						break;
 				case 1: this.TextList.add(TextP2);
 						this.PawnList.add(PawnP2);
@@ -126,14 +142,13 @@ public class Gui implements Initializable {
 		Dimension.setVisible(false);
 		dimension=this.Dimension.getValue();
 		difficulty=this.Difficulty.getValue();
-
+		
 		
 	}
 	public void Exit() {
 		System.exit(0);
 	}
 	public void Update() {
-
 		this.numDices = (int) DiceNumber.getValue();
 		Dice2.setVisible(false);
 		Dice3.setVisible(false);
@@ -253,20 +268,6 @@ public class Gui implements Initializable {
 
 		}
 	public void StartGame() {
-<<<<<<< HEAD
-		Characters pawnP1 = PawnP1.getValue();
-		Characters pawnP2 = PawnP2.getValue();
-		Characters pawnP3 = PawnP3.getValue();
-		Characters pawnP4 = PawnP4.getValue();
-		Dice typeDice1 = Dice1.getValue();
-		Dice typeDice2 = Dice2.getValue();
-		Dice typeDice3 = Dice3.getValue();
-		int faceN1=Integer.parseInt(FaceN1.getText());
-		System.out.println(faceN1);
-		int faceN2=Integer.parseInt(FaceN2.getText());
-		int faceN3=Integer.parseInt(FaceN3.getText());
-		
-=======
 		FaceN1.getText();
 		for (int i=0;i<this.numDices;i++) {
 			switch (i) {
@@ -301,7 +302,6 @@ public class Gui implements Initializable {
 		Stage stage = (Stage) StartGame.getScene().getWindow();
 	    stage.hide();
 	    
->>>>>>> 2d055cde410dc08a755f971a36f36daba8dcd181
 	}
 
     @Override    
@@ -324,6 +324,10 @@ public class Gui implements Initializable {
 	 	this.Dice2.setValue(Dice.CLASSIC);
 	 	this.Dice3.setItems(dic);
 	 	this.Dice3.setValue(Dice.CLASSIC);
+	 	this.Difficulty.setItems(mapdiff);
+	 	this.Difficulty.setValue(MapDifficulty.EASY);
+	 	this.Dimension.setItems(mapdim);
+	 	this.Dimension.setValue(MapDimension.SMALL);
 
 	 	TextP1.setVisible(false);
 	 	TextP2.setVisible(false);
@@ -346,6 +350,9 @@ public class Gui implements Initializable {
 		FaceN2.setVisible(false);
 		FaceN3.setVisible(false);
 		DiceSelection.setVisible(false);
+		TextDifficulty.setVisible(true);
+		Difficulty.setVisible(true);
+		Dimension.setVisible(true);
     }
 
 }
