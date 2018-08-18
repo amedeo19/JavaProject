@@ -56,8 +56,7 @@ public static void main(String[] args) {
 
 		final Data data = new DataImpl(diceList,30);
 		final Pawns p = new PawnsImpl(); 
-		final Model m =  new ModelImpl();
-		m.startGame(data);
+		final Model m =  new ModelImpl(data);
 		m.movePawn(p);
 		data.getDice().forEach(e->System.out.print(e.getNumber()+" "));
 		System.out.println();

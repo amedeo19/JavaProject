@@ -35,7 +35,7 @@ import view.view.ViewGuiImpl;
 public class ControllerImpl implements Controller {
 
 	private Map<Integer,Integer> mapSpecial;
-	private final Model game;
+	private Model game;
 	private boolean control;	//dadi
 	List<enumeration.Dice> diceList;
 	List<Dice> listOfDice;
@@ -61,7 +61,6 @@ public class ControllerImpl implements Controller {
 
 
 	public ControllerImpl() {
-		this.game = new ModelImpl();
 		this.view = new ViewGuiImpl();
 		this.view.setController(this);
 		this.multiplayer = false;
@@ -133,7 +132,7 @@ public class ControllerImpl implements Controller {
 		this.data= new DataImpl(this.listOfDice, this.numCell);
 		// Pawn
 		this.setting = Optional.of(new SettingImpl(this.PawnsList.size(), this.data));
-		this.game.startGame(this.data);
+		this.game = new ModelImpl(this.data);
 		
 		//chiamare view di andre
 		//javafx.application.Application.launch(View.class);
