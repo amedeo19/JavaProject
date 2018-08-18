@@ -15,6 +15,7 @@ import enumeration.MapDifficulty;
 import enumeration.MapDimension;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.stage.Stage;
 import model.board.Coordinate;
 import model.converter.Converter;
 import model.converter.ConverterImpl;
@@ -28,6 +29,8 @@ import model.pawns.Pawns;
 import model.pawns.PawnsImpl;
 import view.start.Gui;
 import view.start.GuiImpl;
+import view.view.View;
+import view.view.ViewGuiImpl;
 
 public class ControllerImpl implements Controller {
 
@@ -40,6 +43,7 @@ public class ControllerImpl implements Controller {
 	List<Pawns> PawnsList;			//per ogni pedone occorre aggiungere un numero identificativo per gestire il turno
 	List<Characters> CharacterList;
 	int lastNumber;
+	private Stage stage;
 	private Data data;
 	private int numCell;
 	private Optional<SettingImpl> setting;
@@ -50,6 +54,7 @@ public class ControllerImpl implements Controller {
 	private MapDifficulty difficulty;
 	private MapDimension dimension;
 	private boolean multiplayer;
+	private View view;
 	
 	@FXML
 	private Button button;
@@ -57,6 +62,8 @@ public class ControllerImpl implements Controller {
 
 	public ControllerImpl() {
 		this.game = new ModelImpl();
+		this.view = new ViewGuiImpl();
+		this.view.setController(this);
 		this.multiplayer = false;
 		this.gui = new GuiImpl();
 		this.p=Optional.empty();
@@ -136,8 +143,8 @@ public class ControllerImpl implements Controller {
 
 	public void startController() throws Exception {
 		this.control = true;
-		
-		javafx.application.Application.launch(GuiImpl.class);
+		this.view.startMenu(stage);
+		//javafx.application.Application.launch(GuiImpl.class);
 	}
 
 	@Override
@@ -192,11 +199,12 @@ public class ControllerImpl implements Controller {
 	}
 	
 	
+	
 	public void checkMultiplayer() {
-		if(this.CharacterList.size() == 1) {		//caso single player, creo CPU
+		if(this.CharacterList.size() == 1) {		//caso single player, creo CPU (ShereKhan o Baghera)
 			this.multiplayer = false;
 			this.PawnsList.add(new PawnsImpl());
-			if(this.CharacterList.equals(Characters.Baghera)) {
+			if((this.CharacterList.get(0).equals(Characters.Baghera)) || (this.CharacterList.get(0).equals(Characters.Baloo))) {
 				this.CharacterList.add(Characters.ShereKhan);
 			} else {
 				this.CharacterList.add(Characters.Baghera);
@@ -205,7 +213,6 @@ public class ControllerImpl implements Controller {
 			this.multiplayer = true;
 		}
 		
-		System.out.println(this.CharacterList);
 	}
 	
 	

@@ -23,7 +23,7 @@ public class TestDice {
 		List<Characters> Character = new ArrayList<>();
 		Characters per = null;
 		MapDifficulty difficulty = MapDifficulty.EASY;
-		MapDimension dimension = MapDimension.LARGE;
+		MapDimension dimension = null;
 		
 		
 		diceList.add(Dice.CLASSIC);
@@ -35,14 +35,14 @@ public class TestDice {
 		faceList.add(Optional.empty());
 		
 		Character.add(per.KingLouie);
-		Character.add(per.Baghera);
+		Character.add(per.Baloo);
 		
 		
 		System.out.println("sad\n" + diceList.size() );
 		System.out.println(faceList.size());
 		System.out.println(Character.toString());
 		System.out.println(difficulty.toString());
-		System.out.println(dimension.toString());
+		System.out.println(dimension.LARGE.toString());
 		
 		
 		try {
@@ -52,7 +52,7 @@ public class TestDice {
 			e.printStackTrace();
 		}
 		
-		controller.start(diceList, faceList, Character, dimension, difficulty);
+		controller.start(diceList, faceList, Character, dimension.LARGE, difficulty);
 		
 	}
 	
