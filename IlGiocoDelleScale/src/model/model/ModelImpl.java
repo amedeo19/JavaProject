@@ -9,18 +9,16 @@ public class ModelImpl implements Model{
 
 	private Movements move;
 	
+	public ModelImpl(Data data) {
+		this.move=new MovementsImpl(data);
+	}
+	
 	@Override
 	public synchronized int movePawn(Pawns p) {
 		
 		this.move.changePosition(p);
 		p.setState(!p.getState());
 		return p.getPosition();
-	}
-
-	@Override
-	public void startGame(Data data) {
-		
-		this.move=new MovementsImpl(data);
 	}
 
 	@Override
