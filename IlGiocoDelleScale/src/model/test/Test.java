@@ -22,16 +22,16 @@ public class Test{
 public static void main(String[] args) {
 		
 		final ListDice builder = new ListDiceImpl();
-		final Dice d  = builder.twentyFaceDice();
-		final Dice d2 = builder.twentyFaceDice();
-		final Dice d3 = builder.twentyFaceDice();
 		Map<Integer,Integer> map = new HashMap<>();
-		final Dice d4 = builder.totalPersonalized(map,4);
+		final Dice d  = builder.totalPersonalized(map, 15);
+		final Dice d2 = builder.specialTwentyDice(map);
+		final Dice d3 = builder.specialClassicDice(map);
 		List<Dice> diceList = new ArrayList<>();
 		diceList.add(d);
 		diceList.add(d2);
-		diceList.add(d4);
+		diceList.add(d3);
 		map.put(2, -10);
+		map.put(4, -10);
 //		final ViewImpl view = new ViewImpl(d);
 //		System.out.println(d.roll());
 //		System.out.println(d.viewNum());
@@ -54,10 +54,9 @@ public static void main(String[] args) {
 //		Dice d2= builder.classicDice();
 //		
 
-		final Data data = new DataImpl(diceList,30);
+		final Data data = new DataImpl(diceList,70);
 		final Pawns p = new PawnsImpl(); 
-		final Model m =  new ModelImpl();
-		m.startGame(data);
+		final Model m =  new ModelImpl(data);
 		m.movePawn(p);
 		data.getDice().forEach(e->System.out.print(e.getNumber()+" "));
 		System.out.println();
