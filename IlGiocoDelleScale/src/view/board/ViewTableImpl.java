@@ -9,7 +9,8 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
-
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import java.awt.Color;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -19,6 +20,17 @@ import enumeration.MapDimension;
 public class ViewTableImpl extends Application {
 	
 	private Parent createContent() {
+		var logo:Image = Image {
+	    url: "{__DIR__}logo.png"
+	    width: 50
+	    height: 50
+		} 
+	 
+		var imageView:ImageView = ImageView{ 
+		    x: 10
+		    y: 10
+		    image: logo
+		}
 		Pane root = new Pane();
 		root.setPrefSize(600, 600);
 		double x = 600/8;
