@@ -6,8 +6,8 @@ import model.dice.Dice;
 
 public class DataImpl implements Data{
 
-	List<Dice> diceList;
-	int lastNumber;
+	private List<Dice> diceList;
+	private int lastNumber;
 	private final static int MINFINISH=64;
 	private final static int MAXFINISH=400;
 	private static final int MAXDICE=3;
