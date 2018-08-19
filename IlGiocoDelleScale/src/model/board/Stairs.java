@@ -3,7 +3,12 @@ import enumeration.*;
 
 public class Stairs extends AbsrtactObject{
 	
-	public UpsideDownImpl getStairs() {
+	public Stairs(int tableHeight, int tableWidth) {
+		super(tableHeight, tableWidth);
+	}
+	
+	@Override
+	public UpsideDownImpl getObject() {
 		Coordinate start = null;
 		Coordinate stop =null;
 		do {
@@ -14,32 +19,6 @@ public class Stairs extends AbsrtactObject{
 		tableLiStart.add(start);
 		tableLiStop.add(stop);
 		return new UpsideDownImpl(start, stop, UpsideDownType.STAIR);
-	}
-
-
-	@Override
-	public UpsideDownImpl getObjectStairs(int x, int y) {
-		return null;
-	}
-
-
-	@Override
-	public UpsideDownImpl stairs() {
-		return null;
-	}
-
-
-	@Override
-	public UpsideDownImpl getObjectSnake(int x, int y) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-	@Override
-	public UpsideDownImpl snake() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }

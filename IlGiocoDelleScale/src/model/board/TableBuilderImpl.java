@@ -12,8 +12,8 @@ public class TableBuilderImpl implements TableBuilder{
 	private final MapDifficulty difficulty;
 	private final MapDimension dimension;
 	
-	UdStrategy snake = new Snake();
-	UdStrategy stairs = new Stairs();
+	UdStrategy snake = new Snake(tableHeight, tableWidth);
+	UdStrategy stairs = new Stairs(tableHeight, tableWidth);
 	List<UpsideDown> jump = new ArrayList<>();
 
 
@@ -24,29 +24,29 @@ public class TableBuilderImpl implements TableBuilder{
 	
 		if (MapDifficulty.EASY == this.difficulty) {
 			for(int i=0; i<4; i++) {
-				UpsideDown snakeReal = this.snake.getObjectSnake(tableHeight, tableWidth);
+				UpsideDown snakeReal = this.snake.getObject();
 				this.jump.add(snakeReal);
 			}
 			for(int i=0; i<6; i++) {
-				UpsideDown stairsReal = this.stairs.getObjectStairs(tableHeight, tableWidth);
+				UpsideDown stairsReal = this.stairs.getObject();
 				this.jump.add(stairsReal);
 			}
 		} else if (MapDifficulty.MEDIUM == this.difficulty) {
 			for(int i=0; i<6; i++) {
-				UpsideDown snakeReal = this.snake.getObjectSnake(tableHeight, tableWidth);
+				UpsideDown snakeReal = this.snake.getObject();
 				this.jump.add(snakeReal);
 			}
 			for(int i=0; i<6; i++) {
-				UpsideDown stairsReal = this.stairs.getObjectStairs(tableHeight, tableWidth);
+				UpsideDown stairsReal = this.stairs.getObject();
 				this.jump.add(stairsReal);
 			}
 		} else if (MapDifficulty.DIFFICULT == this.difficulty) {
 			for(int i=0; i<6; i++) {
-				UpsideDown snakeReal = this.snake.getObjectSnake(tableHeight, tableWidth);
+				UpsideDown snakeReal = this.snake.getObject();
 				this.jump.add(snakeReal);
 			}
 			for(int i=0; i<4; i++) {
-				UpsideDown stairsReal = this.stairs.getObjectStairs(tableHeight, tableWidth);
+				UpsideDown stairsReal = this.stairs.getObject();
 				this.jump.add(stairsReal);
 			}
 		}
