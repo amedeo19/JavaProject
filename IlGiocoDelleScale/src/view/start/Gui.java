@@ -265,10 +265,8 @@ public class Gui implements Initializable {
 		Update.setVisible(true);
 		GoToDiceSelect.setVisible(false);
 		DiceSelection.setVisible(true);
-
 		}
 	public void StartGame() {
-		FaceN1.getText();
 		for (int i=0;i<this.numDices;i++) {
 			switch (i) {
 				case 0: this.setListFace(FaceN1);
