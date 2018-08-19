@@ -42,7 +42,7 @@ public class TestDice {
 		System.out.println(faceList.size());
 		System.out.println(Character.toString());
 		System.out.println(difficulty.toString());
-		System.out.println(dimension.LARGE.toString());
+		System.out.println(dimension.MEDIUM.toString());
 		
 		
 //		try {

@@ -2,7 +2,7 @@ package model.board;
 
 import enumeration.*;
 
-public class Stairs extends AbsrtactObject{
+public class Stairs extends AbstractObject{
 	
 	public Stairs(int tableHeight, int tableWidth) {
 		super(tableHeight, tableWidth);

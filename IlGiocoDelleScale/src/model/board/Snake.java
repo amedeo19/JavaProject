@@ -2,7 +2,7 @@ package model.board;
 
 import enumeration.*;
 
-public class Snake extends AbsrtactObject{
+public class Snake extends AbstractObject{
 
 	public Snake(int tableHeight, int tableWidth) {
 		super(tableHeight, tableWidth);
