@@ -7,47 +7,43 @@ import enumeration.MapDifficulty;
 import enumeration.MapDimension;
 
 public class TableBuilderImpl implements TableBuilder{
-	private final int tableHeight = 10;
-	private final int tableWidth = 10;
+	private final int tableHeight;
+	private final int tableWidth;
 	private final MapDifficulty difficulty;
-	private final MapDimension dimension;
 	
-	UdStrategy snake = new Snake(tableHeight, tableWidth);
-	UdStrategy stairs = new Stairs(tableHeight, tableWidth);
+	private final UdStrategy snake;
+	private final UdStrategy stairs;
 	List<UpsideDown> jump = new ArrayList<>();
 
 
 	public TableBuilderImpl(MapDifficulty difficulty,MapDimension dimension) {
 		this.difficulty=difficulty;
-		this.dimension=dimension;
+		this.tableHeight=(int) Math.sqrt(dimension.getDimension());
+		this.tableWidth= (int) Math.sqrt(dimension.getDimension());
+		this.snake = new Snake(tableHeight, tableWidth);
+		this.stairs = new Stairs(tableHeight, tableWidth);
 		this.jump.clear();
 	
 		if (MapDifficulty.EASY == this.difficulty) {
 			for(int i=0; i<4; i++) {
-				UpsideDown snakeReal = this.snake.getObject();
-				this.jump.add(snakeReal);
+				this.jump.add(this.snake.getObject());
 			}
 			for(int i=0; i<6; i++) {
-				UpsideDown stairsReal = this.stairs.getObject();
-				this.jump.add(stairsReal);
+				this.jump.add(this.stairs.getObject());
 			}
 		} else if (MapDifficulty.MEDIUM == this.difficulty) {
 			for(int i=0; i<6; i++) {
-				UpsideDown snakeReal = this.snake.getObject();
-				this.jump.add(snakeReal);
+				this.jump.add(this.snake.getObject());
 			}
 			for(int i=0; i<6; i++) {
-				UpsideDown stairsReal = this.stairs.getObject();
-				this.jump.add(stairsReal);
+				this.jump.add(this.stairs.getObject());
 			}
 		} else if (MapDifficulty.DIFFICULT == this.difficulty) {
 			for(int i=0; i<6; i++) {
-				UpsideDown snakeReal = this.snake.getObject();
-				this.jump.add(snakeReal);
+				this.jump.add(this.snake.getObject());
 			}
 			for(int i=0; i<4; i++) {
-				UpsideDown stairsReal = this.stairs.getObject();
-				this.jump.add(stairsReal);
+				this.jump.add(this.stairs.getObject());
 			}
 		}
 	}
