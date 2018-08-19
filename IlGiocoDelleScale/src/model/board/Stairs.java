@@ -14,7 +14,7 @@ public class Stairs extends AbsrtactObject{
 		Coordinate stop =null;
 		do {
 			start = new Coordinate(randInt(0,super.tableWidth-1), randInt(0,super.tableHeight-1));
-			stop = new Coordinate(randInt(0,super.tableWidth-1), randInt(start.getY()+1,start.getY()-1));
+			stop = new Coordinate(randInt(0,super.tableWidth-1), randInt(start.getY(),start.getY()+1));
 		}while ((start == stop) || (tableLiStart.contains(start)) || (tableLiStart.contains(stop)));
 		
 		tableLiStart.add(start);
