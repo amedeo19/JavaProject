@@ -1,19 +1,14 @@
 package model.board;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Random;
 
-import com.sun.javafx.scene.control.TableColumnSortTypeWrapper;
+import java.util.Random;
 
 public abstract class AbsrtactObject implements UdStrategy {
 	
 	protected final int tableHeight;
 	protected final int tableWidth;
-	
-	public final List<Coordinate> tableLiStart  = new LinkedList<>();
-	public final List<Coordinate> tableLiStop = new LinkedList<>();
-	Random random = new Random();
+
+	private Random random = new Random();
 
 
 	public AbsrtactObject(int tableHeight,int tableWidth) {
@@ -22,8 +17,8 @@ public abstract class AbsrtactObject implements UdStrategy {
 	}
 	
 
-	protected int randInt(int min, int max) {
-	    return (random.nextInt((max - min) + 1) + min);
+	protected int randNum(int min, int max) {
+	    return (this.random.nextInt((max - min)) + min);
 	}
 
 	protected int getHeight(){
