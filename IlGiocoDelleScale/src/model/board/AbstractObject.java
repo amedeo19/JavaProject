@@ -6,7 +6,7 @@ import java.util.Random;
 
 import com.sun.javafx.scene.control.TableColumnSortTypeWrapper;
 
-public abstract class AbsrtactObject implements UdStrategy {
+public abstract class AbstractObject implements UdStrategy {
 	
 	protected final int tableHeight;
 	protected final int tableWidth;
@@ -16,7 +16,7 @@ public abstract class AbsrtactObject implements UdStrategy {
 	Random random = new Random();
 
 
-	public AbsrtactObject(int tableHeight,int tableWidth) {
+	public AbstractObject(int tableHeight,int tableWidth) {
 		this.tableHeight=tableHeight;
 		this.tableWidth=tableWidth;
 	}
