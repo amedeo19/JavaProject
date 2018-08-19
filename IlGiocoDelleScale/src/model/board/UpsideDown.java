@@ -8,5 +8,7 @@ public interface UpsideDown {
 	
 	Coordinate getTarget();
 	
+	Coordinate getStart();
+	
 	UpsideDownType getType();
 }
