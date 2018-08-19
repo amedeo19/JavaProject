@@ -23,11 +23,7 @@ public abstract class AbsrtactObject implements UdStrategy {
 	
 
 	protected int randInt(int min, int max) {
-		System.out.println("max" + max);
-		System.out.println("min" + min);
-		
-	    int randomNum = random.nextInt((max - min) + 1) + min;
-	    return randomNum;
+	    return (random.nextInt((max - min) + 1) + min);
 	}
 
 	protected int getHeight(){
