@@ -13,8 +13,13 @@ public abstract class AbsrtactObject implements UdStrategy {
 	public final List<Coordinate> tableLiStop = new LinkedList<>();
 	Random random = new Random();
 
+	
+	
 
 	protected int randInt(int min, int max) {
+		System.out.println("max" + max);
+		System.out.println("min" + min);
+		
 	    int randomNum = random.nextInt((max - min) + 1) + min;
 	    return randomNum;
 	}
