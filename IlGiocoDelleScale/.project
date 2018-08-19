@@ -14,11 +14,4 @@
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
-	<linkedResources>
-		<link>
-			<name>src/view/board/mappa8x8.jpg</name>
-			<type>1</type>
-			<location>C:/Users/andrea/Desktop/mappa8x8.jpg</location>
-		</link>
-	</linkedResources>
 </projectDescription>
