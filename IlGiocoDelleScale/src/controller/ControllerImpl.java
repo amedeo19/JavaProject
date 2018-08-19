@@ -142,8 +142,8 @@ public class ControllerImpl implements Controller {
 
 	public void startController() throws Exception {
 		this.control = true;
-		this.view.startMenu(stage);
-		//javafx.application.Application.launch(GuiImpl.class);
+		//this.view.startMenu(stage);
+		javafx.application.Application.launch(GuiImpl.class);
 	}
 
 	@Override

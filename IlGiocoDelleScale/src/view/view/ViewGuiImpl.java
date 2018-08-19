@@ -21,8 +21,8 @@ import view.start.GuiImpl;
 public class ViewGuiImpl implements View{
 
 	
-	private static final String FXML_PATH = "file://../src/view/start/Start.fxml";
-	private static final String FXML_PATH2 = "file://..src/view/start/Start.fxml";
+	private static final String FXML_PATH = "file://view/start/Start.fxml";
+	private static final String FXML_PATH2 ="file://..src/view/start/Start.fxml";
 	private Stage stage;
 	private Controller controller;
 	private final Wait<Boolean> wait = new Wait<>();
@@ -49,29 +49,35 @@ public class ViewGuiImpl implements View{
 	@Override
 	public void startMenu(Stage stage) throws IOException {
 		this.stage = stage;
-		this.startView(FXML_PATH);
+		try {
+			this.gui.start(stage);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	private void startView(String path) throws IOException {
-		final FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
-        final Parent root = loader.load();
-        stage.setTitle("Scale e serpenti");
-        if (stage.getScene() == null) {
-            stage.setScene(new Scene(root));
-        } else {
-            stage.getScene().setRoot(root);
-        }
-        if (loader.getController() instanceof ViewGuiImpl) {
-            this.gui = loader.getController();
-            
-            stage.setFullScreen(true);
-        } else {
-            this.gui = loader.getController();
-            stage.setFullScreen(false);
-            stage.centerOnScreen();
-            stage.sizeToScene();
-        }
-        stage.show();
+//		final FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
+//        final Parent root = (Parent) loader.load();
+        
+//        stage.setTitle("Scale e serpenti");
+//        if (stage.getScene() == null) {
+//            stage.setScene(new Scene(root));
+//        } else {
+//            stage.getScene().setRoot(root);
+//        }
+//        if (loader.getController() instanceof ViewGuiImpl) {
+//            this.gui = loader.getController();
+//            
+//            stage.setFullScreen(true);
+//        } else {
+//            this.gui = loader.getController();
+//            stage.setFullScreen(false);
+//            stage.centerOnScreen();
+//            stage.sizeToScene();
+//        }
+//        stage.show();
 		
 	}
 
