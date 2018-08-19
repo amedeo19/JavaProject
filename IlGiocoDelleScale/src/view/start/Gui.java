@@ -10,6 +10,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import view.view.View;
+import view.view.ViewGuiImpl;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -107,6 +109,7 @@ public class Gui implements Initializable {
 	private MapDimension dimension;
 	private MapDifficulty difficulty;
 	private Controller controller = new ControllerImpl();
+	private View view = new ViewGuiImpl();
 
 	
 	public void SelectPawns() {
@@ -281,6 +284,7 @@ public class Gui implements Initializable {
 			}
 		}
 		this.controller.start(listOfDice, listFace, chaselect, dimension, difficulty);
+		this.view.setController(this.controller);
 		this.clearList();
 		this.close();
 	}

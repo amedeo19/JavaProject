@@ -1,4 +1,4 @@
-package model.pawns;
+ package model.pawns;
 
 import java.util.List;
 import java.util.Observable;
