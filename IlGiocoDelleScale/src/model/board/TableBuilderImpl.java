@@ -20,7 +20,7 @@ public class TableBuilderImpl implements TableBuilder{
 	public TableBuilderImpl(MapDifficulty difficulty,MapDimension dimension) {
 		this.difficulty=difficulty;
 		this.dimension=dimension;
-		
+		this.jump.clear();
 	
 		if (MapDifficulty.EASY == this.difficulty) {
 			for(int i=0; i<4; i++) {

@@ -14,17 +14,14 @@ public class UpsideDownImpl implements UpsideDown {
 		this.type = type;
 	}
 
+	@Override
 	public Coordinate getStart() {
 		return start;
 	}
 
-	public Coordinate getFinish() {
-		return finish;
-	}
-
 	@Override
 	public boolean isInPosition(Coordinate position) {
-		return position == start;
+		return position.equals(this.start);
 	}
 
 	@Override

@@ -45,14 +45,16 @@ public class TestDice {
 		System.out.println(dimension.LARGE.toString());
 		
 		
-		try {
-			controller.startController();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		try {
+//			controller.startController();
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 		
 		controller.start(diceList, faceList, Character, dimension.LARGE, difficulty);
+		
+		controller.play();
 		
 	}
 	

@@ -17,6 +17,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import model.board.Coordinate;
+import model.board.TableBuilder;
+import model.board.TableBuilderImpl;
+import model.board.UpsideDown;
 import model.converter.Converter;
 import model.converter.ConverterImpl;
 import model.data.Data;
@@ -46,7 +49,7 @@ public class ControllerImpl implements Controller {
 	private Stage stage;
 	private Data data;
 	private int numCell;
-	private Optional<SettingImpl> setting;
+	private Optional<Setting> setting;
 	private Optional<Pawns> p;
 	private Converter converse;
 	private Coordinate Newcoordinate;
@@ -55,6 +58,8 @@ public class ControllerImpl implements Controller {
 	private MapDimension dimension;
 	private boolean multiplayer;
 	private View view;
+	private TableBuilder table;
+	private List<UpsideDown> jump;
 	
 	@FXML
 	private Button button;
@@ -62,6 +67,7 @@ public class ControllerImpl implements Controller {
 
 	public ControllerImpl() {
 		this.view = new ViewGuiImpl();
+		this.jump= new ArrayList<UpsideDown>();
 		this.view.setController(this);
 		this.multiplayer = false;
 		this.gui = new GuiImpl();
@@ -85,8 +91,12 @@ public class ControllerImpl implements Controller {
 	        this.p = Optional.of(this.PawnsList.get(this.setting.get().getTurn()));
 	        int newPos = this.game.movePawn(this.p.get());			//prendo la pos finale
 	        this.Newcoordinate = this.convertToCoordinate(newPos);				//mandare alla view le coordinate finali della pedina
-	        
-	        this.p.get().setState(false);
+	        this.jump.addAll(this.table.getJump());
+	        if (this.jump.stream().filter(e->e.getStart().equals(this.Newcoordinate)).count()>0) {
+	        	Coordinate a =this.jump.stream().filter(e->e.isInPosition(this.Newcoordinate)).findFirst().get().getTarget();
+	        	this.Newcoordinate = a;
+	        	System.out.println(this.Newcoordinate);
+	        }
 	        this.setting.get().moveTurn();
 	        if(this.game.checkWin(this.p.get())) {
 	        	try {
@@ -105,7 +115,7 @@ public class ControllerImpl implements Controller {
 	public void finishGame(int turn) throws IOException{
 		if(this.control) {				//finestra che permette di uscire o tornare al menu iniziale
 			
-			
+//			this.jump.clear();
 			this.control = false;
 		} else {
 			throw new IllegalStateException();
@@ -121,6 +131,7 @@ public class ControllerImpl implements Controller {
 		this.CharacterList=Character;
 		this.difficulty = difficulty;
 		this.dimension = dimension;
+		this.table = new TableBuilderImpl(difficulty, dimension);
 		this.numCell = this.dimension.getDimension();
 		System.out.println(this.numCell);
 		this.CreatePawn();
