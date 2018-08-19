@@ -15,12 +15,8 @@ public class GuiImpl extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("Start.fxml"));
-        primaryStage.setTitle("Scale e Serpenti");
+        primaryStage.setTitle("Snake N Ladders");
         primaryStage.setScene(new Scene(root));
-        primaryStage.show();
-        
-        
+        primaryStage.show();  
     }
-
-
 }

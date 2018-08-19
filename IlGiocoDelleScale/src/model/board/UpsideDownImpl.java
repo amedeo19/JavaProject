@@ -1,5 +1,7 @@
 package model.board;
+
 import enumeration.UpsideDownType;
+
 public class UpsideDownImpl implements UpsideDown {
 
 	private final Coordinate start;
