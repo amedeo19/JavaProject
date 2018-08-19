@@ -17,7 +17,6 @@ public class ModelImpl implements Model{
 	public synchronized int movePawn(Pawns p) {
 		
 		this.move.changePosition(p);
-		p.setState(!p.getState());
 		return p.getPosition();
 	}
 
