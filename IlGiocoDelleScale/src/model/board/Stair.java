@@ -2,7 +2,7 @@ package model.board;
 
 import enumeration.*;
 
-public class Stair extends AbsrtactObject{
+public class Stair extends AbstractObject{
 	
 	private final static int START=0;
 	private final static int FINAL=1;
