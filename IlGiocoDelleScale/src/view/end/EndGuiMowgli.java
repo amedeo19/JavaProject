@@ -17,12 +17,14 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import view.start.GuiImpl;
+import view.view.View;
+import view.view.ViewGuiImpl;
 
 public class EndGuiMowgli implements Initializable {
 
 	private static final String PATH = "file://../src/view/start/Start.fxml";
 	private Stage stage;
-	private Controller controller = new ControllerImpl();
+	private View view = new ViewGuiImpl();
 	
 	@FXML
 	private Button Exit;
@@ -47,7 +49,7 @@ public class EndGuiMowgli implements Initializable {
 		this.close();
 		Platform.runLater(() -> {
             try {
-                this.controller.startController();
+                this.view.startMenu(stage);
             } catch (IOException e) {
                 e.printStackTrace();
             } catch (Exception e) {

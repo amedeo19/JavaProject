@@ -1,5 +1,6 @@
 package controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -8,6 +9,9 @@ import enumeration.Characters;
 import enumeration.Dice;
 import enumeration.MapDifficulty;
 import enumeration.MapDimension;
+import javafx.stage.Stage;
+import view.view.View;
+import view.view.ViewGuiImpl;
 
 public class TestDice {
 
@@ -15,14 +19,15 @@ public class TestDice {
 	@SuppressWarnings("static-access")
 	public static void main(final String[] args) {
 
-		Controller controller = new ControllerImpl();
+		View view = new ViewGuiImpl();
+		Controller controller = new ControllerImpl(view);
 		List<Dice> diceList = new ArrayList<>();
 		List<Optional<Integer>> faceList = new ArrayList<>();
 		List<Characters> Character = new ArrayList<>();
 		Characters per = null;
 		MapDifficulty difficulty = MapDifficulty.EASY;
 		MapDimension dimension = null;
-
+		Stage stage = new Stage();
 		
 		
 		diceList.add(Dice.CLASSIC);
@@ -43,19 +48,23 @@ public class TestDice {
 		System.out.println(difficulty.toString());
 		
 		
-		try {
-			controller.startController();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		
 		controller.start(diceList, faceList, Character, dimension.LARGE, difficulty);
 		
 		controller.play();
 		
+		try {
+			
+			view.startMenu(stage);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		
+		
+		
 	}
-	
-	
 	
 }

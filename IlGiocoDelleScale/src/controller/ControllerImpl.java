@@ -40,7 +40,6 @@ public class ControllerImpl implements Controller {
 	private List<Pawns> PawnsList;			//per ogni pedone occorre aggiungere un numero identificativo per gestire il turno
 	private List<Characters> CharacterList;
 	private int lastNumber;
-	private Stage stage;
 	private Data data;
 	private int numCell;
 	private Optional<Setting> setting;
@@ -58,9 +57,8 @@ public class ControllerImpl implements Controller {
 	private final static int TIMEIA=3000;
 
 
-	public ControllerImpl() {
-		this.view = new ViewGuiImpl();
-		this.stage = new Stage();
+	public ControllerImpl(View view) {
+		this.view = view;
 		this.view.setController(this);
 		this.multiplayer = false;
 		this.IAturn=false;
@@ -136,7 +134,7 @@ public class ControllerImpl implements Controller {
 	@Override
 	public void start(List<enumeration.Dice> diceList, List<Optional<Integer>> faceList, List<Characters> Character, MapDimension dimension, MapDifficulty difficulty) {	
 
-		
+		this.control = true;
 		this.CharacterList=Character;
 		this.difficulty = difficulty;
 		this.dimension = dimension;
@@ -162,7 +160,8 @@ public class ControllerImpl implements Controller {
 
 	public void startController() throws Exception {
 		this.control = true;
-		this.view.startMenu(stage);
+		//Stage stage = new Stage();
+		//this.view.startMenu(stage);
 		//javafx.application.Application.launch(GuiImpl.class);
 	}
 

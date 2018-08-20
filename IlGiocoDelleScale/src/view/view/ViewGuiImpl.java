@@ -49,6 +49,7 @@ public class ViewGuiImpl implements View{
 	public void startMenu(Stage stage) throws IOException {
 		this.stage = stage;
 		try {
+			
 			this.gui.start(stage);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -90,7 +91,6 @@ public class ViewGuiImpl implements View{
 	@Override
 	public void setController(Controller controller) {
 		this.controller = controller;
-		
 	}
 	
 	
