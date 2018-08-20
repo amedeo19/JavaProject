@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 import model.dice.Dice;
 import model.pawns.Pawns;
 import utilities.Coordinate;
+import view.board2.GuiBoardImpl;
 import view.start.Gui;
 import view.start.GuiImpl;
 
@@ -27,6 +28,13 @@ public class ViewGuiImpl implements View{
 	private Controller controller;
 	private final Wait<Boolean> wait = new Wait<>();
 	private GuiImpl gui = new GuiImpl();
+	private GuiBoardImpl guiBoard = new GuiBoardImpl();
+	
+	public ViewGuiImpl() {
+		this.controller = new ControllerImpl(this);
+		this.controller.GetSnakeList();
+		this.controller.GetStairList();
+	}
 	
 	
 	@Override

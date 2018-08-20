@@ -7,6 +7,7 @@ import enumeration.Characters;
 import enumeration.Dice;
 import enumeration.MapDifficulty;
 import enumeration.MapDimension;
+import model.board.UpsideDown;
 
 public interface Controller {
 
@@ -14,6 +15,12 @@ public interface Controller {
 	public void start(List<Dice> diceList, List<Optional<Integer>> faceList, List<Characters> Character, MapDimension dimension, MapDifficulty difficulty);
 	
 	public void play();
+	
+	public void startController() throws Exception;
+	
+	public List<UpsideDown> GetStairList();
+	
+	public List<UpsideDown> GetSnakeList();
 	
 
 }

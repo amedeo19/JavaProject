@@ -14,6 +14,7 @@ import enumeration.MapDimension;
 import javafx.stage.Stage;
 import model.board.TableBuilder;
 import model.board.TableBuilderImpl;
+import model.board.UpsideDown;
 import model.converter.Converter;
 import model.converter.ConverterImpl;
 import model.data.Data;
@@ -59,7 +60,6 @@ public class ControllerImpl implements Controller {
 
 	public ControllerImpl(View view) {
 		this.view = view;
-		this.view.setController(this);
 		this.multiplayer = false;
 		this.IAturn=false;
 		this.gui = new GuiImpl();
@@ -135,6 +135,7 @@ public class ControllerImpl implements Controller {
 	public void start(List<enumeration.Dice> diceList, List<Optional<Integer>> faceList, List<Characters> Character, MapDimension dimension, MapDifficulty difficulty) {	
 
 		this.control = true;
+		this.view.setController(this);
 		this.CharacterList=Character;
 		this.difficulty = difficulty;
 		this.dimension = dimension;
@@ -221,7 +222,14 @@ public class ControllerImpl implements Controller {
 		} else {
 			this.multiplayer = true;
 		}
-		
+	}
+	
+	public List<UpsideDown> GetSnakeList() {
+		return this.table.getSnakes();
+	}
+	
+	public List<UpsideDown> GetStairList() {
+		return this.table.getStairs();
 	}
 
 	
