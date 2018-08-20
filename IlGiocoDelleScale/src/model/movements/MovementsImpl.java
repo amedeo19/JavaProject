@@ -6,7 +6,7 @@ import model.pawns.Pawns;
 public class MovementsImpl implements Movements {
 	
 	private int finalPosition;
-	private Data Data;
+	private final Data Data;
 	private final static int Start=0;
 	
 	public MovementsImpl(Data data) {
@@ -21,8 +21,7 @@ public class MovementsImpl implements Movements {
 				  this.Data.getDice().stream().mapToInt(d->d.roll()).sum())); 
 	}
 	
-	@Override
-	public int dicePosition(int initialPosition, int diceNumber) {
+	private int dicePosition(int initialPosition, int diceNumber) {
 
 		this.finalPosition=initialPosition+diceNumber;
 
