@@ -2,6 +2,7 @@ package model.board;
 
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Collections;
 
 import enumeration.MapDifficulty;
 import enumeration.MapDimension;
@@ -16,6 +17,8 @@ public class TableBuilderImpl implements TableBuilder{
 	private final static int HIGH=6;
 	private final UdStrategy snake;
 	private final UdStrategy stair;
+	private List<UpsideDown> snakes;
+	private List<UpsideDown> stairs;
 	private List<UpsideDown> jump;
 
 
@@ -25,6 +28,8 @@ public class TableBuilderImpl implements TableBuilder{
 		this.tableWidth= (int) Math.sqrt(dimension.getDimension());
 		this.snake = new Snake(tableHeight, tableWidth);
 		this.stair = new Stair(tableHeight, tableWidth);
+		this.snakes=new ArrayList<>();
+		this.stairs=new ArrayList<>();
 		this.jump=new ArrayList<>();
 	
 //		switch (this.difficulty){
@@ -32,26 +37,29 @@ public class TableBuilderImpl implements TableBuilder{
 //		}
 		if (MapDifficulty.EASY.equals(this.difficulty)) {
 			for(int i=0; i<LOW; i++) {
-				this.jump.add(this.snake.getObject());
+				this.snakes.add(this.snake.getObject());
 			}
 			for(int i=0; i<HIGH; i++) {
-				this.jump.add(this.stair.getObject());
+				this.stairs.add(this.stair.getObject());
 			}
 		} else if (MapDifficulty.MEDIUM.equals(this.difficulty)) {
 			for(int i=0; i<HIGH; i++) {
-				this.jump.add(this.snake.getObject());
+				this.snakes.add(this.snake.getObject());
 			}
 			for(int i=0; i<HIGH; i++) {
-				this.jump.add(this.stair.getObject());
+				this.stairs.add(this.stair.getObject());
 			}
 		} else if (MapDifficulty.DIFFICULT.equals(this.difficulty)) {
 			for(int i=0; i<HIGH; i++) {
-				this.jump.add(this.snake.getObject());
+				this.snakes.add(this.snake.getObject());
 			}
 			for(int i=0; i<LOW; i++) {
-				this.jump.add(this.stair.getObject());
+				this.stairs.add(this.stair.getObject());
 			}
 		}
+		this.jump.addAll(this.snakes);
+		this.jump.addAll(this.stairs);
+		
 		
 		
 	}
@@ -64,5 +72,15 @@ public class TableBuilderImpl implements TableBuilder{
 	@Override
 	public Coordinate getNewPosition(Coordinate start) {
 		return this.jump.stream().filter(x -> x.isInPosition(start)).map(x -> x.getTarget()).findFirst().get();
+	}
+
+	@Override
+	public List<UpsideDown> getSnakes() {
+		return Collections.unmodifiableList(this.snakes);
+	}
+
+	@Override
+	public List<UpsideDown> getStairs() {
+		return Collections.unmodifiableList(this.stairs);
 	}
 }
