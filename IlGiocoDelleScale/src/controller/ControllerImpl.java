@@ -17,8 +17,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import model.board.Coordinate;
+import model.board.Table;
 import model.board.TableBuilder;
 import model.board.TableBuilderImpl;
+import model.board.TableImpl;
 import model.board.UpsideDown;
 import model.converter.Converter;
 import model.converter.ConverterImpl;
@@ -57,9 +59,12 @@ public class ControllerImpl implements Controller {
 	private MapDifficulty difficulty;
 	private MapDimension dimension;
 	private boolean multiplayer;
+	private boolean IAturn;
 	private View view;
 	private TableBuilder table;
-	private List<UpsideDown> jump;
+	private Table jump;
+	private final static int SINGLEPLAYER=1;
+	private final static int TIMEIA=3000;
 	
 	@FXML
 	private Button button;
@@ -67,9 +72,9 @@ public class ControllerImpl implements Controller {
 
 	public ControllerImpl() {
 		this.view = new ViewGuiImpl();
-		this.jump= new ArrayList<UpsideDown>();
 		this.view.setController(this);
 		this.multiplayer = false;
+		this.IAturn=false;
 		this.gui = new GuiImpl();
 		this.p=Optional.empty();
 		this.setting = Optional.empty();
@@ -88,16 +93,17 @@ public class ControllerImpl implements Controller {
 	public void play() {
         
 		if(control) {
-	        this.p = Optional.of(this.PawnsList.get(this.setting.get().getTurn()));
+	        
+			this.p = Optional.of(this.PawnsList.get(this.setting.get().getTurn()));
 	        int newPos = this.game.movePawn(this.p.get());			//prendo la pos finale
 	        this.Newcoordinate = this.convertToCoordinate(newPos);				//mandare alla view le coordinate finali della pedina
-	        this.jump.addAll(this.table.getJump());
-	        if (this.jump.stream().filter(e->e.getStart().equals(this.Newcoordinate)).count()>0) {
-	        	Coordinate a =this.jump.stream().filter(e->e.isInPosition(this.Newcoordinate)).findFirst().get().getTarget();
-	        	this.Newcoordinate = a;
+	        
+	        if (this.jump.isCellJump(this.Newcoordinate)) {
+	        	this.Newcoordinate=this.jump.getNewPosition(this.Newcoordinate);
 	        	System.out.println(this.Newcoordinate);
 	        }
 	        this.setting.get().moveTurn();
+	        
 	        if(this.game.checkWin(this.p.get())) {
 	        	try {
 					this.finishGame(this.setting.get().getTurn());
@@ -105,9 +111,22 @@ public class ControllerImpl implements Controller {
 					e.printStackTrace();
 				}
 	        }
+	        
+			if (!this.multiplayer){
+				this.IAturn=!this.IAturn;
+			}
+			if ((!this.multiplayer) && this.IAturn){
+				try {
+					Thread.sleep(TIMEIA);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				this.play();
+			}
         } else {
         	throw new IllegalStateException();
         }
+
     }
 	
 	
@@ -115,7 +134,7 @@ public class ControllerImpl implements Controller {
 	public void finishGame(int turn) throws IOException{
 		if(this.control) {				//finestra che permette di uscire o tornare al menu iniziale
 			
-//			this.jump.clear();
+			
 			this.control = false;
 		} else {
 			throw new IllegalStateException();
@@ -132,6 +151,7 @@ public class ControllerImpl implements Controller {
 		this.difficulty = difficulty;
 		this.dimension = dimension;
 		this.table = new TableBuilderImpl(difficulty, dimension);
+		this.jump= new TableImpl(this.table.getJump());
 		this.numCell = this.dimension.getDimension();
 		System.out.println(this.numCell);
 		this.CreatePawn();
@@ -211,7 +231,7 @@ public class ControllerImpl implements Controller {
 	
 	
 	public void checkMultiplayer() {
-		if(this.CharacterList.size() == 1) {		//caso single player, creo CPU (ShereKhan o Baghera)
+		if(this.CharacterList.size() == SINGLEPLAYER) {		//caso single player, creo CPU (ShereKhan o Baghera)
 			this.multiplayer = false;
 			this.PawnsList.add(new PawnsImpl());
 			if((this.CharacterList.get(0).equals(Characters.Baghera)) || (this.CharacterList.get(0).equals(Characters.Baloo))) {
