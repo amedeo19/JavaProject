@@ -11,7 +11,7 @@ import enumeration.MapDimension;
 public interface Controller {
 
 	
-	public void start(final List<Dice> diceList,final List<Optional<Integer>> faceList,final List<Characters> Character,final MapDimension dimension,final  MapDifficulty difficulty);
+	public void start(final List<Dice> diceList,final List<Optional<Integer>> faceList,final List<Characters> Character,final MapDimension dimension,final MapDifficulty difficulty);
 	
 	public void play();
 	
