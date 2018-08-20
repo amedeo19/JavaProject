@@ -16,11 +16,8 @@ import enumeration.MapDimension;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
-import model.board.Coordinate;
-import model.board.Table;
 import model.board.TableBuilder;
 import model.board.TableBuilderImpl;
-import model.board.TableImpl;
 import model.board.UpsideDown;
 import model.converter.Converter;
 import model.converter.ConverterImpl;
@@ -32,6 +29,7 @@ import model.dice.ListDiceImpl;
 import model.model.*;
 import model.pawns.Pawns;
 import model.pawns.PawnsImpl;
+import utilities.Coordinate;
 import view.start.Gui;
 import view.start.GuiImpl;
 import view.view.View;
@@ -62,12 +60,8 @@ public class ControllerImpl implements Controller {
 	private boolean IAturn;
 	private View view;
 	private TableBuilder table;
-	private Table jump;
 	private final static int SINGLEPLAYER=1;
 	private final static int TIMEIA=3000;
-	
-	@FXML
-	private Button button;
 
 
 	public ControllerImpl() {
@@ -98,8 +92,10 @@ public class ControllerImpl implements Controller {
 	        int newPos = this.game.movePawn(this.p.get());			//prendo la pos finale
 	        this.Newcoordinate = this.convertToCoordinate(newPos);				//mandare alla view le coordinate finali della pedina
 	        
-	        if (this.jump.isCellJump(this.Newcoordinate)) {
-	        	this.Newcoordinate=this.jump.getNewPosition(this.Newcoordinate);
+	        if (this.table.isCellJump(this.Newcoordinate)) {
+	        	Coordinate pos=this.table.getNewPosition(this.Newcoordinate);
+	        	this.Newcoordinate=pos;
+	        	this.p.get().setPosition(this.convertToInt(this.Newcoordinate));
 	        	System.out.println(this.Newcoordinate);
 	        }
 	        this.setting.get().moveTurn();
@@ -143,7 +139,7 @@ public class ControllerImpl implements Controller {
 	}
 	
 
-	
+	@Override
 	public void start(List<enumeration.Dice> diceList, List<Optional<Integer>> faceList, List<Characters> Character, MapDimension dimension, MapDifficulty difficulty) {	
 
 		
@@ -151,7 +147,6 @@ public class ControllerImpl implements Controller {
 		this.difficulty = difficulty;
 		this.dimension = dimension;
 		this.table = new TableBuilderImpl(difficulty, dimension);
-		this.jump= new TableImpl(this.table.getJump());
 		this.numCell = this.dimension.getDimension();
 		System.out.println(this.numCell);
 		this.CreatePawn();
@@ -177,17 +172,15 @@ public class ControllerImpl implements Controller {
 		javafx.application.Application.launch(GuiImpl.class);
 	}
 
-	@Override
-	public int convertToInt(Coordinate coordinate) {
+	private int convertToInt(Coordinate coordinate) {
 		return this.converse.toInt(coordinate);
 	}
 
-	@Override
-	public Coordinate convertToCoordinate(int pos) {
+	private Coordinate convertToCoordinate(int pos) {
 		return this.converse.toCoordinate(pos);
 	}
 	
-	public void ConvertListDice() {
+	private void ConvertListDice() {
 
 		ListDice diceBuilder = new ListDiceImpl();
 		
@@ -211,22 +204,15 @@ public class ControllerImpl implements Controller {
 	}
 	
 	public void CreatePawn() {
-		Pawns p = new PawnsImpl();
 		this.CharacterList.forEach(e -> {
 			this.PawnsList.add(new PawnsImpl());
 		});
 	}
 
-	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
-		this.button.setVisible(true);
-		
-	}
-
 	
-	public List<Characters> getCharacterList(){
-		return Collections.unmodifiableList(this.CharacterList);
-	}
+//	private List<Characters> getCharacterList(){
+//		return Collections.unmodifiableList(this.CharacterList);
+//	}
 	
 	
 	
@@ -244,7 +230,7 @@ public class ControllerImpl implements Controller {
 		}
 		
 	}
-	
+
 	
 	
 	

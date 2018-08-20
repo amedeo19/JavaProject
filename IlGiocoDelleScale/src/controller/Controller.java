@@ -7,10 +7,8 @@ import enumeration.Characters;
 import enumeration.Dice;
 import enumeration.MapDifficulty;
 import enumeration.MapDimension;
-import javafx.fxml.Initializable;
-import model.board.Coordinate;
 
-public interface Controller extends Initializable{
+public interface Controller {
 
 	
 	public void start(List<Dice> diceList, List<Optional<Integer>> faceList, List<Characters> Character, MapDimension dimension, MapDifficulty difficulty);
@@ -19,15 +17,8 @@ public interface Controller extends Initializable{
 	
 	public void play();
 	
-	public int convertToInt(Coordinate coordinate);
-	
-	public Coordinate convertToCoordinate(int pos);
-	
 	public void startController() throws Exception;
 	
-	public List<Characters> getCharacterList();
-	
-	public void ConvertListDice();
 
 
 }
