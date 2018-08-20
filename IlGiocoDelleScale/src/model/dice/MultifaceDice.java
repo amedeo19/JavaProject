@@ -14,7 +14,7 @@ public class MultifaceDice implements Dice{
 	private static final Supplier<RuntimeException> minError = () -> new IllegalStateException("Too low numbers");
 	private static final Supplier<RuntimeException> maxError = () -> new IllegalStateException("Too much numbers");
 	
-	public MultifaceDice(int numberOfFace) {
+	public MultifaceDice(final int numberOfFace) {
 		
 		this.face=numberOfFace;
 		if (this.face<MINFACE){

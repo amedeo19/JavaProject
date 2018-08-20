@@ -9,7 +9,7 @@ public class UpsideDownImpl implements UpsideDown {
 	private final Coordinate finish;
 	private final UpsideDownType type;
 	
-	public UpsideDownImpl(Coordinate start, Coordinate finish, UpsideDownType type) {
+	public UpsideDownImpl(final Coordinate start,final Coordinate finish,final UpsideDownType type) {
 		this.start = start;
 		this.finish = finish;
 		this.type = type;
@@ -21,7 +21,7 @@ public class UpsideDownImpl implements UpsideDown {
 	}
 
 	@Override
-	public boolean isInPosition(Coordinate position) {
+	public boolean isInPosition(final Coordinate position) {
 		return position.equals(this.start);
 	}
 

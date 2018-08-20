@@ -4,22 +4,19 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.function.Supplier;
 
-public class SpecialDice extends MultifaceDice{
+public class SpecialDice extends SpecialAbstract{
 
-	private int Special;
 	private final static int MIN=1;
 	private final static int MAX=20;
 	private final static int MINSECOND=-10;
 	private final static int MAXSECOND=10;
-	private final Optional<Map<Integer,Integer>>map;
 	private static final Supplier<RuntimeException> keyError = () -> new IllegalStateException("Error with some first numbers");
 	private static final Supplier<RuntimeException> valueError = () -> new IllegalStateException("Error with some second numbers");	
 
-	public SpecialDice(Map<Integer,Integer> map,int numberOfFace) { // map
+	public SpecialDice(Map<Integer,Integer> map,Dice dice) { // map
 		
-		super(numberOfFace);
+		super(map,dice);
 		this.Special=0;
-		this.map=Optional.ofNullable(map);
 		if (this.map.isPresent()){
 			
 			if (this.map.get().entrySet().stream().anyMatch(x->x.getKey()<MIN) || this.map.get().entrySet().stream().anyMatch(x->x.getKey()>MAX)){
@@ -30,59 +27,20 @@ public class SpecialDice extends MultifaceDice{
 			}
 		}
 	}
-
-	private boolean checkIsSpecial(int number){
-		if (!this.map.isPresent()){
-			return false;
-		}else{
-			return this.map.get()
-							.entrySet()
-							.stream()
-							.filter(x -> x.getKey().equals(number))
-							.distinct()
-							.count() > 0;
-		}
-	}
-	
-	private void setSpecial(int number){ 
-		if (this.map.isPresent()){
-			if (this.map.get().entrySet().stream().anyMatch(x->x.getKey().equals(number))){
-				if (this.checkIsSpecial(number)){
-					this.Special=this.map.get()  // First number is the only that count
-							.entrySet()
-							.stream()
-							.filter(x->x.getKey().equals(number))
-							.mapToInt(y->y.getValue())	
-							.boxed()
-							.findFirst()
-							.get()
-							.intValue();
-					return;
-				}
-				
-			}
-		}
-		this.Special=0;
-	}
-	
-	private int getSpecial(){
-		
-		return this.Special; 
-	}
 	
 	@Override
 	public int roll() {
 		
 		int number=super.roll();
-		this.setSpecial(number);
-		super.setNumber(this.getSpecial()+number);
+		super.setSpecial(number);
+		super.setNumber(super.getSpecial()+number);
 		return super.getNumber();
 	}
 	
 	@Override
 	public int viewNum(){		
 		
-		return super.getNumber()-this.getSpecial();
+		return super.getNumber()-super.getSpecial();
 	}
 	
 }

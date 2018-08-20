@@ -4,7 +4,7 @@ import utilities.Coordinate;
 
 public class Odd extends AbstractConverter{
 
-	public Odd(int width) {
+	public Odd(final int width) {
 		
 		super(width);
 	}

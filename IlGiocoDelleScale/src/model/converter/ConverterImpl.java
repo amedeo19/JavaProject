@@ -8,7 +8,7 @@ public class ConverterImpl implements Converter{
 	private final ConverterStrategy Even;
 	private final ConverterStrategy Odd;
 	
-	public ConverterImpl(int width) {
+	public ConverterImpl(final int width) {
 		
 		this.width=width;
 		this.Even=new Even(this.width);
@@ -16,7 +16,7 @@ public class ConverterImpl implements Converter{
 	}
 	
 	@Override
-	public int toInt(Coordinate coordinate) {
+	public int toInt(final Coordinate coordinate) {
 		
 		if (this.checkIntEven(coordinate.getY())){
 			return this.Even.getNumber(coordinate);
@@ -26,7 +26,7 @@ public class ConverterImpl implements Converter{
 	}
 	
 	@Override
-	public Coordinate toCoordinate(int num) {
+	public Coordinate toCoordinate(final int num) {
 		
 		if (this.checkCooEven(this.getHeight(num))){
 			return this.Even.getCoordinate(num);
@@ -36,17 +36,17 @@ public class ConverterImpl implements Converter{
 		
 	}
 	
-	private boolean checkIntEven(int num){
+	private boolean checkIntEven(final int num){
 		
 		return (num%2)==0;
 	}
 	
-	private int getHeight(int num){
+	private int getHeight(final int num){
 		
 		return (num/this.width);
 	}
 	
-	private boolean checkCooEven(int num){
+	private boolean checkCooEven(final int num){
 		
 		return (num%2)==0;
 	}

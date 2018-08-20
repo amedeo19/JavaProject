@@ -12,7 +12,7 @@ public abstract class AbstractObject implements UdStrategy {
 	private final Random random = new Random();
 
 
-	public AbstractObject(int tableHeight,int tableWidth) {
+	public AbstractObject(final int tableHeight,final int tableWidth) {
 		this.tableHeight=tableHeight;
 		this.tableWidth=tableWidth;
 	}

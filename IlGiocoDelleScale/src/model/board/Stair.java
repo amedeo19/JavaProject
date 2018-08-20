@@ -7,7 +7,7 @@ public class Stair extends AbstractObject{
 	
 	private final static int LAST=2;
 	
-	public Stair(int tableHeight, int tableWidth) {
+	public Stair(final int tableHeight,final int tableWidth) {
 		super(tableHeight, tableWidth);
 	}
 	

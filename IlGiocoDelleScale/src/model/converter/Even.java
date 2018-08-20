@@ -4,7 +4,7 @@ import utilities.Coordinate;
 
 public class Even extends AbstractConverter{
 
-	public Even(int width) {
+	public Even(final int width) {
 		
 		super(width);
 	}

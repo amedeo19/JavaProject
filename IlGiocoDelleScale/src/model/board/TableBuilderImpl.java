@@ -22,7 +22,7 @@ public class TableBuilderImpl implements TableBuilder{
 	private List<UpsideDown> jump;
 
 
-	public TableBuilderImpl(MapDifficulty difficulty,MapDimension dimension) {
+	public TableBuilderImpl(final MapDifficulty difficulty,final MapDimension dimension) {
 		this.difficulty=difficulty;
 		this.tableHeight=(int) Math.sqrt(dimension.getDimension());
 		this.tableWidth= (int) Math.sqrt(dimension.getDimension());
@@ -65,12 +65,12 @@ public class TableBuilderImpl implements TableBuilder{
 	}
 
 	@Override
-	public boolean isCellJump(Coordinate cell) {
+	public boolean isCellJump(final Coordinate cell) {
 		return this.jump.stream().anyMatch(x -> x.isInPosition(cell));
 	}
 	
 	@Override
-	public Coordinate getNewPosition(Coordinate start) {
+	public Coordinate getNewPosition(final Coordinate start) {
 		return this.jump.stream().filter(x -> x.isInPosition(start)).map(x -> x.getTarget()).findFirst().get();
 	}
 

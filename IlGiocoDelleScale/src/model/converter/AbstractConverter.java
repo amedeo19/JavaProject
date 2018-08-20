@@ -6,7 +6,7 @@ public abstract class AbstractConverter implements ConverterStrategy{
 
 	private final int width;
 	
-	public AbstractConverter(int width) {
+	public AbstractConverter(final int width) {
 		this.width=width;
 	}
 	
@@ -14,7 +14,7 @@ public abstract class AbstractConverter implements ConverterStrategy{
 
 	public abstract Coordinate getCoordinate(int num);
 	
-	protected int getHeight(int num){
+	protected int getHeight(final int num){
 		
 		return (num/this.getWidth());
 	}

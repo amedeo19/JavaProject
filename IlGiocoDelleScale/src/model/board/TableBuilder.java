@@ -6,9 +6,9 @@ import utilities.Coordinate;
 
 public interface TableBuilder {
 	
-	public boolean isCellJump(Coordinate cell);
+	public boolean isCellJump(final Coordinate cell);
 	
-	public Coordinate getNewPosition(Coordinate start);
+	public Coordinate getNewPosition(final Coordinate start);
 	
 	public List<UpsideDown> getSnakes();
 	

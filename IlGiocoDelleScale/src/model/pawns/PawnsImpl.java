@@ -18,7 +18,7 @@ public class PawnsImpl implements Pawns{
 	}
 
 	@Override
-	public void setPosition(int pos) {   // observer
+	public void setPosition(final int pos) {
  		
 		this.positions=pos;
 	}
