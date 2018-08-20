@@ -1,6 +1,6 @@
 package model.converter;
 
-import model.board.Coordinate;
+import utilities.Coordinate;
 
 public interface ConverterStrategy {
 
