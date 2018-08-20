@@ -15,7 +15,7 @@ public class Stair extends AbstractObject{
 	@Override
 	public UpsideDownImpl getObject() {
 		Coordinate start = null;
-		Coordinate stop =null;
+		Coordinate stop  = null;
 		do {
 			start = new Coordinate(this.randNum(START,super.tableWidth-FINAL), this.randNum(START,super.tableHeight-LAST));
 			stop = new Coordinate(this.randNum(START,super.tableWidth-FINAL), this.randNum(start.getY(),super.tableHeight-FINAL));
