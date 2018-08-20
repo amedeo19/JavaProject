@@ -4,8 +4,8 @@ import utilities.Coordinate;
 
 public interface ConverterStrategy {
 
-	public int getNumber(Coordinate coordinate);
+	public int getNumber(final Coordinate coordinate);
 
-	public Coordinate getCoordinate(int num);
+	public Coordinate getCoordinate(final int num);
 	
 }

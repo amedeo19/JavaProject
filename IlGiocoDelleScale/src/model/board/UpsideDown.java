@@ -5,7 +5,7 @@ import utilities.Coordinate;
 
 public interface UpsideDown {
 	
-	boolean isInPosition(Coordinate position);
+	boolean isInPosition(final Coordinate position);
 	
 	Coordinate getTarget();
 	

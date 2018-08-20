@@ -14,7 +14,7 @@ public class DataImpl implements Data{
 	private static final Supplier<RuntimeException> diceError = () -> new IllegalStateException("Too many Dice");
 	private static final Supplier<RuntimeException> cellError = () -> new IllegalStateException("Error with number of cell");
 
-	public DataImpl(List<Dice> diceList,int lastNumber) {
+	public DataImpl(final List<Dice> diceList,final int lastNumber) {
 		
 		this.diceList=diceList;
 		if (this.diceList.size()>MAXDICE){

@@ -5,7 +5,7 @@ import utilities.Coordinate;
 
 public class Snake extends AbstractObject{
 
-	public Snake(int tableHeight, int tableWidth) {
+	public Snake(final int tableHeight,final int tableWidth) {
 		super(tableHeight, tableWidth);
 	}
 

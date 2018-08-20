@@ -4,8 +4,8 @@ import model.pawns.Pawns;
 
 public interface Movements {
 
-	public void changePosition(Pawns p);
+	public void changePosition(final Pawns p);
 	
-	public boolean checkWin(int pos);	
+	public boolean checkWin(final int pos);	
 	
 }

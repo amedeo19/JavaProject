@@ -5,5 +5,5 @@ public interface Pawns{
 
 	public int getPosition();
 	
-	public void setPosition(int pos);
+	public void setPosition(final int pos);
 }

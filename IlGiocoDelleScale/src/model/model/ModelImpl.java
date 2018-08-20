@@ -9,19 +9,19 @@ public class ModelImpl implements Model{
 
 	private final Movements move;
 	
-	public ModelImpl(Data data) {
+	public ModelImpl(final Data data) {
 		this.move=new MovementsImpl(data);
 	}
 	
 	@Override
-	public synchronized int movePawn(Pawns p) {
+	public synchronized int movePawn(final Pawns p) {
 		
 		this.move.changePosition(p);
 		return p.getPosition();
 	}
 
 	@Override
-	public synchronized boolean checkWin(Pawns p) {
+	public synchronized boolean checkWin(final Pawns p) {
 		
 		return this.move.checkWin(p.getPosition());
 	}

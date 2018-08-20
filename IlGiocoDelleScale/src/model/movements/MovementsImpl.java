@@ -9,19 +9,19 @@ public class MovementsImpl implements Movements {
 	private final Data Data;
 	private final static int Start=0;
 	
-	public MovementsImpl(Data data) {
+	public MovementsImpl(final Data data) {
 		
 		this.Data=data;
 	}
 	
 	@Override
-	public void changePosition(Pawns p) {
+	public void changePosition(final Pawns p) {
 		
 	p.setPosition(this.dicePosition(p.getPosition(),
 				  this.Data.getDice().stream().mapToInt(d->d.roll()).sum())); 
 	}
 	
-	private int dicePosition(int initialPosition, int diceNumber) {
+	private int dicePosition(final int initialPosition,final int diceNumber) {
 
 		this.finalPosition=initialPosition+diceNumber;
 
@@ -37,7 +37,7 @@ public class MovementsImpl implements Movements {
 
 
 	@Override
-	public boolean checkWin(int pos) {
+	public boolean checkWin(final int pos) {
 		
 		if (pos==this.Data.getFinishNumber()){
 			return true;
