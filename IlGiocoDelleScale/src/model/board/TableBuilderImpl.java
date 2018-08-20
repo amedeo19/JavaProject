@@ -15,7 +15,7 @@ public class TableBuilderImpl implements TableBuilder{
 	private final static int HIGH=6;
 	private final UdStrategy snake;
 	private final UdStrategy stair;
-	List<UpsideDown> jump = new ArrayList<>();
+	private List<UpsideDown> jump;
 
 
 	public TableBuilderImpl(MapDifficulty difficulty,MapDimension dimension) {
@@ -24,7 +24,7 @@ public class TableBuilderImpl implements TableBuilder{
 		this.tableWidth= (int) Math.sqrt(dimension.getDimension());
 		this.snake = new Snake(tableHeight, tableWidth);
 		this.stair = new Stair(tableHeight, tableWidth);
-		this.jump.clear();
+		this.jump=new ArrayList<>();
 	
 //		switch (this.difficulty){
 //		
@@ -55,8 +55,13 @@ public class TableBuilderImpl implements TableBuilder{
 		
 	}
 
-
-	public List<UpsideDown> getJump() {
-		return this.jump;
+	@Override
+	public boolean isCellJump(Coordinate cell) {
+		return this.jump.stream().anyMatch(x -> x.isInPosition(cell));
+	}
+	
+	@Override
+	public Coordinate getNewPosition(Coordinate start) {
+		return this.jump.stream().filter(x -> x.isInPosition(start)).map(x -> x.getTarget()).findFirst().get();
 	}
 }
