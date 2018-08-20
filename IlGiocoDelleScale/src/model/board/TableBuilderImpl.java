@@ -55,15 +55,8 @@ public class TableBuilderImpl implements TableBuilder{
 		
 	}
 
-	@Override
-	public TableBuilderImpl CreateTable() {
-		// TODO Auto-generated method stub
-		return CreateTable();
-	}
-
 
 	public List<UpsideDown> getJump() {
-		// TODO Auto-generated method stub
 		return this.jump;
 	}
 }
