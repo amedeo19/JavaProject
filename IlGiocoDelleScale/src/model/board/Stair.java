@@ -1,11 +1,10 @@
 package model.board;
 
 import enumeration.*;
+import utilities.Coordinate;
 
 public class Stair extends AbstractObject{
 	
-	private final static int START=0;
-	private final static int FINAL=1;
 	private final static int LAST=2;
 	
 	public Stair(int tableHeight, int tableWidth) {
@@ -13,7 +12,7 @@ public class Stair extends AbstractObject{
 	}
 	
 	@Override
-	public UpsideDownImpl getObject() {
+	public UpsideDown getObject() {
 		Coordinate start = null;
 		Coordinate stop  = null;
 		do {

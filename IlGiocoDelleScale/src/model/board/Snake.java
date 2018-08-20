@@ -1,22 +1,18 @@
 package model.board;
 
 import enumeration.*;
+import utilities.Coordinate;
 
 public class Snake extends AbstractObject{
 
-	private final static int START=0;
-	private final static int FINAL=1;
-	
 	public Snake(int tableHeight, int tableWidth) {
 		super(tableHeight, tableWidth);
-		System.out.println(tableHeight);
-		System.out.println(tableWidth);
 	}
 
 	@Override
-	public UpsideDownImpl getObject() {
+	public UpsideDown getObject() {
 		Coordinate start = null;
-		Coordinate stop =null;
+		Coordinate stop = null;
 		do { 
 			start = new Coordinate(this.randNum(START,super.tableWidth-FINAL), this.randNum(FINAL,super.tableHeight-FINAL));
 			stop = new Coordinate(this.randNum(START,super.tableWidth-FINAL), this.randNum(START,start.getY()));

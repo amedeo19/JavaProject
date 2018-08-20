@@ -1,6 +1,7 @@
 package model.board;
 
 import enumeration.*;
+import utilities.Coordinate;
 
 public interface UpsideDown {
 	

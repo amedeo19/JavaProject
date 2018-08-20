@@ -1,9 +1,10 @@
 package model.board;
 
-
-import java.util.List;
+import utilities.Coordinate;
 
 public interface TableBuilder {
 	
-	public List<UpsideDown> getJump();
+	public boolean isCellJump(Coordinate cell);
+	
+	public Coordinate getNewPosition(Coordinate start);
 }

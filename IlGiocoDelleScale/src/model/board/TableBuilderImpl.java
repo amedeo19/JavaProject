@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import enumeration.MapDifficulty;
 import enumeration.MapDimension;
+import utilities.Coordinate;
 
 public class TableBuilderImpl implements TableBuilder{
 	

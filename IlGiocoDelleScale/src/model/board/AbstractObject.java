@@ -7,8 +7,9 @@ public abstract class AbstractObject implements UdStrategy {
 	
 	protected final int tableHeight;
 	protected final int tableWidth;
-
-	private Random random = new Random();
+	protected final static int START=0;
+	protected final static int FINAL=1;
+	private final Random random = new Random();
 
 
 	public AbstractObject(int tableHeight,int tableWidth) {
