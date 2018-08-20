@@ -1,4 +1,4 @@
-package model.board;
+package utilities;
 
 public class Coordinate {
 	
