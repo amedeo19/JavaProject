@@ -13,8 +13,6 @@ public interface Controller {
 	
 	public void start(List<Dice> diceList, List<Optional<Integer>> faceList, List<Characters> Character, MapDimension dimension, MapDifficulty difficulty);
 	
-	public void finishGame(int turn) throws IOException;
-	
 	public void play();
 	
 	public void startController() throws Exception;

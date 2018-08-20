@@ -40,12 +40,12 @@ public class ControllerImpl implements Controller {
 	private Map<Integer,Integer> mapSpecial;
 	private Model game;
 	private boolean control;	//dadi
-	List<enumeration.Dice> diceList;
-	List<Dice> listOfDice;
-	List<Optional<Integer>> faceList;
-	List<Pawns> PawnsList;			//per ogni pedone occorre aggiungere un numero identificativo per gestire il turno
-	List<Characters> CharacterList;
-	int lastNumber;
+	private List<enumeration.Dice> diceList;
+	private List<Dice> listOfDice;
+	private List<Optional<Integer>> faceList;
+	private List<Pawns> PawnsList;			//per ogni pedone occorre aggiungere un numero identificativo per gestire il turno
+	private List<Characters> CharacterList;
+	private int lastNumber;
 	private Stage stage;
 	private Data data;
 	private int numCell;
@@ -102,7 +102,7 @@ public class ControllerImpl implements Controller {
 	        
 	        if(this.game.checkWin(this.p.get())) {
 	        	try {
-					this.finishGame(this.setting.get().getTurn());
+					this.finishGame();
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
@@ -126,10 +126,9 @@ public class ControllerImpl implements Controller {
     }
 	
 	
-	@Override
-	public void finishGame(int turn) throws IOException{
+	private void finishGame() throws IOException{
 		if(this.control) {				//finestra che permette di uscire o tornare al menu iniziale
-			
+			this.CharacterList.get(this.setting.get().getTurn());
 			
 			this.control = false;
 		} else {
