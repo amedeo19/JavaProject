@@ -10,7 +10,7 @@ import utilities.Coordinate;
 public interface View {
 
 	
-	void start();
+	void start() throws IOException;
 	
 	
 	void startMenu(Stage stage) throws IOException;

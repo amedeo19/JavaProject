@@ -224,11 +224,11 @@ public class ControllerImpl implements Controller {
 		}
 	}
 	
-	public List<UpsideDown> GetSnakeList() {
+	public List<UpsideDown> getSnakeList() {
 		return this.table.getSnakes();
 	}
 	
-	public List<UpsideDown> GetStairList() {
+	public List<UpsideDown> getStairList() {
 		return this.table.getStairs();
 	}
 

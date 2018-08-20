@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 import model.dice.Dice;
 import model.pawns.Pawns;
 import utilities.Coordinate;
+import view.board2.GuiBoard;
 import view.board2.GuiBoardImpl;
 import view.start.Gui;
 import view.start.GuiImpl;
@@ -22,35 +23,38 @@ import view.start.GuiImpl;
 public class ViewGuiImpl implements View{
 
 	
-	private static final String FXML_PATH = "file://view/start/Start.fxml";
-	private static final String FXML_PATH2 ="file://..src/view/start/Start.fxml";
 	private Stage stage;
 	private Controller controller;
 	private final Wait<Boolean> wait = new Wait<>();
 	private GuiImpl gui = new GuiImpl();
-	private GuiBoardImpl guiBoard = new GuiBoardImpl();
+	private GuiBoardImpl guiBoardImpl = new GuiBoardImpl();
+	private GuiBoard guiBoard = new GuiBoard();
 	
 	public ViewGuiImpl() {
 		this.controller = new ControllerImpl(this);
-		this.controller.GetSnakeList();
-		this.controller.GetStairList();
+		this.controller.getSnakeList();
+		this.controller.getStairList();
+		this.guiBoard.setView(this);
+		this.guiBoard.setController(controller);
 	}
 	
 	
 	@Override
-	public void start() {
+	public void start() throws IOException {
         final Wait<Boolean> wait = new Wait<>();
         Platform.runLater(() -> {
             try {
-				this.startView(FXML_PATH2);
+				this.guiBoardImpl.start(stage);
 			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			wait.actionPerformed(true);
         });
         wait.waitForUser();
-		
 	}
 
 	@Override

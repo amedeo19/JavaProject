@@ -18,9 +18,9 @@ public interface Controller {
 	
 	public void startController() throws Exception;
 	
-	public List<UpsideDown> GetStairList();
+	public List<UpsideDown> getStairList();
 	
-	public List<UpsideDown> GetSnakeList();
+	public List<UpsideDown> getSnakeList();
 	
 
 }
