@@ -27,13 +27,12 @@ import enumeration.*;
 
 public class Gui implements Initializable {
 	//liste di oggetti utili all'inizializzazione della partita
-	ObservableList<Integer> num = FXCollections.observableArrayList(1,2,3,4);
-	ObservableList<MapDifficulty> mapdiff = FXCollections.observableArrayList(Arrays.asList(MapDifficulty.values()));
-	ObservableList<MapDimension> mapdim = FXCollections.observableArrayList(Arrays.asList(MapDimension.values()));
-	ObservableList<Integer> numdice = FXCollections.observableArrayList(1,2,3);
-	ObservableList<Integer> numcell = FXCollections.observableArrayList(1,2,3,4);
-	ObservableList<Characters> cha = FXCollections.observableArrayList(Arrays.asList(Characters.values()));
-	ObservableList<Dice> dic = FXCollections.observableArrayList(Arrays.asList(Dice.values()));
+	final ObservableList<Integer> num = FXCollections.observableArrayList(1,2,3,4);
+	final ObservableList<MapDifficulty> mapdiff = FXCollections.observableArrayList(Arrays.asList(MapDifficulty.values()));
+	final ObservableList<MapDimension> mapdim = FXCollections.observableArrayList(Arrays.asList(MapDimension.values()));
+	final ObservableList<Integer> numdice = FXCollections.observableArrayList(1,2,3);
+	final ObservableList<Characters> cha = FXCollections.observableArrayList(Arrays.asList(Characters.values()));
+	final ObservableList<Dice> dic = FXCollections.observableArrayList(Arrays.asList(Dice.values()));
 	ObservableList<Characters> chaselect = FXCollections.observableArrayList();
 	List<Dice> listOfDice = new ArrayList<>();
 	List<Optional<Integer>> listFace = new ArrayList<>();
