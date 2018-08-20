@@ -1,9 +1,7 @@
 package controller;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 import enumeration.Characters;
@@ -24,6 +22,7 @@ public class TestDice {
 		Characters per = null;
 		MapDifficulty difficulty = MapDifficulty.EASY;
 		MapDimension dimension = null;
+
 		
 		
 		diceList.add(Dice.CLASSIC);
