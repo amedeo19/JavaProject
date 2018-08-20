@@ -7,7 +7,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
 import model.dice.Dice;
 import model.dice.MultifaceDice;
 
@@ -19,7 +21,17 @@ public class GuiBoard implements Initializable{
 	private Label viewDice;
 	@FXML
 	private ImageView image;
+	@FXML
+	private GridPane grid;
+	@FXML
+	private Label text;
+	@FXML
+	private ImageView Pawn1;
 	private Dice dice;
+	
+	public void SetText() {
+		
+	}
 	
 	public void RollDice() {
 		

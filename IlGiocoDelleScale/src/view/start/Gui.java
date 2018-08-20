@@ -108,8 +108,9 @@ public class Gui implements Initializable {
 	private int numPlayers;
 	private MapDimension dimension;
 	private MapDifficulty difficulty;
-	private Controller controller = new ControllerImpl();
 	private View view = new ViewGuiImpl();
+	private Controller controller = new ControllerImpl(view);
+	
 
 	
 	public void SelectPawns() {
