@@ -43,7 +43,6 @@
          </effect>
       </GridPane>
       <Button fx:id="button" layoutX="534.0" layoutY="383.0" mnemonicParsing="false" onAction="#RollDice" text="Roll Dice" />
-      <TextField alignment="TOP_LEFT" layoutX="7.0" layoutY="508.0" prefHeight="90.0" prefWidth="574.0" />
       <ImageView fx:id="image" fitHeight="150.0" fitWidth="147.0" layoutX="508.0" layoutY="150.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../res/dice/dice.png" />
@@ -52,5 +51,10 @@
          <font>
             <Font name="Arial Unicode MS" size="42.0" />
          </font></Label>
+      <Label alignment="TOP_LEFT" layoutX="14.0" layoutY="508.0" prefHeight="84.0" prefWidth="539.0">
+         <effect>
+            <Blend />
+         </effect>
+      </Label>
    </children>
 </AnchorPane>
