@@ -19,7 +19,7 @@ public class Main extends Application {
 		}
 		
 		public void run() {
-	        new ControllerImpl();
+	        new ControllerImpl(view);
 	    }
 		
 	}

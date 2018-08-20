@@ -14,8 +14,5 @@ public interface Controller {
 	
 	public void play();
 	
-	public void startController() throws Exception;
-	
-
 
 }
