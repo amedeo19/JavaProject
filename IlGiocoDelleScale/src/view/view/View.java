@@ -4,8 +4,8 @@ import java.io.IOException;
 
 import controller.Controller;
 import javafx.stage.Stage;
-import model.board.Coordinate;
 import model.pawns.Pawns;
+import utilities.Coordinate;
 
 public interface View {
 

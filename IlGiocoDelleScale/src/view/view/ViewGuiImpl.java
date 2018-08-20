@@ -12,9 +12,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import model.board.Coordinate;
 import model.dice.Dice;
 import model.pawns.Pawns;
+import utilities.Coordinate;
 import view.start.Gui;
 import view.start.GuiImpl;
 
