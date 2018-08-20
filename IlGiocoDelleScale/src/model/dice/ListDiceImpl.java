@@ -18,23 +18,23 @@ public class ListDiceImpl implements ListDice{     // da modificare, ristrutture
 	}
 
 	@Override
-	public Dice multiFaceDice(int numberOfFace) {
+	public Dice multiFaceDice(final int numberOfFace) {
 		return new MultifaceDice(numberOfFace);
 	}
 	
 	@Override
-	public Dice specialClassicDice(Map<Integer,Integer> map) {
-		return new SpecialDice(map, MAXCLASSIC);
+	public Dice specialClassicDice(final Map<Integer,Integer> map) {
+		return new SpecialDice(map, this.multiFaceDice(MAXCLASSIC));
 	}
 	
 	@Override
-	public Dice specialTwentyDice(Map<Integer,Integer> map) {
-		return new SpecialDice(map, TWENTY);
+	public Dice specialTwentyDice(final Map<Integer,Integer> map) {
+		return new SpecialDice(map, this.multiFaceDice(TWENTY));
 	}
 
 	@Override
-	public Dice totalPersonalized(Map<Integer,Integer> map , int number) {  // Personalized
-		return new SpecialDice(map, number);
+	public Dice totalPersonalized(final Map<Integer,Integer> map , int number) {  // Personalized
+		return new SpecialDice(map, this.multiFaceDice(number));
 	}
 
 

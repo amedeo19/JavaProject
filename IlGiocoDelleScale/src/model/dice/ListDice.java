@@ -8,12 +8,12 @@ public interface ListDice {
 	
 	Dice twentyFaceDice();
 	
-	Dice multiFaceDice(int numberOfFace);
+	Dice multiFaceDice(final int numberOfFace);
 	
-	Dice specialTwentyDice(Map<Integer,Integer> map);
+	Dice specialTwentyDice(final Map<Integer,Integer> map);
 	
-	Dice specialClassicDice(Map<Integer,Integer> map);
+	Dice specialClassicDice(final Map<Integer,Integer> map);
 	
-	Dice totalPersonalized(Map<Integer,Integer> map ,int number); // Personalized
+	Dice totalPersonalized(final Map<Integer,Integer> map,final int number); // Personalized
 	
 }
