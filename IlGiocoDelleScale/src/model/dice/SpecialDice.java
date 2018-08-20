@@ -11,7 +11,7 @@ public class SpecialDice extends MultifaceDice{
 	private final static int MAX=20;
 	private final static int MINSECOND=-10;
 	private final static int MAXSECOND=10;
-	private Optional<Map<Integer,Integer>>map;
+	private final Optional<Map<Integer,Integer>>map;
 	private static final Supplier<RuntimeException> keyError = () -> new IllegalStateException("Error with some first numbers");
 	private static final Supplier<RuntimeException> valueError = () -> new IllegalStateException("Error with some second numbers");	
 
