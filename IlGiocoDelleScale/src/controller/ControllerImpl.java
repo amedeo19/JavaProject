@@ -2,23 +2,18 @@ package controller;
 
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.ResourceBundle;
 import enumeration.Characters;
 import enumeration.MapDifficulty;
 import enumeration.MapDimension;
-import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import model.board.TableBuilder;
 import model.board.TableBuilderImpl;
-import model.board.UpsideDown;
 import model.converter.Converter;
 import model.converter.ConverterImpl;
 import model.data.Data;
@@ -30,7 +25,6 @@ import model.model.*;
 import model.pawns.Pawns;
 import model.pawns.PawnsImpl;
 import utilities.Coordinate;
-import view.start.Gui;
 import view.start.GuiImpl;
 import view.view.View;
 import view.view.ViewGuiImpl;
@@ -66,6 +60,7 @@ public class ControllerImpl implements Controller {
 
 	public ControllerImpl() {
 		this.view = new ViewGuiImpl();
+		this.stage = new Stage();
 		this.view.setController(this);
 		this.multiplayer = false;
 		this.IAturn=false;
@@ -128,7 +123,7 @@ public class ControllerImpl implements Controller {
 	
 	private void finishGame() throws IOException{
 		if(this.control) {				//finestra che permette di uscire o tornare al menu iniziale
-			this.CharacterList.get(this.setting.get().getTurn());
+			this.getCharacterList().get(this.setting.get().getTurn());
 			
 			this.control = false;
 		} else {
@@ -167,8 +162,8 @@ public class ControllerImpl implements Controller {
 
 	public void startController() throws Exception {
 		this.control = true;
-		//this.view.startMenu(stage);
-		javafx.application.Application.launch(GuiImpl.class);
+		this.view.startMenu(stage);
+		//javafx.application.Application.launch(GuiImpl.class);
 	}
 
 	private int convertToInt(Coordinate coordinate) {
@@ -209,9 +204,9 @@ public class ControllerImpl implements Controller {
 	}
 
 	
-//	private List<Characters> getCharacterList(){
-//		return Collections.unmodifiableList(this.CharacterList);
-//	}
+	private List<Characters> getCharacterList(){
+		return Collections.unmodifiableList(this.CharacterList);
+	}
 	
 	
 	

@@ -16,9 +16,6 @@ public interface View {
 	void startMenu(Stage stage) throws IOException;
 	
 	
-	void startRace();
-	
-	
 	void update(Pawns pawn, Coordinate coordinate);
 	
 	

@@ -31,7 +31,6 @@ public class ViewGuiImpl implements View{
 	
 	@Override
 	public void start() {
-		//this.menu.waitMenu();
         final Wait<Boolean> wait = new Wait<>();
         Platform.runLater(() -> {
             try {
@@ -81,10 +80,6 @@ public class ViewGuiImpl implements View{
 		
 	}
 
-	@Override
-	public void startRace() {
-		
-	}
 
 	@Override
 	public void update(Pawns pawn, Coordinate coordinate) {
