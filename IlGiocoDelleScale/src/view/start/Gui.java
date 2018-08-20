@@ -306,6 +306,10 @@ public class Gui implements Initializable {
 	    
 	}
 
+	public Controller getController() {
+		return this.controller;
+	}
+	
     @Override    
     public void initialize(URL location, ResourceBundle resources) {
         this.numPlayer.setItems(num);
