@@ -1,6 +1,5 @@
 package model.model;
 
-import model.data.Data;
 import model.pawns.Pawns;
 
 public interface Model {

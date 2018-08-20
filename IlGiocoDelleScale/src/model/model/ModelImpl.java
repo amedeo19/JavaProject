@@ -7,7 +7,7 @@ import model.pawns.Pawns;
 
 public class ModelImpl implements Model{
 
-	private Movements move;
+	private final Movements move;
 	
 	public ModelImpl(Data data) {
 		this.move=new MovementsImpl(data);
