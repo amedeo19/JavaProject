@@ -21,7 +21,7 @@ import view.view.View;
 import view.view.ViewGuiImpl;
 
 
-public class GuiBoard implements GUI{
+public class GuiBoard implements Gui{
 	@FXML
 	private Button button;
 	@FXML
