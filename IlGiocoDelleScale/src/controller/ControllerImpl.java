@@ -141,7 +141,6 @@ public class ControllerImpl implements Controller {
 		this.dimension = dimension;
 		this.table = new TableBuilderImpl(difficulty, dimension);
 		this.numCell = this.dimension.getDimension();
-		System.out.println(this.numCell);
 		this.CreatePawn();
 		this.checkMultiplayer();
 		this.diceList = diceList;
@@ -204,7 +203,7 @@ public class ControllerImpl implements Controller {
 	}
 
 	
-	private List<Characters> getCharacterList(){
+	public List<Characters> getCharacterList(){
 		return Collections.unmodifiableList(this.CharacterList);
 	}
 	
@@ -232,6 +231,11 @@ public class ControllerImpl implements Controller {
 		return this.table.getStairs();
 	}
 
+	@SuppressWarnings("unchecked")
+	public List<Optional<Integer>> getViewNumDice(){
+		return (List<Optional<Integer>>) this.listOfDice.stream().map(e->e.viewNum());
+	}
+	
 	
 	
 	

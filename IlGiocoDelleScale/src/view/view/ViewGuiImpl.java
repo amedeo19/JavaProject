@@ -69,30 +69,6 @@ public class ViewGuiImpl implements View{
 		}
 	}
 
-	private void startView(String path) throws IOException {
-//		final FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
-//        final Parent root = (Parent) loader.load();
-        
-//        stage.setTitle("Scale e serpenti");
-//        if (stage.getScene() == null) {
-//            stage.setScene(new Scene(root));
-//        } else {
-//            stage.getScene().setRoot(root);
-//        }
-//        if (loader.getController() instanceof ViewGuiImpl) {
-//            this.gui = loader.getController();
-//            
-//            stage.setFullScreen(true);
-//        } else {
-//            this.gui = loader.getController();
-//            stage.setFullScreen(false);
-//            stage.centerOnScreen();
-//            stage.sizeToScene();
-//        }
-//        stage.show();
-		
-	}
-
 
 	@Override
 	public void update(Pawns pawn, Coordinate coordinate) {
