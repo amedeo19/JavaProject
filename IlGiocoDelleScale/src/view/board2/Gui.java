@@ -14,6 +14,4 @@ public interface Gui extends Initializable{
 	
 	public void setController(Controller controller);
 	
-	
-	
 }
