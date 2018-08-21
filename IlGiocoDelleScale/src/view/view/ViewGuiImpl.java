@@ -22,8 +22,8 @@ import view.start.GuiImpl;
 
 public class ViewGuiImpl implements View{
 
-	
-	private Stage stage;
+	private static final String FXML_PATH = "/view/board2/BoardEasy.fxml";
+	private Stage stage = new Stage();
 	private Controller controller;
 	private final Wait<Boolean> wait = new Wait<>();
 	private GuiImpl gui = new GuiImpl();
@@ -44,15 +44,11 @@ public class ViewGuiImpl implements View{
         final Wait<Boolean> wait = new Wait<>();
         Platform.runLater(() -> {
             try {
-				this.guiBoardImpl.start(stage);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			wait.actionPerformed(true);
+                this.startView(FXML_PATH);
+                wait.actionPerformed(true);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         });
         wait.waitForUser();
 	}
@@ -93,6 +89,25 @@ public class ViewGuiImpl implements View{
         });
 	}
 	
-	
+	private void startView(final String path) throws IOException  {
+        final FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
+        final Parent root = loader.load();
+        stage.setTitle("Snake N Ladder");
+        if (stage.getScene() == null) {
+            stage.setScene(new Scene(root));
+        } else {
+            stage.getScene().setRoot(root);
+        }
+        if (loader.getController() instanceof ViewGuiImpl) {
+            this.guiBoardImpl = loader.getController();
+            stage.setFullScreen(true);
+        } else {
+            this.gui = loader.getController();
+            stage.setFullScreen(false);
+            stage.centerOnScreen();
+            stage.sizeToScene();
+        }
+        stage.show();
+    }
 
 }

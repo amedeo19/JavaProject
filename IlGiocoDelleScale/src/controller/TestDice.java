@@ -27,7 +27,7 @@ public class TestDice {
 		Characters per = null;
 		MapDifficulty difficulty = MapDifficulty.EASY;
 		MapDimension dimension = null;
-		Stage stage = new Stage();
+		//Stage stage = new Stage();
 		
 		
 		diceList.add(Dice.CLASSIC);
@@ -54,8 +54,7 @@ public class TestDice {
 		controller.play();
 		
 		try {
-			
-			view.startMenu(stage);
+			view.start();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
