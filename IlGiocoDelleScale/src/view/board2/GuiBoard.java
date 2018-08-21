@@ -43,7 +43,6 @@ public class GuiBoard implements Gui{
 	@FXML
 	private ImageView imageDice3;
 	
-	
 	private View view;
 	private Controller controller = new ControllerImpl(view);
 	private List<UpsideDown> snakes = new ArrayList<>();
