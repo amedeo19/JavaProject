@@ -32,8 +32,8 @@ public class ViewGuiImpl implements View{
 	
 	public ViewGuiImpl() {
 		this.controller = new ControllerImpl(this);
-		this.controller.getSnakeList();
-		this.controller.getStairList();
+//		this.controller.getSnakeList();
+//		this.controller.getStairList();
 		this.guiBoard.setView(this);
 		this.guiBoard.setController(controller);
 	}

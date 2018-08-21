@@ -8,6 +8,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collector;
+
 import enumeration.Characters;
 import enumeration.MapDifficulty;
 import enumeration.MapDimension;
@@ -74,6 +76,7 @@ public class ControllerImpl implements Controller {
 		this.mapSpecial.put(12, 7);
 		this.mapSpecial.put(16, -2);
 		this.mapSpecial.put(20, 10);
+		
 	}
 	
 	@Override
@@ -232,8 +235,13 @@ public class ControllerImpl implements Controller {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Optional<Integer>> getViewNumDice(){
-		return (List<Optional<Integer>>) this.listOfDice.stream().map(e->e.viewNum());
+	public List<Integer> getViewNumDice(){
+		List<Integer> list = new ArrayList<>();
+		this.listOfDice.forEach(e -> {
+			list.add(e.viewNum());
+		});
+		
+		return list;
 	}
 	
 	

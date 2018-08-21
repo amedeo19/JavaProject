@@ -54,7 +54,7 @@ public class GuiBoard implements Initializable{
 	private Controller controller = new ControllerImpl(view);
 	private List<UpsideDown> snakes = new ArrayList<>();
 	private List<UpsideDown> stairs = new ArrayList<>();
-	private List<Optional<Integer>> viewListDice = new ArrayList<>();
+	private List<Integer> viewListDice = new ArrayList<>();
 	private List<Label> labels = new ArrayList<>();
 	private List<ImageView> images = new ArrayList<>();
 	private List<Characters> listCharacter = new ArrayList<Characters>();
@@ -122,7 +122,7 @@ public class GuiBoard implements Initializable{
 	
 	private void setImageDice() {
 		for(int i=START; i<this.viewListDice.size(); i++) {
-			 this.labels.get(i).setText(String.valueOf(this.viewListDice.get(i).get()));
+			 this.labels.get(i).setText(String.valueOf(this.viewListDice.get(i)));
 		}
 	}
 
