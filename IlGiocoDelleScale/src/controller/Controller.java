@@ -25,5 +25,7 @@ public interface Controller {
 	
 	public List<Characters> getCharacterList();
 	
+	public int getNumDice();
+	
 
 }

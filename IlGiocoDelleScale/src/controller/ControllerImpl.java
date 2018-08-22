@@ -235,13 +235,9 @@ public class ControllerImpl implements Controller {
 		return this.table.getStairs();
 	}
 
-	@SuppressWarnings("unchecked")
 	public List<Integer> getViewNumDice(){
 		List<Integer> list = new ArrayList<>();
-		this.listOfDice.forEach(e -> {
-			list.add(e.viewNum());
-		});
-		
+		this.listOfDice.forEach(e -> list.add(e.viewNum()));
 		return list;
 	}
 	
@@ -252,6 +248,12 @@ public class ControllerImpl implements Controller {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public int getNumDice() {
+
+		return this.diceList.size();
 	}
 	
 	
