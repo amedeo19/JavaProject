@@ -152,7 +152,7 @@ public class ControllerImpl implements Controller {
 		this.converse = new ConverterImpl((int)Math.sqrt(this.numCell));
 		this.data= new DataImpl(this.listOfDice, this.numCell);
 		// Pawn
-		this.setting = Optional.of(new SettingImpl(this.PawnsList.size(), this.data));
+		this.setting = Optional.of(new SettingImpl(this.PawnsList.size()));
 		this.game = new ModelImpl(this.data);
 		
 		//chiamare view di andre
