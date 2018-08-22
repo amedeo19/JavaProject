@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 import view.view.View;
 import view.view.ViewGuiImpl;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -283,9 +284,10 @@ public class Gui implements Initializable {
 			}
 		}
 		this.controller.start(listOfDice, listFace, chaselect, dimension, difficulty);
-		this.view.setController(this.controller);
 		this.clearList();
+		
 		this.close();
+		
 	}
 	private void clearList() {
 		this.listOfDice.clear();

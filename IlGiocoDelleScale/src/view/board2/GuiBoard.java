@@ -5,29 +5,23 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
-
 import controller.Controller;
 import controller.ControllerImpl;
 import enumeration.Characters;
+import enumeration.MapDimension;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import model.board.UpsideDown;
-import model.dice.Dice;
-import model.dice.MultifaceDice;
-import utilities.dice.DiceImage;
-import utilities.dice.DiceImageImpl;
+import model.converter.ConverterView;
+import model.converter.ConverterViewImpl;
 import view.view.View;
 import view.view.ViewGuiImpl;
 
 
-public class GuiBoard implements Initializable{
+public class GuiBoard implements Gui{
 	@FXML
 	private Button button;
 	@FXML
@@ -49,17 +43,18 @@ public class GuiBoard implements Initializable{
 	@FXML
 	private ImageView imageDice3;
 	
-	
 	private View view;
-	private Controller controller = new ControllerImpl(view);
+	private Controller controller;
 	private List<UpsideDown> snakes = new ArrayList<>();
 	private List<UpsideDown> stairs = new ArrayList<>();
-	private List<Optional<Integer>> viewListDice = new ArrayList<>();
+	private List<Integer> viewListDice = new ArrayList<>();
 	private List<Label> labels = new ArrayList<>();
 	private List<ImageView> images = new ArrayList<>();
 	private List<Characters> listCharacter = new ArrayList<Characters>();
 	private final static int START = 0;
+	private ConverterView converter;
 	
+	@Override
 	public void SetText() {
 		this.snakes = this.controller.getSnakeList();
 		this.stairs = this.controller.getStairList();
@@ -68,7 +63,7 @@ public class GuiBoard implements Initializable{
 		this.text.setText("Ciaone");
 	}
 	
-	
+	@Override
 	public void RollDice() {
 		
 		
@@ -76,6 +71,7 @@ public class GuiBoard implements Initializable{
 		this.viewListDice = this.controller.getViewNumDice();
 		this.setImageDice();
 	}
+	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		
@@ -86,15 +82,17 @@ public class GuiBoard implements Initializable{
 		imageDice1.setVisible(false);
 		imageDice2.setVisible(false);
 		imageDice3.setVisible(false);
-		
+		this.converter= new ConverterViewImpl((int) Math.sqrt(MapDimension.SMALL.getDimension()));
 
 		text.setVisible(true);
 	}
 	
+	@Override
 	public void setView(ViewGuiImpl view) {
 		this.view = view;
 	}
 	
+	@Override
 	public void setController(Controller controller) {
 		this.controller = controller;
 		this.viewListDice = this.controller.getViewNumDice();
@@ -122,7 +120,7 @@ public class GuiBoard implements Initializable{
 	
 	private void setImageDice() {
 		for(int i=START; i<this.viewListDice.size(); i++) {
-			 this.labels.get(i).setText(String.valueOf(this.viewListDice.get(i).get()));
+			 this.labels.get(i).setText(String.valueOf(this.viewListDice.get(i)));
 		}
 	}
 

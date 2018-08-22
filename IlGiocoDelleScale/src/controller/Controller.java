@@ -21,7 +21,7 @@ public interface Controller {
 	
 	public List<UpsideDown> getSnakeList();
 	
-	public List<Optional<Integer>> getViewNumDice();
+	public List<Integer> getViewNumDice();
 	
 	public List<Characters> getCharacterList();
 	

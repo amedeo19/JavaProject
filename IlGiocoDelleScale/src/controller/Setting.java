@@ -6,9 +6,7 @@ public interface Setting {
 
 	public int getNumPlayers();
 	
-	public Data getData();
-	
-	public int moveTurn();
+	public void moveTurn();
 	
 	public int getTurn();
 	

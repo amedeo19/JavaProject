@@ -49,12 +49,12 @@ public class TestDice {
 		
 		
 		
-		controller.start(diceList, faceList, Character, dimension.LARGE, difficulty);
+		//controller.start(diceList, faceList, Character, dimension.LARGE, difficulty);
 		
-		controller.play();
+		//controller.play();
+		
 		
 		try {
-			
 			view.startMenu(stage);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
