@@ -5,13 +5,11 @@ import model.data.Data;
 public class SettingImpl implements Setting {
 
 	private final int NumPlayers;
-	private Data data;
 	private int turn;
 	private final static int Start=0;
 	
-	public SettingImpl(final int NumPlayers, Data data) {
+	public SettingImpl(final int NumPlayers) {
 		this.NumPlayers = NumPlayers;
-		this.data = data;
 		this.turn=Start;
 	}
 	
@@ -21,14 +19,9 @@ public class SettingImpl implements Setting {
 	}
 	
 	@Override
-	public Data getData(){
-		return this.data;
-	}
-	
-	@Override
-	public int moveTurn() {
+	public void moveTurn() {
 		this.turn=this.turn++;
-		return (this.turn % this.NumPlayers);
+		this.turn=(this.turn % this.NumPlayers);
 	}
 
 
