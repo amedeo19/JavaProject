@@ -27,7 +27,7 @@ import controller.ControllerImpl;
 
 import enumeration.*;
 
-public class Gui implements Initializable {
+public class Gui implements Menu {
 	//liste di oggetti utili all'inizializzazione della partita
 	final ObservableList<Integer> num = FXCollections.observableArrayList(1,2,3,4);
 	final ObservableList<MapDifficulty> mapdiff = FXCollections.observableArrayList(Arrays.asList(MapDifficulty.values()));
@@ -310,7 +310,7 @@ public class Gui implements Initializable {
 		return this.controller;
 	}
 	
-	public void setViewGuiImpl(View view){
+	public void setViewGuiImpl(ViewGuiImpl view){
 		this.controller=new ControllerImpl(view);
 	}
 	
