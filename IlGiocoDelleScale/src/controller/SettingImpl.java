@@ -1,7 +1,5 @@
 package controller;
 
-import model.data.Data;
-
 public class SettingImpl implements Setting {
 
 	private final int NumPlayers;
