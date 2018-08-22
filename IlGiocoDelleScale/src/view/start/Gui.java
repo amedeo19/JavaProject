@@ -10,6 +10,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 import view.view.View;
 import view.view.ViewGuiImpl;
 
@@ -309,7 +310,8 @@ public class Gui implements Initializable {
 		return this.controller;
 	}
 	
-	public void setViewGuiImpl(ViewGuiImpl view){
+	public void setViewGuiImpl(View view){
+		System.out.println("conoot");
 		this.controller=new ControllerImpl(view);
 	}
 	

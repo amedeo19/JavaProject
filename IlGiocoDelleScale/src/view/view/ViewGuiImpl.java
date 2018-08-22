@@ -22,7 +22,7 @@ import view.start.GuiImpl;
 
 public class ViewGuiImpl implements View{
 
-	private static final String FXML_PATH_VIEW = "/view/board2/BoardEasy.fxml";
+	private static final String FXML_PATH_VIEW = "/view/board/BoardEasy.fxml";
 	private static final String FXML_PATH_MENU = "/view/start/Start.fxml";
 	private Stage stage = new Stage();
 	private Controller controller;
