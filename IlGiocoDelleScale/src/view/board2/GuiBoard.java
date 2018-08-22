@@ -44,7 +44,7 @@ public class GuiBoard implements Gui{
 	private ImageView imageDice3;
 	
 	private View view;
-	private Controller controller = new ControllerImpl(view);
+	private Controller controller;
 	private List<UpsideDown> snakes = new ArrayList<>();
 	private List<UpsideDown> stairs = new ArrayList<>();
 	private List<Integer> viewListDice = new ArrayList<>();

@@ -285,17 +285,9 @@ public class Gui implements Initializable {
 			}
 		}
 		this.controller.start(listOfDice, listFace, chaselect, dimension, difficulty);
-		this.view.setController(this.controller);
 		this.clearList();
+		
 		this.close();
-		
-		try {
-			this.view.start();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
 		
 	}
 	private void clearList() {

@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 
 public class GuiBoardImpl extends Application {
 
+	
 	public static void main(String[] args) {
         launch(args);
     }

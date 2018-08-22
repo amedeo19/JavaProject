@@ -63,7 +63,7 @@ public class ControllerImpl implements Controller {
 	public ControllerImpl(View view) {
 		this.view = view;
 		this.multiplayer = false;
-		this.IAturn=false;
+		this.IAturn = false;
 		this.gui = new GuiImpl();
 		this.p=Optional.empty();
 		this.setting = Optional.empty();
@@ -138,7 +138,6 @@ public class ControllerImpl implements Controller {
 	public void start(List<enumeration.Dice> diceList, List<Optional<Integer>> faceList, List<Characters> Character, MapDimension dimension, MapDifficulty difficulty) {	
 
 		this.control = true;
-		this.view.setController(this);
 		this.CharacterList=Character;
 		this.difficulty = difficulty;
 		this.dimension = dimension;
@@ -154,6 +153,8 @@ public class ControllerImpl implements Controller {
 		// Pawn
 		this.setting = Optional.of(new SettingImpl(this.PawnsList.size()));
 		this.game = new ModelImpl(this.data);
+		this.view.setController(this);
+		this.StartView();
 		
 		//chiamare view di andre
 		//javafx.application.Application.launch(View.class);
@@ -244,7 +245,14 @@ public class ControllerImpl implements Controller {
 		return list;
 	}
 	
-	
+	private void StartView() {
+		try {
+			this.view.start();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	
 	
 }

@@ -24,18 +24,16 @@ public class ViewGuiImpl implements View{
 
 	private static final String FXML_PATH = "/view/board2/BoardEasy.fxml";
 	private Stage stage = new Stage();
-	private Controller controller;
 	private final Wait<Boolean> wait = new Wait<>();
 	private GuiImpl gui = new GuiImpl();
 	private GuiBoardImpl guiBoardImpl = new GuiBoardImpl();
 	private GuiBoard guiBoard = new GuiBoard();
 	
 	public ViewGuiImpl() {
-		this.controller = new ControllerImpl(this);
 //		this.controller.getSnakeList();
 //		this.controller.getStairList();
 		this.guiBoard.setView(this);
-		this.guiBoard.setController(controller);
+		
 	}
 	
 	
@@ -74,7 +72,7 @@ public class ViewGuiImpl implements View{
 
 	@Override
 	public void setController(Controller controller) {
-		this.controller = controller;
+		this.guiBoard.setController(controller);
 	}
 	
 	
