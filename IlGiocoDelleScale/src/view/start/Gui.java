@@ -108,9 +108,8 @@ public class Gui implements Initializable {
 	private int numPlayers;
 	private MapDimension dimension;
 	private MapDifficulty difficulty;
-	private View view = new ViewGuiImpl();
-	private Controller controller = new ControllerImpl(view);
-	
+	private View view;
+	private Controller controller;
 
 	
 	public void SelectPawns() {
@@ -320,6 +319,11 @@ public class Gui implements Initializable {
 		return this.controller;
 	}
 	
+	public void setViewGuiImpl(ViewGuiImpl view){
+		this.view=view;
+		this.controller=new ControllerImpl(view);
+	}
+	
     @Override    
     public void initialize(URL location, ResourceBundle resources) {
         this.numPlayer.setItems(num);
@@ -344,6 +348,7 @@ public class Gui implements Initializable {
 	 	this.Difficulty.setValue(MapDifficulty.EASY);
 	 	this.Dimension.setItems(mapdim);
 	 	this.Dimension.setValue(MapDimension.SMALL);
+	 	this.Dimension.setDisable(true);
 
 	 	TextP1.setVisible(false);
 	 	TextP2.setVisible(false);

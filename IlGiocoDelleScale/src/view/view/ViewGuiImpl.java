@@ -22,11 +22,11 @@ import view.start.GuiImpl;
 
 public class ViewGuiImpl implements View{
 
-	private static final String FXML_PATH = "/view/board2/BoardEasy.fxml";
+	private static final String FXML_PATH_VIEW = "/view/board2/BoardEasy.fxml";
+	private static final String FXML_PATH_MENU = "/view/start/Start.fxml";
 	private Stage stage = new Stage();
 	private Controller controller;
-	private final Wait<Boolean> wait = new Wait<>();
-	private GuiImpl gui = new GuiImpl();
+	private Gui gui = new Gui();
 	private GuiBoardImpl guiBoardImpl = new GuiBoardImpl();
 	private GuiBoard guiBoard = new GuiBoard();
 	
@@ -35,34 +35,18 @@ public class ViewGuiImpl implements View{
 //		this.controller.getSnakeList();
 //		this.controller.getStairList();
 		this.guiBoard.setView(this);
-		this.guiBoard.setController(controller);
 	}
 	
 	
 	@Override
 	public void start() throws IOException {
-        final Wait<Boolean> wait = new Wait<>();
-        Platform.runLater(() -> {
-            try {
-                this.startView(FXML_PATH);
-                wait.actionPerformed(true);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });
-        wait.waitForUser();
+		this.startView(FXML_PATH_VIEW);
 	}
 
 	@Override
 	public void startMenu(Stage stage) throws IOException {
 		this.stage = stage;
-		try {
-			
-			this.gui.start(stage);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		this.startView(FXML_PATH_MENU);
 	}
 
 
@@ -79,14 +63,11 @@ public class ViewGuiImpl implements View{
 	
 	
 	public void restart() {
-		Platform.runLater(() -> {
-            try {
-                this.startMenu(this.stage);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            wait.actionPerformed(true);
-        });
+		try {
+			this.startMenu(this.stage);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	private void startView(final String path) throws IOException  {
@@ -98,11 +79,13 @@ public class ViewGuiImpl implements View{
         } else {
             stage.getScene().setRoot(root);
         }
-        if (loader.getController() instanceof ViewGuiImpl) {
-            this.guiBoardImpl = loader.getController();
-            stage.setFullScreen(true);
+        if (loader.getController() instanceof GuiBoard) {
+            this.guiBoard = loader.getController();
+            stage.setFullScreen(false);
         } else {
             this.gui = loader.getController();
+    		this.guiBoard.setController(this.controller);
+            this.gui.setViewGuiImpl(this);
             stage.setFullScreen(false);
             stage.centerOnScreen();
             stage.sizeToScene();
