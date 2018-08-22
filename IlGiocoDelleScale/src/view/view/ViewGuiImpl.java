@@ -31,6 +31,7 @@ public class ViewGuiImpl implements View{
 	private GuiBoard guiBoard = new GuiBoard();
 	
 	public ViewGuiImpl() {
+		this.controller = new ControllerImpl(this);
 //		this.controller.getSnakeList();
 //		this.controller.getStairList();
 		this.guiBoard.setView(this);
@@ -57,7 +58,7 @@ public class ViewGuiImpl implements View{
 
 	@Override
 	public void setController(Controller controller) {
-		this.guiBoard.setController(controller);
+		this.controller = controller;
 	}
 	
 	

@@ -108,7 +108,6 @@ public class Gui implements Initializable {
 	private int numPlayers;
 	private MapDimension dimension;
 	private MapDifficulty difficulty;
-	private View view;
 	private Controller controller;
 
 	
@@ -285,7 +284,7 @@ public class Gui implements Initializable {
 		this.controller.start(listOfDice, listFace, chaselect, dimension, difficulty);
 		this.clearList();
 		
-		this.close();
+//		this.close();
 		
 	}
 	private void clearList() {
@@ -311,7 +310,6 @@ public class Gui implements Initializable {
 	}
 	
 	public void setViewGuiImpl(ViewGuiImpl view){
-		this.view=view;
 		this.controller=new ControllerImpl(view);
 	}
 	
