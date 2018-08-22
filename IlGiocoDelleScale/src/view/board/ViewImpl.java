@@ -1,26 +1,18 @@
 package view.board;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.ResourceBundle;
 import controller.Controller;
-import controller.ControllerImpl;
-import enumeration.Characters;
 import enumeration.MapDimension;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
-import javafx.stage.Stage;
-import model.board.UpsideDown;
 import model.converter.ConverterView;
 import model.converter.ConverterViewImpl;
-import model.pawns.Pawns;
-import utilities.Coordinate;
 import view.view.View;
 import view.view.ViewGuiImpl;
 
@@ -49,59 +41,56 @@ public class ViewImpl implements view.board.View{
 	
 	private View view;
 	private Controller controller;
-	private List<UpsideDown> snakes = new ArrayList<>();
-	private List<UpsideDown> stairs = new ArrayList<>();
-	private List<Integer> viewListDice = new ArrayList<>();
 	private List<Label> labels = new ArrayList<>();
 	private List<ImageView> images = new ArrayList<>();
-	private List<Characters> listCharacter = new ArrayList<Characters>();
 	private final static int START = 0;
 	private ConverterView converter;
+	private List<String> print= new ArrayList<>(); 
 	
 	@Override
 	public void SetText() {
-		this.snakes = this.controller.getSnakeList();
-		this.stairs = this.controller.getStairList();
-		
-		this.text.setText(this.snakes.toString() + this.stairs.toString());
-		this.text.setText("Ciaone");
+//		this.controller.getSnakeList().forEach(e->{
+//			System.out.print("Start "+e.getStart().getX()+e.getStart().getY() );
+//			System.out.println(" Finish"+e.getTarget().getX() +e.getTarget().getY() );
+//		});
+		this.controller.getSnakeList().forEach(e->this.print.add(e.print()));
+		this.controller.getStairList().forEach(e->this.print.add(e.print()));
+//		System.out.println(this.print.toString());
+//		this.text.setText(this.print.toString());
 	}
 	
 	@Override
 	public void RollDice() {
 		
-		
+		System.out.println(this.controller.getCharacterList().get(START));
 		this.controller.play();
-		this.viewListDice = this.controller.getViewNumDice();
 		this.setImageDice();
 	}
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		
-		button.setVisible(true);
-		viewDice1.setVisible(false);
-		viewDice2.setVisible(false);
-		viewDice3.setVisible(false);
-		imageDice1.setVisible(false);
-		imageDice2.setVisible(false);
-		imageDice3.setVisible(false);
+		this.button.setVisible(true);
+		this.viewDice1.setVisible(false);
+		this.viewDice2.setVisible(false);
+		this.viewDice3.setVisible(false);
+		this.imageDice1.setVisible(false);
+		this.imageDice2.setVisible(false);
+		this.imageDice3.setVisible(false);
 		this.converter= new ConverterViewImpl((int) Math.sqrt(MapDimension.SMALL.getDimension()));
-
-		text.setVisible(true);
+		this.text.setVisible(true);
 	}
 	
 	@Override
 	public void setController(Controller controller) {
 		this.controller = controller;
-		System.out.println("controller");
-//		this.viewListDice = this.controller.getViewNumDice();
+		this.SetText();
 		this.setImageDiceVisible();
-//		this.listCharacter = this.controller.getCharacterList();
+		this.setInitialImageDice();
 	}
 	
 	private void setImageDiceVisible() {
-		for(int i=0; i<this.viewListDice.size(); i++) {
+		for(int i=0; i<this.controller.getNumDice(); i++) {
 			switch(i) {
 			case 0: this.images.add(imageDice1);
 					this.labels.add(viewDice1);
@@ -118,9 +107,15 @@ public class ViewImpl implements view.board.View{
 		this.labels.forEach(e->e.setVisible(true));
 	}
 	
+	private void setInitialImageDice() {
+		for(int i=START; i<this.controller.getNumDice(); i++) {
+			 this.labels.get(i).setText(String.valueOf(START));
+		}
+	}
+	
 	private void setImageDice() {
-		for(int i=START; i<this.viewListDice.size(); i++) {
-			 this.labels.get(i).setText(String.valueOf(this.viewListDice.get(i)));
+		for(int i=START; i<this.controller.getNumDice(); i++) {
+			 this.labels.get(i).setText(String.valueOf(this.controller.getViewNumDice().get(i)));
 		}
 	}
 
