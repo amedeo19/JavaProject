@@ -17,9 +17,9 @@ public class ViewGuiImpl implements View{
 	private static final String FXML_PATH_VIEW = "/view/board/BoardEasy.fxml";
 	private static final String FXML_PATH_MENU = "/view/start/Start.fxml";
 	private Stage stage = new Stage();
-	private Controller controller;
 	private Gui gui = new Gui();
 	private view.board.View guiBoard = new ViewImpl();
+	private Controller controller;
 	
 	public ViewGuiImpl() {
 		this.guiBoard.setView(this);
@@ -46,7 +46,7 @@ public class ViewGuiImpl implements View{
 
 	@Override
 	public void setController(Controller controller) {
-		this.guiBoard.setController(controller);
+		this.controller=controller;
 	}
 	
 	
@@ -68,6 +68,8 @@ public class ViewGuiImpl implements View{
             stage.getScene().setRoot(root);
         }
         if (loader.getController() instanceof ViewImpl) {
+    		this.guiBoard.setController(controller);
+    		this.guiBoard.setView(this);
             this.guiBoard = loader.getController();
             stage.setFullScreen(false);
         } else {
