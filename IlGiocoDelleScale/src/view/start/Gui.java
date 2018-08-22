@@ -311,7 +311,6 @@ public class Gui implements Initializable {
 	}
 	
 	public void setViewGuiImpl(View view){
-		System.out.println("conoot");
 		this.controller=new ControllerImpl(view);
 	}
 	

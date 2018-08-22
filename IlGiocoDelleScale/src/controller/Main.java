@@ -14,7 +14,6 @@ public class Main extends Application {
 		private final View view;
 		
 		Main2(final View view) {
-			//this.controller = new ControllerImpl();
 			this.view = view;
 		}
 		
@@ -24,11 +23,8 @@ public class Main extends Application {
 		
 	}
 	
-	//private final ControllerImpl controller;
-	
 	public void start(final Stage stage) throws IOException {// Non puoi 
 		try {
-			//this.controller.startController();
 			final View view = new ViewGuiImpl();
 			view.startMenu(stage);
 			new Main2(view).start();
@@ -38,10 +34,7 @@ public class Main extends Application {
 	}
 
 	public static void main(final String[] args) {
-//        final Main application = new Main();
-//        application.start();
-        //startare il menu' del Mon
-        //this.controller(parametri passati dal Mon)
+
 		launch(new String[0]);
     }
 	

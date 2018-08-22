@@ -94,9 +94,10 @@ public class ViewImpl implements view.board.View{
 	@Override
 	public void setController(Controller controller) {
 		this.controller = controller;
-		this.viewListDice = this.controller.getViewNumDice();
+		System.out.println("controller");
+//		this.viewListDice = this.controller.getViewNumDice();
 		this.setImageDiceVisible();
-		this.listCharacter = this.controller.getCharacterList();
+//		this.listCharacter = this.controller.getCharacterList();
 	}
 	
 	private void setImageDiceVisible() {

@@ -1,24 +1,16 @@
 package view.view;
 
 import java.io.IOException;
-import java.util.List;
-import java.util.Optional;
-
 import controller.Controller;
 import controller.ControllerImpl;
-import enumeration.Characters;
-import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import model.dice.Dice;
 import model.pawns.Pawns;
 import utilities.Coordinate;
 import view.board.ViewImpl;
-import view.board.ViewImpl;
 import view.start.Gui;
-import view.start.GuiImpl;
 
 public class ViewGuiImpl implements View{
 
@@ -30,9 +22,6 @@ public class ViewGuiImpl implements View{
 	private view.board.View guiBoard = new ViewImpl();
 	
 	public ViewGuiImpl() {
-		this.controller = new ControllerImpl(this);
-//		this.controller.getSnakeList();
-//		this.controller.getStairList();
 		this.guiBoard.setView(this);
 	}
 	
@@ -57,7 +46,7 @@ public class ViewGuiImpl implements View{
 
 	@Override
 	public void setController(Controller controller) {
-		this.controller = controller;
+		this.guiBoard.setController(controller);
 	}
 	
 	
@@ -83,7 +72,6 @@ public class ViewGuiImpl implements View{
             stage.setFullScreen(false);
         } else {
             this.gui = loader.getController();
-    		this.guiBoard.setController(this.controller);
             this.gui.setViewGuiImpl(this);
             stage.setFullScreen(false);
             stage.centerOnScreen();
