@@ -15,8 +15,8 @@ import javafx.stage.Stage;
 import model.dice.Dice;
 import model.pawns.Pawns;
 import utilities.Coordinate;
-import view.board2.GuiBoard;
-import view.board2.GuiBoardImpl;
+import view.board.ViewImpl;
+import view.board.ViewImpl;
 import view.start.Gui;
 import view.start.GuiImpl;
 
@@ -27,8 +27,7 @@ public class ViewGuiImpl implements View{
 	private Stage stage = new Stage();
 	private Controller controller;
 	private Gui gui = new Gui();
-	private GuiBoardImpl guiBoardImpl = new GuiBoardImpl();
-	private GuiBoard guiBoard = new GuiBoard();
+	private view.board.View guiBoard = new ViewImpl();
 	
 	public ViewGuiImpl() {
 //		this.controller.getSnakeList();
@@ -78,7 +77,7 @@ public class ViewGuiImpl implements View{
         } else {
             stage.getScene().setRoot(root);
         }
-        if (loader.getController() instanceof GuiBoard) {
+        if (loader.getController() instanceof ViewImpl) {
             this.guiBoard = loader.getController();
             stage.setFullScreen(false);
         } else {
