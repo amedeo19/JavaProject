@@ -11,15 +11,9 @@ public class Main extends Application {
 	
 	private class Main2 extends Thread{
 		
-		private final View view;
 		
 		Main2(final View view) {
-			this.view = view;
 		}
-		
-		public void run() {
-	        new ControllerImpl(view);
-	    }
 		
 	}
 	
