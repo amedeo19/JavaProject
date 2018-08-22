@@ -26,7 +26,7 @@ import controller.ControllerImpl;
 
 import enumeration.*;
 
-public class Gui implements Initializable {
+public class Gui implements Menu {
 	//liste di oggetti utili all'inizializzazione della partita
 	final ObservableList<Integer> num = FXCollections.observableArrayList(1,2,3,4);
 	final ObservableList<MapDifficulty> mapdiff = FXCollections.observableArrayList(Arrays.asList(MapDifficulty.values()));
@@ -108,7 +108,6 @@ public class Gui implements Initializable {
 	private int numPlayers;
 	private MapDimension dimension;
 	private MapDifficulty difficulty;
-	private View view;
 	private Controller controller;
 
 	
@@ -285,7 +284,7 @@ public class Gui implements Initializable {
 		this.controller.start(listOfDice, listFace, chaselect, dimension, difficulty);
 		this.clearList();
 		
-		this.close();
+		//this.close();
 		
 	}
 	private void clearList() {
@@ -305,13 +304,11 @@ public class Gui implements Initializable {
 	    stage.hide();
 	    
 	}
-
-	public Controller getController() {
-		return this.controller;
-	}
+public Controller getController() {
+	return this.controller;
+}
 	
 	public void setViewGuiImpl(ViewGuiImpl view){
-		this.view=view;
 		this.controller=new ControllerImpl(view);
 	}
 	
