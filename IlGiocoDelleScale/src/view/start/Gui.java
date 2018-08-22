@@ -10,6 +10,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 import view.view.View;
 import view.view.ViewGuiImpl;
 
@@ -284,7 +285,11 @@ public class Gui implements Menu {
 		this.controller.start(listOfDice, listFace, chaselect, dimension, difficulty);
 		this.clearList();
 		
+<<<<<<< HEAD
 		//this.close();
+=======
+//		this.close();
+>>>>>>> 0bee338acb7ea4c04e102bdaab112fa4cac493a4
 		
 	}
 	private void clearList() {
@@ -308,7 +313,12 @@ public Controller getController() {
 	return this.controller;
 }
 	
+<<<<<<< HEAD
 	public void setViewGuiImpl(ViewGuiImpl view){
+=======
+	public void setViewGuiImpl(View view){
+		System.out.println("conoot");
+>>>>>>> 0bee338acb7ea4c04e102bdaab112fa4cac493a4
 		this.controller=new ControllerImpl(view);
 	}
 	
