@@ -1,5 +1,6 @@
-package view.board2;
+package view.board;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,14 +15,17 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
 import model.board.UpsideDown;
 import model.converter.ConverterView;
 import model.converter.ConverterViewImpl;
+import model.pawns.Pawns;
+import utilities.Coordinate;
 import view.view.View;
 import view.view.ViewGuiImpl;
 
 
-public class GuiBoard implements Gui{
+public class ViewImpl implements view.board.View{
 	@FXML
 	private Button button;
 	@FXML
@@ -88,11 +92,6 @@ public class GuiBoard implements Gui{
 	}
 	
 	@Override
-	public void setView(ViewGuiImpl view) {
-		this.view = view;
-	}
-	
-	@Override
 	public void setController(Controller controller) {
 		this.controller = controller;
 		this.viewListDice = this.controller.getViewNumDice();
@@ -124,4 +123,8 @@ public class GuiBoard implements Gui{
 		}
 	}
 
+	@Override
+	public void setView(ViewGuiImpl view) {
+		this.view = view;
+	}
 }
