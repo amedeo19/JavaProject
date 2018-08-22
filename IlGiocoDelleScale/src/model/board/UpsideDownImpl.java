@@ -34,6 +34,12 @@ public class UpsideDownImpl implements UpsideDown {
 	public UpsideDownType getType() {		
 		return type;
 	}
+
+	@Override
+	public String print() {
+		String s= this.getType().name()+ " Start "+this.getStart().getX()+this.getStart().getY()+ " Finish "+this.getTarget().getX()+this.getTarget().getY();
+		return s;
+	}
 	
 	
 	

@@ -12,4 +12,6 @@ public interface UpsideDown {
 	Coordinate getStart();
 	
 	UpsideDownType getType();
+	
+	String print();
 }
