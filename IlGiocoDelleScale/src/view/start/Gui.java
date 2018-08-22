@@ -118,7 +118,6 @@ public class Gui implements Initializable {
 			switch (i) {
 				case 0: this.TextList.add(TextP1);
 						this.PawnList.add(PawnP1);
-						
 						break;
 				case 1: this.TextList.add(TextP2);
 						this.PawnList.add(PawnP2);
