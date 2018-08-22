@@ -118,7 +118,6 @@ public class Gui implements Initializable {
 			switch (i) {
 				case 0: this.TextList.add(TextP1);
 						this.PawnList.add(PawnP1);
-						
 						break;
 				case 1: this.TextList.add(TextP2);
 						this.PawnList.add(PawnP2);
@@ -284,17 +283,9 @@ public class Gui implements Initializable {
 			}
 		}
 		this.controller.start(listOfDice, listFace, chaselect, dimension, difficulty);
-		this.view.setController(this.controller);
 		this.clearList();
+		
 		this.close();
-		
-		try {
-			this.view.start();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
 		
 	}
 	private void clearList() {
