@@ -87,12 +87,12 @@ public class ControllerImpl implements Controller {
 			this.p = Optional.of(this.PawnsList.get(this.setting.get().getTurn()));
 	        int newPos = this.game.movePawn(this.p.get());			//prendo la pos finale
 	        this.Newcoordinate = this.convertToCoordinate(newPos);				//mandare alla view le coordinate finali della pedina
-	        
+	        System.out.println(newPos);
 	        if (this.table.isCellJump(this.Newcoordinate)) {
+	        	
 	        	Coordinate pos=this.table.getNewPosition(this.Newcoordinate);
 	        	this.Newcoordinate=pos;
 	        	this.p.get().setPosition(this.convertToInt(this.Newcoordinate));
-	        	System.out.println(this.Newcoordinate);
 	        }
 	        this.setting.get().moveTurn();
 	        
@@ -108,11 +108,11 @@ public class ControllerImpl implements Controller {
 				this.IAturn=!this.IAturn;
 			}
 			if ((!this.multiplayer) && this.IAturn){
-				try {
-					Thread.sleep(TIMEIA);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
+//				try {
+//					Thread.sleep(TIMEIA);
+//				} catch (InterruptedException e) {
+//					e.printStackTrace();
+//				}
 				this.play();
 			}
         } else {
@@ -124,8 +124,8 @@ public class ControllerImpl implements Controller {
 	
 	private void finishGame() throws IOException{
 		if(this.control) {				//finestra che permette di uscire o tornare al menu iniziale
-			this.getCharacterList().get(this.setting.get().getTurn());
-			
+			this.CharacterList.get(this.setting.get().getTurn());
+			System.out.println("finish");
 			this.control = false;
 		} else {
 			throw new IllegalStateException();
