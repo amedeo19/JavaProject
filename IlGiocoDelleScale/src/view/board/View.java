@@ -14,4 +14,6 @@ public interface View extends Initializable{
 	
 	public void setController(Controller controller);
 	
+	public void changeState();
+	
 }
