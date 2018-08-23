@@ -249,7 +249,6 @@ public class ControllerImpl implements Controller {
 		try {
 			this.viewGeneral.start();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

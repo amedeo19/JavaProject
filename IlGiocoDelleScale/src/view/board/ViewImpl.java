@@ -137,4 +137,3 @@ public class ViewImpl implements view.board.View{
 		this.button.setDisable(this.state);
 	}
 }
-
