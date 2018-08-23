@@ -83,11 +83,9 @@ public class ControllerImpl implements Controller {
 	        
 			this.p = Optional.of(this.PawnsList.get(this.setting.get().getTurn()));
 	        int newPos = this.game.movePawn(this.p.get());			//prendo la pos finale
-	        System.out.println("pos= "+newPos);
 	        this.Newcoordinate = this.convertToCoordinate(newPos);				//mandare alla view le coordinate finali della pedina
-	        System.out.println(this.getViewNumDice().get(0));
+	        
 	        if (this.table.isCellJump(this.Newcoordinate)) {
-	        	
 	        	Coordinate pos=this.table.getNewPosition(this.Newcoordinate);
 	        	this.Newcoordinate=pos;
 	        	this.p.get().setPosition(this.convertToInt(this.Newcoordinate));

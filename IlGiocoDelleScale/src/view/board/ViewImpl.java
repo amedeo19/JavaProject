@@ -68,7 +68,7 @@ public class ViewImpl implements view.board.View{
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		
-		this.state=false;
+		this.state=true;
 		this.button.setVisible(true);
 		this.viewDice1.setVisible(false);
 		this.viewDice2.setVisible(false);
@@ -131,9 +131,9 @@ public class ViewImpl implements view.board.View{
 	public void changeState() {
 
 		this.state=(!this.state);
-		if (this.state){
+		if (!this.state){
 			this.setImageDice();
 		}
-		this.button.setDisable(this.state);
+		this.button.setVisible(this.state);
 	}
 }
