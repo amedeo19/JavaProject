@@ -24,6 +24,7 @@ import model.data.DataImpl;
 import model.dice.Dice;
 import model.dice.ListDice;
 import model.dice.ListDiceImpl;
+import model.dice.MultifaceDice;
 import model.model.*;
 import model.pawns.Pawns;
 import model.pawns.PawnsImpl;
@@ -54,14 +55,15 @@ public class ControllerImpl implements Controller {
 	private MapDimension dimension;
 	private boolean multiplayer;
 	private boolean IAturn;
-	private View view;
+	private View viewGeneral;
+	private view.board.View view; 
 	private TableBuilder table;
 	private final static int SINGLEPLAYER=1;
 	private final static int TIMEIA=3000;
 
 
-	public ControllerImpl(View view) {
-		this.view = view;
+	public ControllerImpl(View viewGeneral) {
+		this.viewGeneral = viewGeneral;
 		this.multiplayer = false;
 		this.IAturn = false;
 		this.gui = new GuiImpl();
@@ -108,11 +110,13 @@ public class ControllerImpl implements Controller {
 				this.IAturn=!this.IAturn;
 			}
 			if ((!this.multiplayer) && this.IAturn){
-//				try {
-//					Thread.sleep(TIMEIA);
-//				} catch (InterruptedException e) {
-//					e.printStackTrace();
-//				}
+				try {
+					this.view.changeState();
+					Thread.sleep(TIMEIA);
+					this.view.changeState();
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
 				this.play();
 			}
         } else {
@@ -153,7 +157,7 @@ public class ControllerImpl implements Controller {
 		// Pawn
 		this.setting = Optional.of(new SettingImpl(this.PawnsList.size()));
 		this.game = new ModelImpl(this.data);
-		this.view.setController(this);
+		this.viewGeneral.setController(this);
 		this.StartView();
 		
 		//chiamare view di andre
@@ -184,15 +188,15 @@ public class ControllerImpl implements Controller {
 		for (int i=0;i<this.diceList.size();i++) {
 			
 			// switch
-			if (this.diceList.get(i).equals("Multiface")) {
+			if (this.diceList.get(i).toString().equals("Multiface")) {
 				this.listOfDice.add(diceBuilder.multiFaceDice(this.faceList.get(i).get()));
-			}else if (this.diceList.get(i).equals("Total Personalized")) {
+			}else if (this.diceList.get(i).toString().equals("Total Personalized")) {
 				this.listOfDice.add(diceBuilder.totalPersonalized(this.mapSpecial,this.faceList.get(i).get()));
-			}else if (this.diceList.get(i).equals("Special Dice")) {
+			}else if (this.diceList.get(i).toString().equals("Special Dice")) {
 				this.listOfDice.add(diceBuilder.specialClassicDice(this.mapSpecial));
-			}else if (this.diceList.get(i).equals("Special Twenty")) {
+			}else if (this.diceList.get(i).toString().equals("Special Twenty")) {
 				this.listOfDice.add(diceBuilder.specialTwentyDice(this.mapSpecial));
-			}else if(this.diceList.get(i).equals("Classic")) {
+			}else if(this.diceList.get(i).toString().equals("Classic")) {
 				this.listOfDice.add(diceBuilder.classicDice());
 			}else {
 				this.listOfDice.add(diceBuilder.twentyFaceDice());
@@ -243,7 +247,7 @@ public class ControllerImpl implements Controller {
 	
 	private void StartView() {
 		try {
-			this.view.start();
+			this.viewGeneral.start();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -253,7 +257,12 @@ public class ControllerImpl implements Controller {
 	@Override
 	public int getNumDice() {
 
-		return this.diceList.size();
+		return this.listOfDice.size();
+	}
+
+	@Override
+	public void setView(view.board.View view) {
+		this.view=view;
 	}
 	
 	

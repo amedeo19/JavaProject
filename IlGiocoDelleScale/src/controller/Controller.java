@@ -7,6 +7,7 @@ import enumeration.Dice;
 import enumeration.MapDifficulty;
 import enumeration.MapDimension;
 import model.board.UpsideDown;
+import view.board.View;
 
 public interface Controller {
 
@@ -27,5 +28,6 @@ public interface Controller {
 	
 	public int getNumDice();
 	
+	public void setView(View view);
 
 }
