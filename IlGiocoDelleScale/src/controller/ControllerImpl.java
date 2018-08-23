@@ -8,12 +8,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.stream.Collector;
 
 import enumeration.Characters;
 import enumeration.MapDifficulty;
 import enumeration.MapDimension;
-import javafx.stage.Stage;
 import model.board.TableBuilder;
 import model.board.TableBuilderImpl;
 import model.board.UpsideDown;
@@ -24,14 +22,11 @@ import model.data.DataImpl;
 import model.dice.Dice;
 import model.dice.ListDice;
 import model.dice.ListDiceImpl;
-import model.dice.MultifaceDice;
 import model.model.*;
 import model.pawns.Pawns;
 import model.pawns.PawnsImpl;
 import utilities.Coordinate;
-import view.start.GuiImpl;
 import view.view.View;
-import view.view.ViewGuiImpl;
 
 public class ControllerImpl implements Controller {
 
