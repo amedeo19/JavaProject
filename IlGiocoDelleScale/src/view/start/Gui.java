@@ -292,6 +292,8 @@ public class Gui implements Menu {
 		this.listOfDice.clear();
 		this.listFace.clear();
 		this.chaselect.clear();
+		this.TextList.clear();
+		this.PawnList.clear();
 	}
 	private void setListFace(TextField face){
 		if(!face.getText().isEmpty()) {
