@@ -57,6 +57,7 @@ public class ViewImpl implements view.board.View{
 	private List<Characters> listCharacter = new ArrayList<Characters>();
 	private final static int START = 0;
 	private ConverterView converter;
+	private List<Label> labelPawn = new ArrayList<>();
 	
 	@Override
 	public void SetText() {
@@ -127,4 +128,10 @@ public class ViewImpl implements view.board.View{
 	public void setView(ViewGuiImpl view) {
 		this.view = view;
 	}
+	
+//	private void setImagePawn() {
+//		for(int i=START; i<this.listCharacter.size(); i++) {
+//			 this.labelPawn.get(i).setText(String.valueOf(this.listCharacter.get(i)));
+//		}
+//	}
 }
