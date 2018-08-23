@@ -43,16 +43,12 @@ public class ControllerImpl implements Controller {
 	private List<Optional<Integer>> faceList;
 	private List<Pawns> PawnsList;			//per ogni pedone occorre aggiungere un numero identificativo per gestire il turno
 	private List<Characters> CharacterList;
-	private int lastNumber;
 	private Data data;
 	private int numCell;
 	private Optional<Setting> setting;
 	private Optional<Pawns> p;
 	private Converter converse;
 	private Coordinate Newcoordinate;
-	private GuiImpl gui;
-	private MapDifficulty difficulty;
-	private MapDimension dimension;
 	private boolean multiplayer;
 	private boolean IAturn;
 	private View viewGeneral;
@@ -66,7 +62,6 @@ public class ControllerImpl implements Controller {
 		this.viewGeneral = viewGeneral;
 		this.multiplayer = false;
 		this.IAturn = false;
-		this.gui = new GuiImpl();
 		this.p=Optional.empty();
 		this.setting = Optional.empty();
 		this.listOfDice = new ArrayList<Dice>();
@@ -88,8 +83,9 @@ public class ControllerImpl implements Controller {
 	        
 			this.p = Optional.of(this.PawnsList.get(this.setting.get().getTurn()));
 	        int newPos = this.game.movePawn(this.p.get());			//prendo la pos finale
+	        System.out.println("pos= "+newPos);
 	        this.Newcoordinate = this.convertToCoordinate(newPos);				//mandare alla view le coordinate finali della pedina
-	        System.out.println(newPos);
+	        System.out.println(this.getViewNumDice().get(0));
 	        if (this.table.isCellJump(this.Newcoordinate)) {
 	        	
 	        	Coordinate pos=this.table.getNewPosition(this.Newcoordinate);
@@ -114,10 +110,10 @@ public class ControllerImpl implements Controller {
 					this.view.changeState();
 					Thread.sleep(TIMEIA);
 					this.view.changeState();
+					this.play();
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
-				this.play();
 			}
         } else {
         	throw new IllegalStateException();
@@ -143,10 +139,8 @@ public class ControllerImpl implements Controller {
 
 		this.control = true;
 		this.CharacterList=Character;
-		this.difficulty = difficulty;
-		this.dimension = dimension;
 		this.table = new TableBuilderImpl(difficulty, dimension);
-		this.numCell = this.dimension.getDimension();
+		this.numCell = dimension.getDimension();
 		this.CreatePawn();
 		this.checkMultiplayer();
 		this.diceList = diceList;
