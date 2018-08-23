@@ -68,9 +68,9 @@ public class ViewGuiImpl implements View{
             stage.getScene().setRoot(root);
         }
         if (loader.getController() instanceof ViewImpl) {
+            this.guiBoard = loader.getController();
     		this.guiBoard.setController(controller);
     		this.guiBoard.setView(this);
-            this.guiBoard = loader.getController();
             stage.setFullScreen(false);
         } else {
             this.gui = loader.getController();
