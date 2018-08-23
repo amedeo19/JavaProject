@@ -50,7 +50,6 @@ public class ControllerImpl implements Controller {
 	private view.board.View view; 
 	private TableBuilder table;
 	private final static int SINGLEPLAYER=1;
-	private final static int TIMEIA=2000;
 
 
 	public ControllerImpl(View viewGeneral) {
@@ -86,6 +85,7 @@ public class ControllerImpl implements Controller {
 	        	this.p.get().setPosition(this.convertToInt(this.Newcoordinate));
 	        }
 	        this.setting.get().moveTurn();
+	        System.out.println(this.convertToInt(this.Newcoordinate));
 	        
 	        if(this.game.checkWin(this.p.get())) {
 	        	try {
@@ -96,17 +96,14 @@ public class ControllerImpl implements Controller {
 	        }
 	        
 			if (!this.multiplayer){
+				if (this.IAturn){
+					this.view.changeState();
+				}
 				this.IAturn=!this.IAturn;
 			}
 			if ((!this.multiplayer) && this.IAturn){
-				try {
-					this.view.changeState();
-					Thread.sleep(TIMEIA);
 					this.view.changeState();
 					this.play();
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
 			}
         } else {
         	throw new IllegalStateException();

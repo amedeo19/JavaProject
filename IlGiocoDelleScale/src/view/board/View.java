@@ -16,4 +16,8 @@ public interface View extends Initializable{
 	
 	public void changeState();
 	
+	public void disable(boolean value);
+	
+	public void setImageDice();
+	
 }
