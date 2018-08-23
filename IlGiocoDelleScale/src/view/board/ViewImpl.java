@@ -129,7 +129,11 @@ public class ViewImpl implements view.board.View{
 
 	@Override
 	public void changeState() {
+
 		this.state=(!this.state);
+		if (this.state){
+			this.setImageDice();
+		}
 		this.button.setDisable(this.state);
 	}
 }

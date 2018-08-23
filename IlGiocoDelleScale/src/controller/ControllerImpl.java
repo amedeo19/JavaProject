@@ -59,7 +59,7 @@ public class ControllerImpl implements Controller {
 	private view.board.View view; 
 	private TableBuilder table;
 	private final static int SINGLEPLAYER=1;
-	private final static int TIMEIA=3000;
+	private final static int TIMEIA=2000;
 
 
 	public ControllerImpl(View viewGeneral) {
