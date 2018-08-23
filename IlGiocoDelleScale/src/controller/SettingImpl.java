@@ -18,7 +18,9 @@ public class SettingImpl implements Setting {
 	
 	@Override
 	public void moveTurn() {
-		this.turn=((this.turn++) % this.NumPlayers);
+		this.turn++;
+		this.turn=(this.turn % this.NumPlayers);
+		
 	}
 
 
