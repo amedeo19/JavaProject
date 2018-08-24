@@ -8,12 +8,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.stream.Collector;
 
 import enumeration.Characters;
 import enumeration.MapDifficulty;
 import enumeration.MapDimension;
-import javafx.stage.Stage;
 import model.board.TableBuilder;
 import model.board.TableBuilderImpl;
 import model.board.UpsideDown;
@@ -24,14 +22,11 @@ import model.data.DataImpl;
 import model.dice.Dice;
 import model.dice.ListDice;
 import model.dice.ListDiceImpl;
-import model.dice.MultifaceDice;
 import model.model.*;
 import model.pawns.Pawns;
 import model.pawns.PawnsImpl;
 import utilities.Coordinate;
-import view.start.GuiImpl;
 import view.view.View;
-import view.view.ViewGuiImpl;
 
 public class ControllerImpl implements Controller {
 
@@ -43,30 +38,24 @@ public class ControllerImpl implements Controller {
 	private List<Optional<Integer>> faceList;
 	private List<Pawns> PawnsList;			//per ogni pedone occorre aggiungere un numero identificativo per gestire il turno
 	private List<Characters> CharacterList;
-	private int lastNumber;
 	private Data data;
 	private int numCell;
 	private Optional<Setting> setting;
 	private Optional<Pawns> p;
 	private Converter converse;
 	private Coordinate Newcoordinate;
-	private GuiImpl gui;
-	private MapDifficulty difficulty;
-	private MapDimension dimension;
 	private boolean multiplayer;
 	private boolean IAturn;
 	private View viewGeneral;
 	private view.board.View view; 
 	private TableBuilder table;
 	private final static int SINGLEPLAYER=1;
-	private final static int TIMEIA=2000;
 
 
 	public ControllerImpl(View viewGeneral) {
 		this.viewGeneral = viewGeneral;
 		this.multiplayer = false;
 		this.IAturn = false;
-		this.gui = new GuiImpl();
 		this.p=Optional.empty();
 		this.setting = Optional.empty();
 		this.listOfDice = new ArrayList<Dice>();
@@ -89,14 +78,14 @@ public class ControllerImpl implements Controller {
 			this.p = Optional.of(this.PawnsList.get(this.setting.get().getTurn()));
 	        int newPos = this.game.movePawn(this.p.get());			//prendo la pos finale
 	        this.Newcoordinate = this.convertToCoordinate(newPos);				//mandare alla view le coordinate finali della pedina
-	        System.out.println(newPos);
+	        
 	        if (this.table.isCellJump(this.Newcoordinate)) {
-	        	
 	        	Coordinate pos=this.table.getNewPosition(this.Newcoordinate);
 	        	this.Newcoordinate=pos;
 	        	this.p.get().setPosition(this.convertToInt(this.Newcoordinate));
 	        }
 	        this.setting.get().moveTurn();
+	        System.out.println(this.convertToInt(this.Newcoordinate));
 	        
 	        if(this.game.checkWin(this.p.get())) {
 	        	try {
@@ -107,17 +96,14 @@ public class ControllerImpl implements Controller {
 	        }
 	        
 			if (!this.multiplayer){
+				if (this.IAturn){
+					this.view.changeState();
+				}
 				this.IAturn=!this.IAturn;
 			}
 			if ((!this.multiplayer) && this.IAturn){
-				try {
 					this.view.changeState();
-					Thread.sleep(TIMEIA);
-					this.view.changeState();
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
-				this.play();
+					this.play();
 			}
         } else {
         	throw new IllegalStateException();
@@ -143,10 +129,8 @@ public class ControllerImpl implements Controller {
 
 		this.control = true;
 		this.CharacterList=Character;
-		this.difficulty = difficulty;
-		this.dimension = dimension;
 		this.table = new TableBuilderImpl(difficulty, dimension);
-		this.numCell = this.dimension.getDimension();
+		this.numCell = dimension.getDimension();
 		this.CreatePawn();
 		this.checkMultiplayer();
 		this.diceList = diceList;

@@ -15,11 +15,15 @@ public interface View extends Initializable{
 	public void setController(Controller controller);
 	
 	public void changeState();
-	
+
 	public void restart();
 	
 	public void exit();
 	
 	public void end();
+	
+	public void disable(boolean value);
+	
+	public void setImageDice();
 	
 }
