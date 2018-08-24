@@ -6,29 +6,39 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import view.view.View;
+import view.view.ViewGuiImpl;
 
-public class EndGuiShereKhan implements Initializable{
+public class EndGuiShereKhan implements EndGui {
 
 	@FXML
-	private Button Exit;
+	private Button exit;
 	
 	@FXML
-	private Button Return;
+	private Button restart;
 	
+	
+	private View view;
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		this.Exit.setVisible(true);
-		this.Return.setVisible(true);
+		this.exit.setVisible(true);
+		this.restart.setVisible(true);
 	}
 
 	
-	public void Exit() {
+	public void exit() {
 		System.exit(0);
 	}
 	
-	public void Return() {
-		System.out.println("Ciao!\n");
+	public void restart() {
+		this.view.restart();
+	}
+
+
+	@Override
+	public void setView(ViewGuiImpl view) {
+		this.view = view;
 	}
 
 }

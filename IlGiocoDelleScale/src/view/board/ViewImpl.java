@@ -1,10 +1,12 @@
 package view.board;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import controller.Controller;
+import enumeration.Characters;
 import enumeration.MapDimension;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -237,7 +239,15 @@ public class ViewImpl implements view.board.View {
 	
 	@Override
 	public void end() {
-		this.view.end();
+//		this.view.setWinner(Characters.Baloo);
+//		this.view.end();
+		try {
+			this.controller.finishGame();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
+	
+
 	
 }

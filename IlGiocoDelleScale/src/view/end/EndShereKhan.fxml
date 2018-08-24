@@ -9,8 +9,8 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.end.EndGuiShereKhan">
    <children>
-      <Button fx:id="Exit" layoutX="47.0" layoutY="335.0" mnemonicParsing="false" onAction="#Exit" text="Exit" />
-      <Button fx:id="Return" layoutX="285.0" layoutY="335.0" mnemonicParsing="false" onAction="#Return" text="Return" />
+      <Button fx:id="exit" layoutX="47.0" layoutY="335.0" mnemonicParsing="false" onAction="#exit" text="exit" />
+      <Button fx:id="restart" layoutX="285.0" layoutY="335.0" mnemonicParsing="false" onAction="#restart" text="restart" />
       <ImageView fitHeight="220.0" fitWidth="232.0" layoutX="91.0" layoutY="90.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../res/Pawns/shereKhan.png" />

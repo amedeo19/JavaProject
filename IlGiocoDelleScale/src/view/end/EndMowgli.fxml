@@ -19,7 +19,7 @@
             <Font size="27.0" />
          </font>
       </Label>
-      <Button fx:id="Exit" layoutX="46.0" layoutY="349.0" mnemonicParsing="false" onAction="#Exit" text="Exit" />
-      <Button fx:id="Return" layoutX="276.0" layoutY="349.0" mnemonicParsing="false" onAction="#Return" text="Return" />
+      <Button fx:id="exit" layoutX="46.0" layoutY="349.0" mnemonicParsing="false" onAction="#exit" text="exit" />
+      <Button fx:id="restart" layoutX="276.0" layoutY="349.0" mnemonicParsing="false" onAction="#restart" text="restart" />
    </children>
 </AnchorPane>

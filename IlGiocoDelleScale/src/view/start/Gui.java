@@ -29,7 +29,7 @@ import enumeration.*;
 
 public class Gui implements Menu {
 	//liste di oggetti utili all'inizializzazione della partita
-	final ObservableList<Integer> num = FXCollections.observableArrayList(1,2,3,4);
+	final ObservableList<Integer> num = FXCollections.observableArrayList(2,3,4);
 	final ObservableList<MapDifficulty> mapdiff = FXCollections.observableArrayList(Arrays.asList(MapDifficulty.values()));
 	final ObservableList<MapDimension> mapdim = FXCollections.observableArrayList(Arrays.asList(MapDimension.values()));
 	final ObservableList<Integer> numdice = FXCollections.observableArrayList(1,2,3);
@@ -283,7 +283,7 @@ public class Gui implements Menu {
 			}
 		}
 		this.controller.start(listOfDice, listFace, chaselect, dimension, difficulty);
-		this.clearList();
+
 		
 //		this.close();
 		
@@ -318,8 +318,9 @@ public class Gui implements Menu {
 	
     @Override    
     public void initialize(URL location, ResourceBundle resources) {
+		this.clearList();
         this.numPlayer.setItems(num);
-        this.numPlayer.setValue(1);
+        this.numPlayer.setValue(2);
         this.PawnP1.setItems(cha);
    	 	this.PawnP1.setValue(Characters.Baghera);
    	 	this.PawnP2.setItems(cha);

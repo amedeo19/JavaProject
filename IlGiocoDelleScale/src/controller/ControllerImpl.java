@@ -47,7 +47,7 @@ public class ControllerImpl implements Controller {
 	private boolean multiplayer;
 	private boolean IAturn;
 	private View viewGeneral;
-	private view.board.View view; 
+	private view.board.View view;
 	private TableBuilder table;
 	private final static int SINGLEPLAYER=1;
 
@@ -59,7 +59,6 @@ public class ControllerImpl implements Controller {
 		this.p=Optional.empty();
 		this.setting = Optional.empty();
 		this.listOfDice = new ArrayList<Dice>();
-		this.CharacterList = new ArrayList<>();
 		this.PawnsList = new ArrayList<>();
 		this.mapSpecial=new HashMap<>();
 		this.mapSpecial.put(4, 3);
@@ -74,7 +73,7 @@ public class ControllerImpl implements Controller {
 	public void play() {
         
 		if(control) {
-	        
+			
 			this.p = Optional.of(this.PawnsList.get(this.setting.get().getTurn()));
 	        int newPos = this.game.movePawn(this.p.get());			//prendo la pos finale
 	        this.Newcoordinate = this.convertToCoordinate(newPos);				//mandare alla view le coordinate finali della pedina
@@ -111,11 +110,12 @@ public class ControllerImpl implements Controller {
 
     }
 	
-	
-	private void finishGame() throws IOException{
+	@Override
+	public void finishGame() throws IOException {
 		if(this.control) {				//finestra che permette di uscire o tornare al menu iniziale
-			this.CharacterList.get(this.setting.get().getTurn());
-			System.out.println("finish");
+			System.out.println(this.CharacterList.size());
+			this.viewGeneral.setWinner(this.CharacterList.get(this.setting.get().getTurn()));
+			this.viewGeneral.end();
 			this.control = false;
 		} else {
 			throw new IllegalStateException();
@@ -144,8 +144,6 @@ public class ControllerImpl implements Controller {
 		this.viewGeneral.setController(this);
 		this.StartView();
 		
-		//chiamare view di andre
-		//javafx.application.Application.launch(View.class);
 		
 	}
 	
@@ -239,7 +237,6 @@ public class ControllerImpl implements Controller {
 
 	@Override
 	public int getNumDice() {
-
 		return this.listOfDice.size();
 	}
 

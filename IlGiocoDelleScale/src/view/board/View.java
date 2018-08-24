@@ -26,4 +26,5 @@ public interface View extends Initializable{
 	
 	public void setImageDice();
 	
+	
 }

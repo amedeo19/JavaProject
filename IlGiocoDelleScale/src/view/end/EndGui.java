@@ -9,5 +9,5 @@ public interface EndGui extends Initializable {
 	
 	public void restart();
 	
-	public void Exit();
+	public void exit();
 }

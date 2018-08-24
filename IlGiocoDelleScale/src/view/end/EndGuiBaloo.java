@@ -12,7 +12,7 @@ import view.view.ViewGuiImpl;
 public class EndGuiBaloo implements EndGui {
 
 	@FXML
-	private Button Exit;
+	private Button exit;
 	
 	@FXML
 	private Button restart;
@@ -22,13 +22,13 @@ public class EndGuiBaloo implements EndGui {
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		this.Exit.setVisible(true);
+		this.exit.setVisible(true);
 		this.restart.setVisible(true);
 		
 	}
 
 	@Override
-	public void Exit() {
+	public void exit() {
 		System.exit(0);
 	}
 	

@@ -2,7 +2,7 @@ package view.view;
 
 import java.io.IOException;
 import controller.Controller;
-import controller.ControllerImpl;
+import enumeration.Characters;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -10,7 +10,11 @@ import javafx.stage.Stage;
 import model.pawns.Pawns;
 import utilities.Coordinate;
 import view.board.ViewImpl;
+import view.end.EndGuiBaghera;
 import view.end.EndGuiBaloo;
+import view.end.EndGuiMowgli;
+import view.end.EndGuiReLuigi;
+import view.end.EndGuiShereKhan;
 import view.start.Gui;
 import view.start.Menu;
 
@@ -18,17 +22,23 @@ public class ViewGuiImpl implements View{
 
 	private static final String FXML_PATH_VIEW = "/view/board/BoardEasy.fxml";
 	private static final String FXML_PATH_MENU = "/view/start/Start.fxml";
+	
 	private static final String FXML_PATH_END_BALOO = "/view/end/EndBaloo.fxml";
+	private static final String FXML_PATH_END_BAGHERA = "/view/end/EndBaghera.fxml";
+	private static final String FXML_PATH_END_MOWGLI = "/view/end/EndMowgli.fxml";
+	private static final String FXML_PATH_END_RELUIGI = "/view/end/EndReLuigi.fxml";
+	private static final String FXML_PATH_END_SHEREKHAN = "/view/end/EndShereKhan.fxml";
+	
 	private Stage stage = new Stage();
 	private Menu gui = new Gui();
 	private view.board.View guiBoard = new ViewImpl();
 	private Controller controller;
+	private Characters character;
 	
-	private view.end.EndGui end = new EndGuiBaloo();
+	private view.end.EndGui end;
 	
 	public ViewGuiImpl() {
 		this.guiBoard.setView(this);
-		this.end.setView(this);
 	}
 	
 	
@@ -78,6 +88,8 @@ public class ViewGuiImpl implements View{
     		this.guiBoard.setController(controller);
     		this.guiBoard.setView(this);
             stage.setFullScreen(false);
+            stage.centerOnScreen();
+            stage.sizeToScene();
         } else if (loader.getController() instanceof Gui){
             this.gui = loader.getController();
             this.gui.setViewGuiImpl(this);
@@ -96,11 +108,49 @@ public class ViewGuiImpl implements View{
 	
 	
 	public void end() {
-		try {
-			this.startView(FXML_PATH_END_BALOO);
-		} catch (IOException e) {
-			e.printStackTrace();
+		switch(this.character.toString()) {
+		case "Baloo": this.end = new EndGuiBaloo();
+			try {
+				this.startView(FXML_PATH_END_BALOO);
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+			break;
+		case "Baghera": this.end = new EndGuiBaghera();
+			try {
+				this.startView(FXML_PATH_END_BAGHERA);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			break;
+		case "KingLouie": this.end = new EndGuiReLuigi();
+			try {
+				this.startView(FXML_PATH_END_RELUIGI);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			break;
+		case "ShereKhan": this.end = new EndGuiShereKhan();
+			try {
+				this.startView(FXML_PATH_END_SHEREKHAN);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			break;
+		default: this.end = new EndGuiMowgli();
+			try {
+				this.startView(FXML_PATH_END_MOWGLI);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			break;
 		}
+	}
+	
+	
+	@Override
+	public void setWinner(Characters character) {
+		this.character = character;
 	}
 
 }

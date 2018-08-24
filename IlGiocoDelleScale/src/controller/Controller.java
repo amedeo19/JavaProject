@@ -1,5 +1,6 @@
 package controller;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 import enumeration.Characters;
@@ -29,5 +30,7 @@ public interface Controller {
 	public int getNumDice();
 	
 	public void setView(View view);
+	
+	public void finishGame() throws IOException;
 
 }
