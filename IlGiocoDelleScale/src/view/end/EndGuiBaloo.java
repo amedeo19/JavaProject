@@ -6,30 +6,40 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import view.view.View;
+import view.view.ViewGuiImpl;
 
-public class EndGuiBaloo implements Initializable{
+public class EndGuiBaloo implements EndGui {
 
 	@FXML
 	private Button Exit;
 	
 	@FXML
-	private Button Return;
+	private Button restart;
 	
 	
+	private View view;
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		this.Exit.setVisible(true);
-		this.Return.setVisible(true);
+		this.restart.setVisible(true);
+		
 	}
 
-	
+	@Override
 	public void Exit() {
 		System.exit(0);
 	}
 	
-	public void Return() {
-		System.out.println("Miao!\n");
+	@Override
+	public void restart() {
+		this.view.restart();
+	}
+	
+	@Override
+	public void setView(ViewGuiImpl view) {
+		this.view = view;
 	}
 	
 }

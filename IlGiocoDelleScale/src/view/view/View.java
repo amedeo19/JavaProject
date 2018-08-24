@@ -22,4 +22,10 @@ public interface View {
 	void setController(Controller controller);
 	
 	
+	public void restart();
+	
+
+	public void end();
+	
+	
 }

@@ -9,6 +9,7 @@ import enumeration.MapDimension;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import model.converter.ConverterView;
@@ -30,7 +31,9 @@ public class ViewImpl implements view.board.View{
 	@FXML
 	private Label text;
 	@FXML
-	private ImageView Pawn1;
+	private ImageView pawn1;
+	@FXML
+	private ImageView pawn2;
 	@FXML
 	private Label viewDice2;
 	@FXML
@@ -39,6 +42,12 @@ public class ViewImpl implements view.board.View{
 	private Label viewDice3;
 	@FXML
 	private ImageView imageDice3;
+	@FXML
+	private Button restart;
+	@FXML
+	private Button exit;
+	@FXML
+	private Button end;
 	
 	private View view;
 	private boolean state;
@@ -78,6 +87,7 @@ public class ViewImpl implements view.board.View{
 		this.imageDice3.setVisible(false);
 		this.converter= new ConverterViewImpl((int) Math.sqrt(MapDimension.SMALL.getDimension()));
 		this.text.setVisible(true);
+		
 	}
 	
 	@Override
@@ -87,6 +97,11 @@ public class ViewImpl implements view.board.View{
 		this.SetText();
 		this.setImageDiceVisible();
 		this.setInitialImageDice();
+		this.setImagePawn();
+		
+		this.pawn1.setVisible(true);
+		this.pawn2.setVisible(true);
+		
 	}
 	
 	private void setImageDiceVisible() {
@@ -109,6 +124,7 @@ public class ViewImpl implements view.board.View{
 		this.images.forEach(e->e.setVisible(true));
 		this.labels.forEach(e->e.setVisible(true));
 	}
+	
 	
 	private void setInitialImageDice() {
 		for(int i=START; i<this.controller.getNumDice(); i++) {
@@ -136,4 +152,52 @@ public class ViewImpl implements view.board.View{
 		}
 		this.button.setDisable(this.state);
 	}
+	
+	private void setImagePawn() {
+		for(int i=START; i< this.controller.getCharacterList().size(); i++) {
+			System.out.println(this.controller.getCharacterList().toString());
+			switch (i){
+			case 0: switch(this.controller.getCharacterList().get(i)) {
+						default: this.pawn1 = this.readImage("file://../res/Pawns/bagheraLaPanteraNera.png");
+						case Baloo: this.pawn1 = this.readImage("file://../res/Pawns/Balooo.png");
+						case KingLouie: this.pawn1 = this.readImage("file://../res/Pawns/reLuigi.png");
+						case ShereKhan: this.pawn1 = this.readImage("file://../res/Pawns/shereKhan.png");
+					}
+			case 1: switch(this.controller.getCharacterList().get(i)) {
+						default: this.pawn2 = this.readImage("file://../res/Pawns/bagheraLaPanteraNera.png");
+						case Baloo: this.pawn2 = this.readImage("file://../res/Pawns/Balooo.png");
+						case KingLouie: this.pawn2 = this.readImage("file://../res/Pawns/reLuigi.png");
+						case ShereKhan: this.pawn2 = this.readImage("file://../res/Pawns/shereKhan.png");
+				}
+			
+			}
+		}
+	}
+	
+	private ImageView readImage(final String path) {
+	    
+    	try {
+        return new ImageView(new Image(path));
+        } catch (Exception exception) {
+        exception.printStackTrace();
+    }
+    return null;
+    }
+
+	@Override
+	public void restart() {
+		this.view.restart();
+		
+	}
+	
+	@Override
+	public void exit() {
+		System.exit(0);
+	}
+	
+	@Override
+	public void end() {
+		this.view.end();
+	}
+	
 }

@@ -10,19 +10,25 @@ import javafx.stage.Stage;
 import model.pawns.Pawns;
 import utilities.Coordinate;
 import view.board.ViewImpl;
+import view.end.EndGuiBaloo;
 import view.start.Gui;
+import view.start.Menu;
 
 public class ViewGuiImpl implements View{
 
 	private static final String FXML_PATH_VIEW = "/view/board/BoardEasy.fxml";
 	private static final String FXML_PATH_MENU = "/view/start/Start.fxml";
+	private static final String FXML_PATH_END_BALOO = "/view/end/EndBaloo.fxml";
 	private Stage stage = new Stage();
-	private Gui gui = new Gui();
+	private Menu gui = new Gui();
 	private view.board.View guiBoard = new ViewImpl();
 	private Controller controller;
 	
+	private view.end.EndGui end = new EndGuiBaloo();
+	
 	public ViewGuiImpl() {
 		this.guiBoard.setView(this);
+		this.end.setView(this);
 	}
 	
 	
@@ -49,7 +55,7 @@ public class ViewGuiImpl implements View{
 		this.controller=controller;
 	}
 	
-	
+	@Override
 	public void restart() {
 		try {
 			this.startMenu(this.stage);
@@ -70,17 +76,31 @@ public class ViewGuiImpl implements View{
         if (loader.getController() instanceof ViewImpl) {
             this.guiBoard = loader.getController();
     		this.guiBoard.setController(controller);
-    		this.controller.setView(this.guiBoard);
     		this.guiBoard.setView(this);
             stage.setFullScreen(false);
-        } else {
+        } else if (loader.getController() instanceof Gui){
             this.gui = loader.getController();
             this.gui.setViewGuiImpl(this);
             stage.setFullScreen(false);
             stage.centerOnScreen();
             stage.sizeToScene();
+        } else {
+        	this.end = loader.getController();
+        	this.end.setView(this);
+        	stage.setFullScreen(false);
+            stage.centerOnScreen();
+            stage.sizeToScene();
         }
         stage.show();
     }
+	
+	
+	public void end() {
+		try {
+			this.startView(FXML_PATH_END_BALOO);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
 }
