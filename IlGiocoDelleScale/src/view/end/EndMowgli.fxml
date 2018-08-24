@@ -11,7 +11,7 @@
    <children>
       <ImageView fitHeight="292.0" fitWidth="256.0" layoutX="70.0" layoutY="72.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../res/Pawns/MOWGLI.png" />
+            <Image url="@/Pawns/MOWGLI.png" />
          </image>
       </ImageView>
       <Label layoutX="107.0" layoutY="31.0" prefHeight="41.0" prefWidth="181.0" text="Mowgli è salvo">
