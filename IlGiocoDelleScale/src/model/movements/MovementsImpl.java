@@ -34,7 +34,7 @@ public class MovementsImpl implements Movements {
 		}else{
 			return this.finalPosition;
 		}
-		
+		 
 	}
 
 
