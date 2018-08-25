@@ -120,7 +120,6 @@ public class ControllerImpl implements Controller {
 		this.ConvertListDice();
 		this.converse = new ConverterImpl((int)Math.sqrt(this.numCell));
 		this.data= new DataImpl(this.listOfDice, this.numCell);
-		// Pawn
 		this.setting = Optional.of(new SettingImpl(this.PawnsList.size()));
 		this.game = new ModelImpl(this.data);
 		this.viewGeneral.setController(this);
@@ -151,19 +150,25 @@ public class ControllerImpl implements Controller {
 		
 		for (int i=0;i<this.diceList.size();i++) {
 			
-			// switch
-			if (this.diceList.get(i).toString().equals("Multiface")) {
+			switch (this.diceList.get(i).toString()) {
+			case "Multiface":
 				this.listOfDice.add(diceBuilder.multiFaceDice(this.faceList.get(i).get()));
-			}else if (this.diceList.get(i).toString().equals("Total Personalized")) {
-				this.listOfDice.add(diceBuilder.totalPersonalized(this.mapSpecial,this.faceList.get(i).get()));
-			}else if (this.diceList.get(i).toString().equals("Special Dice")) {
-				this.listOfDice.add(diceBuilder.specialClassicDice(this.mapSpecial));
-			}else if (this.diceList.get(i).toString().equals("Special Twenty")) {
+				break;
+			case "Total Personalized":
+				this.listOfDice.add(diceBuilder.totalPersonalized(this.mapSpecial, this.faceList.get(i).get()));
+				break;
+			case "Special Dice":
+				this.listOfDice.add(diceBuilder.totalPersonalized(this.mapSpecial, this.faceList.get(i).get()));
+				break;
+			case "Special Twenty":
 				this.listOfDice.add(diceBuilder.specialTwentyDice(this.mapSpecial));
-			}else if(this.diceList.get(i).toString().equals("Classic")) {
+				break;
+			case "Classic":
 				this.listOfDice.add(diceBuilder.classicDice());
-			}else {
+				break;
+			case "Twenty":
 				this.listOfDice.add(diceBuilder.twentyFaceDice());
+				break;
 			}
 		}
 	}
