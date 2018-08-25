@@ -3,6 +3,7 @@ package view.board;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.ResourceBundle;
 import controller.Controller;
 import enumeration.MapDimension;
@@ -40,7 +41,6 @@ public class ViewImpl implements view.board.View {
 	private ImageView imageDice3;
 
 	private View view;
-	private boolean state;
 	private Controller controller;
 	private List<Label> labels;
 	private List<ImageView> images;
@@ -64,13 +64,16 @@ public class ViewImpl implements view.board.View {
 	public void RollDice() {
 
 		this.controller.play();
-		this.setImageDice();
+		if (!(this.controller.multiPlayer())){
+			this.sleep();
+		}else{
+			this.setImageDice();
+		}
 	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
-		this.state = true;
 		this.button.setVisible(true);
 		this.viewDice1.setVisible(false);
 		this.viewDice2.setVisible(false);
@@ -136,15 +139,21 @@ public class ViewImpl implements view.board.View {
 	@Override
 	public void changeState() {
 
-		this.state = (!this.state);
-		if (this.state){
-			this.sleep();
-		}
+		this.sleep();
 	}
 	
 	private void sleep(){
+
+		if (Objects.nonNull(this.agent)){
+			try {
+				this.agent.join();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
 		this.agent = new Sleep(this);
 		this.agent.start();
+		
 	}
 	
 	public class Sleep extends Thread{
@@ -157,22 +166,34 @@ public class ViewImpl implements view.board.View {
 		@Override
 		public void run() {
 			
-			super.run();
-
-			this.view.setImageDice();
+			this.view.getViewUser();
 			this.view.disable(true);
 			try {
 				Thread.sleep(TIMEIA);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			this.view.setImageDice();
+			this.view.getViewIA();
 			this.view.disable(false);
 		}
 	}
 
 	@Override
 	public void disable(boolean value) {
-		this.button.setDisable(value);
+		this.button.setVisible(value);
+	}
+
+	@Override
+	public void getViewUser() {
+		for (int i = START; i < this.controller.getNumDice(); i++) {
+			this.labels.get(i).setText(String.valueOf(this.controller.getUserView().get(i)));
+		}
+	}
+
+	@Override
+	public void getViewIA() {
+		for (int i = START; i < this.controller.getNumDice(); i++) {
+			this.labels.get(i).setText(String.valueOf(this.controller.getIAView().get(i)));
+		}
 	}
 }

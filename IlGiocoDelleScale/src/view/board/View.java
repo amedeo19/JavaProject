@@ -20,4 +20,8 @@ public interface View extends Initializable{
 	
 	public void setImageDice();
 	
+	public void getViewUser();
+	
+	public void getViewIA();
+	
 }
