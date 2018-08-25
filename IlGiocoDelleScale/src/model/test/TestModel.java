@@ -95,6 +95,7 @@ public class TestModel {
 		Pawns p = new PawnsImpl();
 		
 		p.setPosition(MapDimension.MEDIUM.getDimension()-1);
+		assertEquals(p.getPosition(), MapDimension.MEDIUM.getDimension()-1);
 		assertEquals(model.checkWin(p),true);
 		assertEquals(p.getPosition(),MapDimension.MEDIUM.getDimension()-1);
 	}
