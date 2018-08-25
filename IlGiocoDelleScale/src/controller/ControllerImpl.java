@@ -50,6 +50,8 @@ public class ControllerImpl implements Controller {
 	private view.board.View view; 
 	private TableBuilder table;
 	private final static int SINGLEPLAYER=1;
+	private List<Integer> userView;
+	private List<Integer> IAView;
 
 
 	public ControllerImpl(View viewGeneral) {
@@ -60,6 +62,8 @@ public class ControllerImpl implements Controller {
 		this.setting = Optional.empty();
 		this.listOfDice = new ArrayList<Dice>();
 		this.CharacterList = new ArrayList<>();
+		this.userView = new ArrayList<>();
+		this.IAView = new ArrayList<>();
 		this.PawnsList = new ArrayList<>();
 		this.mapSpecial=new HashMap<>();
 		this.mapSpecial.put(4, 3);
@@ -97,13 +101,11 @@ public class ControllerImpl implements Controller {
 	        
 			if (!this.multiplayer){
 				if (this.IAturn){
-					this.view.changeState();
+					this.setIAView();
+				}else{
+					this.setUserView();
 				}
 				this.IAturn=!this.IAturn;
-			}
-			if ((!this.multiplayer) && this.IAturn){
-					this.view.changeState();
-					this.play();
 			}
         } else {
         	throw new IllegalStateException();
@@ -246,6 +248,29 @@ public class ControllerImpl implements Controller {
 	@Override
 	public void setView(view.board.View view) {
 		this.view=view;
+	}
+
+	@Override
+	public boolean multiPlayer() {
+		return this.multiplayer;
+	}
+
+	private void setUserView(){
+		this.userView=this.getViewNumDice();
+	}
+	
+	private void setIAView(){
+		this.IAView=this.getViewNumDice();
+	}
+	
+	@Override
+	public List<Integer> getUserView() {
+		return this.userView;
+	}
+
+	@Override
+	public List<Integer> getIAView() {
+		return this.IAView;
 	}
 	
 	

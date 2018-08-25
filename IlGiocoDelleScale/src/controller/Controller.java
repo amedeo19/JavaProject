@@ -29,5 +29,11 @@ public interface Controller {
 	public int getNumDice();
 	
 	public void setView(View view);
+	
+	public boolean multiPlayer();
+	
+	public List<Integer> getUserView();
+	
+	public List<Integer> getIAView();
 
 }
