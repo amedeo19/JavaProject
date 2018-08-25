@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.effect.*?>
@@ -42,19 +43,13 @@
             <Blend />
          </effect>
          <children>
-            <ImageView fx:id="pawn2" fitHeight="51.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="7">
-               <effect>
-                  <Blend />
-               </effect>
-            </ImageView>
-            <ImageView fx:id="Pawn1" fitHeight="51.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="7">
-               <effect>
-                  <Blend />
-               </effect>
-               <viewport>
-                  <Rectangle2D />
-               </viewport>
-            </ImageView>
+            <ImageView fx:id="pawn1" fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER" />
+            <ImageView fx:id="pawn2" fitHeight="45.0" fitWidth="45.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor></ImageView>
+            <ImageView fx:id="pawn3" fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER" />
+            <ImageView fx:id="pawn4" fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER" />
          </children>
       </GridPane>
       <Button fx:id="button" layoutX="525.0" layoutY="355.0" mnemonicParsing="false" onAction="#RollDice" text="Roll Dice" />
@@ -89,6 +84,5 @@
       </Label>
       <Button fx:id="restart" layoutX="525.0" layoutY="397.0" mnemonicParsing="false" onAction="#restart" prefHeight="25.0" prefWidth="63.0" text="restart" />
       <Button fx:id="exit" layoutX="525.0" layoutY="438.0" mnemonicParsing="false" onAction="#exit" prefHeight="25.0" prefWidth="63.0" text="exit" />
-      <Button fx:id="end" layoutX="525.0" layoutY="477.0" mnemonicParsing="false" onAction="#end" prefHeight="25.0" prefWidth="63.0" text="end" />
    </children>
 </AnchorPane>

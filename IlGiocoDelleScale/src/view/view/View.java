@@ -17,8 +17,6 @@ public interface View {
 	void startMenu(Stage stage) throws IOException;
 	
 	
-	void update(Pawns pawn, Coordinate coordinate);
-	
 	
 	void setController(Controller controller);
 	

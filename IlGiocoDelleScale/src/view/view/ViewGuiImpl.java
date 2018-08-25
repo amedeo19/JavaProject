@@ -55,12 +55,6 @@ public class ViewGuiImpl implements View{
 
 
 	@Override
-	public void update(Pawns pawn, Coordinate coordinate) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public void setController(Controller controller) {
 		this.controller=controller;
 	}

@@ -16,6 +16,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import model.converter.ConverterView;
 import model.converter.ConverterViewImpl;
+import model.pawns.Pawns;
+import utilities.Coordinate;
 import view.view.View;
 import view.view.ViewGuiImpl;
 
@@ -31,10 +33,16 @@ public class ViewImpl implements view.board.View {
 	private GridPane grid;
 	@FXML
 	private Label text;
+	
 	@FXML
 	private ImageView pawn1;
 	@FXML
 	private ImageView pawn2;
+	@FXML
+	private ImageView pawn3;
+	@FXML
+	private ImageView pawn4;
+	
 	@FXML
 	private Label viewDice2;
 	@FXML
@@ -51,6 +59,7 @@ public class ViewImpl implements view.board.View {
 	@FXML
 	private Button end;
 
+	private List<ImageView> pawnList;
 	private View view;
 	private boolean state;
 	private Controller controller;
@@ -61,7 +70,6 @@ public class ViewImpl implements view.board.View {
 	private List<String> print;
 	private final static int TIMEIA=2000;
 	private Sleep agent;
-	private List<Integer> listView;
 
 	@Override
 	public void SetText() {
@@ -83,6 +91,7 @@ public class ViewImpl implements view.board.View {
 	public void initialize(URL location, ResourceBundle resources) {
 
 		this.state = true;
+		this.pawnList= new ArrayList<ImageView>();
 		this.button.setVisible(true);
 		this.viewDice1.setVisible(false);
 		this.viewDice2.setVisible(false);
@@ -106,6 +115,15 @@ public class ViewImpl implements view.board.View {
 		
 		this.pawn1.setVisible(true);
 		this.pawn2.setVisible(true);
+		if(this.controller.getCharacterList().size() == 2) {
+			this.pawn3.setVisible(true);
+		} else if (this.controller.getCharacterList().size() == 3) {
+			this.pawn3.setVisible(true);
+			this.pawn4.setVisible(true);
+		} else {
+			this.pawn3.setVisible(false);
+			this.pawn4.setVisible(false);
+		}
 		
 	}
 
@@ -197,22 +215,27 @@ public class ViewImpl implements view.board.View {
 	
 	private void setImagePawn() {
 		for(int i=START; i< this.controller.getCharacterList().size(); i++) {
-			System.out.println(this.controller.getCharacterList().toString());
-			switch (i){
-			case 0: switch(this.controller.getCharacterList().get(i)) {
-						default: this.pawn1 = this.readImage("file://../res/Pawns/bagheraLaPanteraNera.png");
-						case Baloo: this.pawn1 = this.readImage("file://../res/Pawns/Balooo.png");
-						case KingLouie: this.pawn1 = this.readImage("file://../res/Pawns/reLuigi.png");
-						case ShereKhan: this.pawn1 = this.readImage("file://../res/Pawns/shereKhan.png");
-					}
-			case 1: switch(this.controller.getCharacterList().get(i)) {
-						default: this.pawn2 = this.readImage("file://../res/Pawns/bagheraLaPanteraNera.png");
-						case Baloo: this.pawn2 = this.readImage("file://../res/Pawns/Balooo.png");
-						case KingLouie: this.pawn2 = this.readImage("file://../res/Pawns/reLuigi.png");
-						case ShereKhan: this.pawn2 = this.readImage("file://../res/Pawns/shereKhan.png");
-				}
-			
+			if (i == 0) {
+				this.pawnList.add(pawn1);
+			} else if (i == 1) {
+				this.pawnList.add(pawn2);
+			} else if (i == 2) {
+				this.pawnList.add(pawn3);
+			} else if (i == 3) {
+				this.pawnList.add(pawn4);
 			}
+			if (this.controller.getCharacterList().get(i).equals(Characters.ShereKhan)) {
+				this.pawnList.get(i).setImage(this.readImage("file://../res/Pawns/shereKhan.png").getImage());
+			}
+			if (this.controller.getCharacterList().get(i).equals(Characters.Baloo)) {
+				this.pawnList.get(i).setImage(this.readImage("file://../res/Pawns/Balooo.png").getImage());
+			}
+			if (this.controller.getCharacterList().get(i).equals(Characters.KingLouie)) {
+				this.pawnList.get(i).setImage(this.readImage("file://../res/Pawns/reLuigi.png").getImage());
+			} else if (this.controller.getCharacterList().get(i).equals(Characters.Baghera)) {
+				this.pawnList.get(i).setImage(this.readImage("file://../res/Pawns/bagheraLaPanteraNera.png").getImage());
+			}
+			
 		}
 	}
 	
@@ -225,6 +248,7 @@ public class ViewImpl implements view.board.View {
     }
     return null;
     }
+	
 
 	@Override
 	public void restart() {
@@ -248,6 +272,29 @@ public class ViewImpl implements view.board.View {
 		}
 	}
 	
+	
+	@Override
+	public void update(int turn, Coordinate NewCoordinate) {
+//		if(turn == 0) {
+//			this.grid.setColumnIndex(pawn1, NewCoordinate.getX());
+//			this.grid.setRowIndex(pawn1,this.converter.getHeight(NewCoordinate.getY()));
+//			this.grid.setColumnIndex(this.pawnList.get(turn), NewCoordinate.getX());
+//			this.grid.setRowIndex(this.pawnList.get(turn),this.converter.getHeight(NewCoordinate.getY()));
+//			this.pawn1.setX(NewCoordinate.getX());
+//			this.pawn1.setY(this.converter.getHeight(NewCoordinate.getY()));
+//			this.pawn1.setLayoutX(NewCoordinate.getX());
+//			this.pawn1.setLayoutY(this.converter.getHeight(NewCoordinate.getY()));
+//			this.pawn1.setTranslateX(NewCoordinate.getX());
+//			this.pawn1.setTranslateY(this.converter.getHeight(NewCoordinate.getY()));
+//			
+//		} else if(turn == 1) {
+//			this.pawn2.setX(NewCoordinate.getX());
+//			this.pawn2.setY(this.converter.getHeight(NewCoordinate.getY()));
+//		}
+		this.grid.setColumnIndex(this.pawnList.get(turn), NewCoordinate.getX());
+		this.grid.setRowIndex(this.pawnList.get(turn),this.converter.getHeight(NewCoordinate.getY()));
+		System.out.println("coordinate: " + NewCoordinate.getX() + " " + this.converter.getHeight( NewCoordinate.getY()));
+	}
 
 	
 }

@@ -83,8 +83,9 @@ public class ControllerImpl implements Controller {
 	        	this.Newcoordinate=pos;
 	        	this.p.get().setPosition(this.convertToInt(this.Newcoordinate));
 	        }
+	        System.out.println(this.Newcoordinate.getX()+" "+this.Newcoordinate.getY());
+	        this.view.update(this.setting.get().getTurn(), this.Newcoordinate);
 	        this.setting.get().moveTurn();
-	        System.out.println(this.convertToInt(this.Newcoordinate));
 	        
 	        if(this.game.checkWin(this.p.get())) {
 	        	try {
@@ -113,7 +114,6 @@ public class ControllerImpl implements Controller {
 	@Override
 	public void finishGame() throws IOException {
 		if(this.control) {				//finestra che permette di uscire o tornare al menu iniziale
-			System.out.println(this.CharacterList.size());
 			this.viewGeneral.setWinner(this.CharacterList.get(this.setting.get().getTurn()));
 			this.viewGeneral.end();
 			this.control = false;
