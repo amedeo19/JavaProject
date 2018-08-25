@@ -8,10 +8,12 @@ public class MovementsImpl implements Movements {
 	private int finalPosition;
 	private final Data Data;
 	private final static int Start=0;
+	private final int Finish;
 	
 	public MovementsImpl(final Data data) {
 		
 		this.Data=data;
+		this.Finish=(this.Data.getFinishNumber()-1);
 	}
 	
 	@Override
@@ -25,10 +27,10 @@ public class MovementsImpl implements Movements {
 
 		this.finalPosition=initialPosition+diceNumber;
 
-		if (diceNumber>(this.Data.getFinishNumber()+(this.Data.getFinishNumber()-initialPosition))) {  // You can't do 2 maps round
+		if (diceNumber>(this.Finish+(this.Finish-initialPosition))) {  // You can't do 2 maps round
 			return Start;
-		}else if (this.finalPosition > this.Data.getFinishNumber()){
-			return (this.Data.getFinishNumber()-(this.finalPosition-this.Data.getFinishNumber()));
+		}else if (this.finalPosition > this.Finish){
+			return (this.Finish-(this.finalPosition-this.Finish));
 		}else{
 			return this.finalPosition;
 		}
@@ -39,7 +41,7 @@ public class MovementsImpl implements Movements {
 	@Override
 	public boolean checkWin(final int pos) {
 		
-		if (pos==this.Data.getFinishNumber()){
+		if (pos==this.Finish){
 			return true;
 		}
 		return false;
