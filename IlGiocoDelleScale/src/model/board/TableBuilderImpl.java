@@ -1,6 +1,7 @@
 package model.board;
 
 import java.util.List;
+//import java.util.Observable;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -21,7 +22,6 @@ public class TableBuilderImpl implements TableBuilder{
 	private List<UpsideDown> stairs;
 	private List<UpsideDown> jump;
 
-
 	public TableBuilderImpl(final MapDifficulty difficulty,final MapDimension dimension) {
 		this.difficulty=difficulty;
 		this.tableHeight=(int) Math.sqrt(dimension.getDimension());
@@ -31,39 +31,38 @@ public class TableBuilderImpl implements TableBuilder{
 		this.snakes=new ArrayList<>();
 		this.stairs=new ArrayList<>();
 		this.jump=new ArrayList<>();
-	
-//		switch (this.difficulty){
-//		
-//		}
-		if (MapDifficulty.EASY.equals(this.difficulty)) {
+		switch (this.difficulty){
+		case EASY : 
 			for(int i=0; i<LOW; i++) {
 				this.snakes.add(this.snake.getObject());
 			}
 			for(int i=0; i<HIGH; i++) {
 				this.stairs.add(this.stair.getObject());
 			}
-		} else if (MapDifficulty.MEDIUM.equals(this.difficulty)) {
+			break;
+		case MEDIUM:
 			for(int i=0; i<HIGH; i++) {
 				this.snakes.add(this.snake.getObject());
 			}
 			for(int i=0; i<HIGH; i++) {
 				this.stairs.add(this.stair.getObject());
 			}
-		} else if (MapDifficulty.DIFFICULT.equals(this.difficulty)) {
+			break;
+		case DIFFICULT: 
 			for(int i=0; i<HIGH; i++) {
 				this.snakes.add(this.snake.getObject());
 			}
 			for(int i=0; i<LOW; i++) {
 				this.stairs.add(this.stair.getObject());
 			}
+			break;
 		}
+		
 		this.jump.addAll(this.snakes);
 		this.jump.addAll(this.stairs);
 		
-		
-		
 	}
-
+	
 	@Override
 	public boolean isCellJump(final Coordinate cell) {
 		return this.jump.stream().anyMatch(x -> x.isInPosition(cell));
@@ -83,4 +82,5 @@ public class TableBuilderImpl implements TableBuilder{
 	public List<UpsideDown> getStairs() {
 		return Collections.unmodifiableList(this.stairs);
 	}
+
 }
