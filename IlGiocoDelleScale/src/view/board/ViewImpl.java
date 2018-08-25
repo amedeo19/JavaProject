@@ -110,18 +110,6 @@ public class ViewImpl implements view.board.View {
 		this.setInitialImageDice();
 		this.setImagePawn();
 		
-		this.pawn1.setVisible(true);
-		this.pawn2.setVisible(true);
-		if(this.controller.getCharacterList().size() == 2) {
-			this.pawn3.setVisible(true);
-		} else if (this.controller.getCharacterList().size() == 3) {
-			this.pawn3.setVisible(true);
-			this.pawn4.setVisible(true);
-		} else {
-			this.pawn3.setVisible(false);
-			this.pawn4.setVisible(false);
-		}
-		
 	}
 
 	private void setImageDiceVisible() {
@@ -169,25 +157,37 @@ public class ViewImpl implements view.board.View {
 	
 	private void setImagePawn() {
 		for(int i=START; i< this.controller.getCharacterList().size(); i++) {
-			if (i == 0) {
+			
+			switch (i) {
+			case 0:
 				this.pawnList.add(pawn1);
-			} else if (i == 1) {
+				break;
+			case 1: 
 				this.pawnList.add(pawn2);
-			} else if (i == 2) {
+				break;
+			case 2: 
 				this.pawnList.add(pawn3);
-			} else if (i == 3) {
+				break;
+			case 3: 
 				this.pawnList.add(pawn4);
+				break;
 			}
-			if (this.controller.getCharacterList().get(i).equals(Characters.ShereKhan)) {
+			
+			this.pawnList.get(i).setVisible(true);
+			
+			switch (this.controller.getCharacterList().get(i).toString()){
+			case "Shere Khan":
 				this.pawnList.get(i).setImage(this.readImage("file://../res/Pawns/shereKhan.png").getImage());
-			}
-			if (this.controller.getCharacterList().get(i).equals(Characters.Baloo)) {
+				break;
+			case "Baloo":
 				this.pawnList.get(i).setImage(this.readImage("file://../res/Pawns/Balooo.png").getImage());
-			}
-			if (this.controller.getCharacterList().get(i).equals(Characters.KingLouie)) {
+				break;
+			case "King Louie":
 				this.pawnList.get(i).setImage(this.readImage("file://../res/Pawns/reLuigi.png").getImage());
-			} else if (this.controller.getCharacterList().get(i).equals(Characters.Baghera)) {
+				break;
+			case "Baghera":
 				this.pawnList.get(i).setImage(this.readImage("file://../res/Pawns/bagheraLaPanteraNera.png").getImage());
+				break;
 			}
 			
 		}
