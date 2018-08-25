@@ -73,6 +73,8 @@ public class ViewImpl implements view.board.View {
 		this.controller.getSnakeList().forEach(e -> this.print.add(e.print()));
 		this.controller.getStairList().forEach(e -> this.print.add(e.print()));
 		this.text.setText(this.print.toString());
+		System.out.println(this.print.toString());
+		
 		
 	}
 

@@ -61,7 +61,13 @@
          <font>
             <Font name="Arial Unicode MS" size="42.0" />
          </font></Label>
-      <Label fx:id="text" alignment="TOP_LEFT" layoutX="14.0" layoutY="508.0" prefHeight="89.0" prefWidth="589.0" />
+      <Label fx:id="text" alignment="TOP_LEFT" contentDisplay="TEXT_ONLY" focusTraversable="false" layoutX="14.0" layoutY="508.0" prefHeight="89.0" prefWidth="589.0">
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor>
+         <effect>
+            <Blend />
+         </effect></Label>
       <ImageView fx:id="imageDice2" fitHeight="98.0" fitWidth="81.0" layoutX="516.0" layoutY="155.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@/dice/dice.png" />
