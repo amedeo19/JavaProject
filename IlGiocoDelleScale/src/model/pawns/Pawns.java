@@ -1,6 +1,5 @@
 package model.pawns;
 
-
 public interface Pawns{
 
 	public int getPosition();
