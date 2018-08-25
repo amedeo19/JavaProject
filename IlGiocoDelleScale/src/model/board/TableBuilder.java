@@ -1,7 +1,6 @@
 package model.board;
 
 import java.util.List;
-
 import utilities.Coordinate;
 
 public interface TableBuilder {
