@@ -63,6 +63,7 @@ public class ViewGuiImpl implements View{
 	public void restart() {
 		try {
 			this.startMenu(this.stage);
+            stage.centerOnScreen();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -106,6 +107,7 @@ public class ViewGuiImpl implements View{
 		case "Baloo": this.end = new EndGuiBaloo();
 			try {
 				this.startView(FXML_PATH_END_BALOO);
+	            stage.centerOnScreen();
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
@@ -113,6 +115,7 @@ public class ViewGuiImpl implements View{
 		case "Baghera": this.end = new EndGuiBaghera();
 			try {
 				this.startView(FXML_PATH_END_BAGHERA);
+	            stage.centerOnScreen();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -120,6 +123,7 @@ public class ViewGuiImpl implements View{
 		case "KingLouie": this.end = new EndGuiReLuigi();
 			try {
 				this.startView(FXML_PATH_END_RELUIGI);
+	            stage.centerOnScreen();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -127,6 +131,7 @@ public class ViewGuiImpl implements View{
 		case "ShereKhan": this.end = new EndGuiShereKhan();
 			try {
 				this.startView(FXML_PATH_END_SHEREKHAN);
+	            stage.centerOnScreen();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -134,6 +139,7 @@ public class ViewGuiImpl implements View{
 		default: this.end = new EndGuiMowgli();
 			try {
 				this.startView(FXML_PATH_END_MOWGLI);
+	            stage.centerOnScreen();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
