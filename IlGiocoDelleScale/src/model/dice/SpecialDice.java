@@ -1,7 +1,6 @@
 package model.dice;
 
 import java.util.Map;
-import java.util.Optional;
 import java.util.function.Supplier;
 
 public class SpecialDice extends SpecialAbstract{
