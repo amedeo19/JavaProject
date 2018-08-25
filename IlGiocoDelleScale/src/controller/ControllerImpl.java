@@ -79,7 +79,6 @@ public class ControllerImpl implements Controller {
 	        	this.p.get().setPosition(this.convertToInt(this.Newcoordinate));
 	        }
 	        this.view.update(this.setting.get().getTurn(), this.Newcoordinate);
-	        this.setting.get().moveTurn();
 	        
 	        if(this.game.checkWin(this.p.get())) {
 	        	try {
@@ -88,6 +87,8 @@ public class ControllerImpl implements Controller {
 					e.printStackTrace();
 				}
 	        }
+	        this.setting.get().moveTurn();
+	        
         } else {
         	throw new IllegalStateException();
         }

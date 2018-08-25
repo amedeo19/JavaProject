@@ -4,20 +4,18 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.ResourceBundle;
 import controller.Controller;
-import enumeration.Characters;
 import enumeration.MapDimension;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import model.converter.ConverterView;
 import model.converter.ConverterViewImpl;
-import model.pawns.Pawns;
 import utilities.Coordinate;
 import view.view.View;
 import view.view.ViewGuiImpl;
@@ -33,7 +31,7 @@ public class ViewImpl implements view.board.View {
 	@FXML
 	private GridPane grid;
 	@FXML
-	private Label text;
+	private TextArea text;
 	
 	@FXML
 	private ImageView pawn1;
@@ -76,6 +74,11 @@ public class ViewImpl implements view.board.View {
 		this.controller.getSnakeList().forEach(e -> this.print.add(e.print()));
 		this.controller.getStairList().forEach(e -> this.print.add(e.print()));
 		this.text.setText(this.print.toString());
+		System.out.println(this.print.toString());
+		this.text.setEditable(false);
+		
+		
+		
 	}
 
 	@Override
