@@ -29,7 +29,7 @@ import enumeration.*;
 
 public class Gui implements Menu {
 	//liste di oggetti utili all'inizializzazione della partita
-	final ObservableList<Integer> num = FXCollections.observableArrayList(1,2,3,4);
+	final ObservableList<Integer> num = FXCollections.observableArrayList(2,3,4);
 	final ObservableList<MapDifficulty> mapdiff = FXCollections.observableArrayList(Arrays.asList(MapDifficulty.values()));
 	final ObservableList<MapDimension> mapdim = FXCollections.observableArrayList(Arrays.asList(MapDimension.values()));
 	final ObservableList<Integer> numdice = FXCollections.observableArrayList(1,2,3);
@@ -221,10 +221,10 @@ public class Gui implements Menu {
 		StartGame.setVisible(false);
 		DiceSelection.setVisible(false);
    	 	this.PawnP1.setValue(Characters.Baghera);
-   	 	this.PawnP2.setValue(Characters.Baghera);
-   	 	this.PawnP3.setValue(Characters.Baghera);
-   	 	this.PawnP4.setValue(Characters.Baghera);
-   	 	this.numPlayer.setValue(1);
+   	 	this.PawnP2.setValue(Characters.Baloo);
+   	 	this.PawnP3.setValue(Characters.KingLouie);
+   	 	this.PawnP4.setValue(Characters.ShereKhan);
+   	 	this.numPlayer.setValue(2);
 	 	this.DiceNumber.setValue(1);
 	 	this.Dice1.setValue(Dice.CLASSIC);
 	 	this.Dice2.setValue(Dice.CLASSIC);
@@ -283,7 +283,7 @@ public class Gui implements Menu {
 			}
 		}
 		this.controller.start(listOfDice, listFace, chaselect, dimension, difficulty);
-		this.clearList();
+
 		
 //		this.close();
 		
@@ -318,16 +318,17 @@ public class Gui implements Menu {
 	
     @Override    
     public void initialize(URL location, ResourceBundle resources) {
+		this.clearList();
         this.numPlayer.setItems(num);
-        this.numPlayer.setValue(1);
+        this.numPlayer.setValue(2);
         this.PawnP1.setItems(cha);
    	 	this.PawnP1.setValue(Characters.Baghera);
    	 	this.PawnP2.setItems(cha);
-	 	this.PawnP2.setValue(Characters.Baghera);
+	 	this.PawnP2.setValue(Characters.Baloo);
 	 	this.PawnP3.setItems(cha);
-   	 	this.PawnP3.setValue(Characters.Baghera);
+   	 	this.PawnP3.setValue(Characters.KingLouie);
    	 	this.PawnP4.setItems(cha);
-	 	this.PawnP4.setValue(Characters.Baghera);
+	 	this.PawnP4.setValue(Characters.ShereKhan);
 	 	this.DiceNumber.setItems(numdice);
 	 	this.DiceNumber.setValue(1);
 	 	this.Dice1.setItems(dic);

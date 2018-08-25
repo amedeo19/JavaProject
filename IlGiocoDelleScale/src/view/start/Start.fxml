@@ -11,7 +11,7 @@
       <Button fx:id="GoToPlayerSelect" layoutX="251.0" layoutY="351.0" mnemonicParsing="false" onAction="#SelectPawns" text="Continue" />
       <ImageView fx:id="Logo" fitHeight="157.0" fitWidth="656.0" layoutX="75.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../res/snl_logo.png" />
+            <Image url="@/snl_logo.png" />
          </image>
       </ImageView>
       <ChoiceBox fx:id="numPlayer" layoutX="44.0" layoutY="271.0" prefWidth="150.0" />

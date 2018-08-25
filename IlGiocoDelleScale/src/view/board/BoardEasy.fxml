@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.effect.*?>
@@ -12,12 +13,12 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.board.ViewImpl">
    <children>
-      <ImageView fitHeight="500.0" fitWidth="500.0" layoutX="7.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="500.0" fitWidth="500.0" layoutX="7.0" layoutY="8.0" opacity="0.97" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../res/Board/jungle-book.jpg" />
+            <Image url="@/Board/jungle-book.jpg" />
          </image>
       </ImageView>
-      <GridPane fx:id="grid" blendMode="RED" cacheHint="SPEED" depthTest="DISABLE" gridLinesVisible="true" layoutX="7.0" layoutY="8.0" pickOnBounds="false" prefHeight="500.0" prefWidth="500.0">
+      <GridPane fx:id="grid" cacheHint="SPEED" depthTest="DISABLE" gridLinesVisible="true" layoutX="7.0" layoutY="8.0" pickOnBounds="false" prefHeight="500.0" prefWidth="500.0">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -42,22 +43,28 @@
             <Blend />
          </effect>
          <children>
-            <ImageView fx:id="Pawn1" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="7" />
+            <ImageView fx:id="pawn1" fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER" />
+            <ImageView fx:id="pawn2" fitHeight="45.0" fitWidth="45.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor></ImageView>
+            <ImageView fx:id="pawn3" fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER" />
+            <ImageView fx:id="pawn4" fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER" />
          </children>
       </GridPane>
-      <Button fx:id="button" layoutX="534.0" layoutY="383.0" mnemonicParsing="false" onAction="#RollDice" text="Roll Dice" />
+      <Button fx:id="button" layoutX="525.0" layoutY="355.0" mnemonicParsing="false" onAction="#RollDice" text="Roll Dice" />
       <ImageView fx:id="imageDice1" fitHeight="98.0" fitWidth="81.0" layoutX="516.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../res/dice/dice.png" />
+            <Image url="@/dice/dice.png" />
          </image></ImageView>
-      <Label fx:id="viewDice1" alignment="CENTER" layoutX="516.0" layoutY="46.0" prefHeight="80.0" prefWidth="81.0" textAlignment="CENTER">
+      <Label fx:id="viewDice1" alignment="CENTER" layoutX="516.0" layoutY="48.0" prefHeight="80.0" prefWidth="81.0" textAlignment="CENTER">
          <font>
             <Font name="Arial Unicode MS" size="42.0" />
          </font></Label>
       <Label fx:id="text" alignment="TOP_LEFT" layoutX="14.0" layoutY="508.0" prefHeight="89.0" prefWidth="589.0" />
       <ImageView fx:id="imageDice2" fitHeight="98.0" fitWidth="81.0" layoutX="516.0" layoutY="155.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../res/dice/dice.png" />
+            <Image url="@/dice/dice.png" />
          </image>
       </ImageView>
       <Label fx:id="viewDice2" alignment="CENTER" layoutX="516.0" layoutY="155.0" prefHeight="80.0" prefWidth="81.0" textAlignment="CENTER">
@@ -67,7 +74,7 @@
       </Label>
       <ImageView fx:id="imageDice3" fitHeight="98.0" fitWidth="81.0" layoutX="516.0" layoutY="260.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../res/dice/dice.png" />
+            <Image url="@/dice/dice.png" />
          </image>
       </ImageView>
       <Label fx:id="viewDice3" alignment="CENTER" layoutX="516.0" layoutY="260.0" prefHeight="80.0" prefWidth="81.0" textAlignment="CENTER">
@@ -75,5 +82,7 @@
             <Font name="Arial Unicode MS" size="42.0" />
          </font>
       </Label>
+      <Button fx:id="restart" layoutX="525.0" layoutY="397.0" mnemonicParsing="false" onAction="#restart" prefHeight="25.0" prefWidth="63.0" text="restart" />
+      <Button fx:id="exit" layoutX="525.0" layoutY="438.0" mnemonicParsing="false" onAction="#exit" prefHeight="25.0" prefWidth="63.0" text="exit" />
    </children>
 </AnchorPane>

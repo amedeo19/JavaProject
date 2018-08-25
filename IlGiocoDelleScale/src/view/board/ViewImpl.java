@@ -1,19 +1,24 @@
 package view.board;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.ResourceBundle;
 import controller.Controller;
+import enumeration.Characters;
 import enumeration.MapDimension;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import model.converter.ConverterView;
 import model.converter.ConverterViewImpl;
+import model.pawns.Pawns;
+import utilities.Coordinate;
 import view.view.View;
 import view.view.ViewGuiImpl;
 
@@ -29,8 +34,16 @@ public class ViewImpl implements view.board.View {
 	private GridPane grid;
 	@FXML
 	private Label text;
+	
 	@FXML
-	private ImageView Pawn1;
+	private ImageView pawn1;
+	@FXML
+	private ImageView pawn2;
+	@FXML
+	private ImageView pawn3;
+	@FXML
+	private ImageView pawn4;
+	
 	@FXML
 	private Label viewDice2;
 	@FXML
@@ -40,6 +53,14 @@ public class ViewImpl implements view.board.View {
 	@FXML
 	private ImageView imageDice3;
 
+	@FXML
+	private Button restart;
+	@FXML
+	private Button exit;
+	@FXML
+	private Button end;
+
+	private List<ImageView> pawnList;
 	private View view;
 	private Controller controller;
 	private List<Label> labels;
@@ -47,9 +68,6 @@ public class ViewImpl implements view.board.View {
 	private final static int START = 0;
 	private ConverterView converter;
 	private List<String> print;
-	private final static int TIMEIA=2000;
-	private Sleep agent;
-	private List<Integer> listView;
 
 	@Override
 	public void SetText() {
@@ -64,16 +82,13 @@ public class ViewImpl implements view.board.View {
 	public void RollDice() {
 
 		this.controller.play();
-		if (!(this.controller.multiPlayer())){
-			this.sleep();
-		}else{
-			this.setImageDice();
-		}
+		this.setImageDice();
 	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
+		this.pawnList= new ArrayList<ImageView>();
 		this.button.setVisible(true);
 		this.viewDice1.setVisible(false);
 		this.viewDice2.setVisible(false);
@@ -83,6 +98,7 @@ public class ViewImpl implements view.board.View {
 		this.imageDice3.setVisible(false);
 		this.converter = new ConverterViewImpl((int) Math.sqrt(MapDimension.SMALL.getDimension()));
 		this.text.setVisible(true);
+		
 	}
 
 	@Override
@@ -92,6 +108,20 @@ public class ViewImpl implements view.board.View {
 		this.SetText();
 		this.setImageDiceVisible();
 		this.setInitialImageDice();
+		this.setImagePawn();
+		
+		this.pawn1.setVisible(true);
+		this.pawn2.setVisible(true);
+		if(this.controller.getCharacterList().size() == 2) {
+			this.pawn3.setVisible(true);
+		} else if (this.controller.getCharacterList().size() == 3) {
+			this.pawn3.setVisible(true);
+			this.pawn4.setVisible(true);
+		} else {
+			this.pawn3.setVisible(false);
+			this.pawn4.setVisible(false);
+		}
+		
 	}
 
 	private void setImageDiceVisible() {
@@ -118,6 +148,7 @@ public class ViewImpl implements view.board.View {
 		this.labels.forEach(e -> e.setVisible(true));
 	}
 
+	
 	private void setInitialImageDice() {
 		for (int i = START; i < this.controller.getNumDice(); i++) {
 			this.labels.get(i).setText(String.valueOf(START));
@@ -135,65 +166,70 @@ public class ViewImpl implements view.board.View {
 	public void setView(ViewGuiImpl view) {
 		this.view = view;
 	}
-
-	@Override
-	public void changeState() {
-
-		this.sleep();
-	}
 	
-	private void sleep(){
-
-		if (Objects.nonNull(this.agent)){
-			try {
-				this.agent.join();
-			} catch (InterruptedException e) {
-				e.printStackTrace();
+	private void setImagePawn() {
+		for(int i=START; i< this.controller.getCharacterList().size(); i++) {
+			if (i == 0) {
+				this.pawnList.add(pawn1);
+			} else if (i == 1) {
+				this.pawnList.add(pawn2);
+			} else if (i == 2) {
+				this.pawnList.add(pawn3);
+			} else if (i == 3) {
+				this.pawnList.add(pawn4);
 			}
-		}
-		this.agent = new Sleep(this);
-		this.agent.start();
-		
-	}
-	
-	public class Sleep extends Thread{
-		
-		private final view.board.View view;
-		
-		public Sleep(final view.board.View view) {
-			this.view=view;		}
-		
-		@Override
-		public void run() {
+			if (this.controller.getCharacterList().get(i).equals(Characters.ShereKhan)) {
+				this.pawnList.get(i).setImage(this.readImage("file://../res/Pawns/shereKhan.png").getImage());
+			}
+			if (this.controller.getCharacterList().get(i).equals(Characters.Baloo)) {
+				this.pawnList.get(i).setImage(this.readImage("file://../res/Pawns/Balooo.png").getImage());
+			}
+			if (this.controller.getCharacterList().get(i).equals(Characters.KingLouie)) {
+				this.pawnList.get(i).setImage(this.readImage("file://../res/Pawns/reLuigi.png").getImage());
+			} else if (this.controller.getCharacterList().get(i).equals(Characters.Baghera)) {
+				this.pawnList.get(i).setImage(this.readImage("file://../res/Pawns/bagheraLaPanteraNera.png").getImage());
+			}
 			
-			this.view.getViewUser();
-			this.view.disable(true);
-			try {
-				Thread.sleep(TIMEIA);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-			this.view.getViewIA();
-			this.view.disable(false);
 		}
 	}
+	
+	private ImageView readImage(final String path) {
+	    
+    	try {
+        return new ImageView(new Image(path));
+        } catch (Exception exception) {
+        exception.printStackTrace();
+    }
+    return null;
+    }
+	
 
 	@Override
-	public void disable(boolean value) {
-		this.button.setVisible(value);
+	public void restart() {
+		this.view.restart();
+		
 	}
-
+	
 	@Override
-	public void getViewUser() {
-		for (int i = START; i < this.controller.getNumDice(); i++) {
-			this.labels.get(i).setText(String.valueOf(this.controller.getUserView().get(i)));
+	public void exit() {
+		System.exit(0);
+	}
+	
+	@Override
+	public void end() {
+		try {
+			this.controller.finishGame();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
-
+	
+	
 	@Override
-	public void getViewIA() {
-		for (int i = START; i < this.controller.getNumDice(); i++) {
-			this.labels.get(i).setText(String.valueOf(this.controller.getIAView().get(i)));
-		}
+	public void update(int turn, Coordinate NewCoordinate) {
+		this.grid.setColumnIndex(this.pawnList.get(turn), NewCoordinate.getX());
+		this.grid.setRowIndex(this.pawnList.get(turn),this.converter.getHeight(NewCoordinate.getY()));
 	}
+
+	
 }

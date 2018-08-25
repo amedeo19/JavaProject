@@ -44,26 +44,16 @@ public class ControllerImpl implements Controller {
 	private Optional<Pawns> p;
 	private Converter converse;
 	private Coordinate Newcoordinate;
-	private boolean multiplayer;
-	private boolean IAturn;
 	private View viewGeneral;
-	private view.board.View view; 
+	private view.board.View view;
 	private TableBuilder table;
-	private final static int SINGLEPLAYER=1;
-	private List<Integer> userView;
-	private List<Integer> IAView;
 
 
 	public ControllerImpl(View viewGeneral) {
 		this.viewGeneral = viewGeneral;
-		this.multiplayer = false;
-		this.IAturn = false;
 		this.p=Optional.empty();
 		this.setting = Optional.empty();
 		this.listOfDice = new ArrayList<Dice>();
-		this.CharacterList = new ArrayList<>();
-		this.userView = new ArrayList<>();
-		this.IAView = new ArrayList<>();
 		this.PawnsList = new ArrayList<>();
 		this.mapSpecial=new HashMap<>();
 		this.mapSpecial.put(4, 3);
@@ -78,7 +68,7 @@ public class ControllerImpl implements Controller {
 	public void play() {
         
 		if(control) {
-	        
+			
 			this.p = Optional.of(this.PawnsList.get(this.setting.get().getTurn()));
 	        int newPos = this.game.movePawn(this.p.get());			//prendo la pos finale
 	        this.Newcoordinate = this.convertToCoordinate(newPos);				//mandare alla view le coordinate finali della pedina
@@ -88,8 +78,8 @@ public class ControllerImpl implements Controller {
 	        	this.Newcoordinate=pos;
 	        	this.p.get().setPosition(this.convertToInt(this.Newcoordinate));
 	        }
+	        this.view.update(this.setting.get().getTurn(), this.Newcoordinate);
 	        this.setting.get().moveTurn();
-	        System.out.println(this.convertToInt(this.Newcoordinate));
 	        
 	        if(this.game.checkWin(this.p.get())) {
 	        	try {
@@ -98,26 +88,17 @@ public class ControllerImpl implements Controller {
 					e.printStackTrace();
 				}
 	        }
-	        
-			if (!this.multiplayer){
-				if (this.IAturn){
-					this.setIAView();
-				}else{
-					this.setUserView();
-				}
-				this.IAturn=!this.IAturn;
-			}
         } else {
         	throw new IllegalStateException();
         }
 
     }
 	
-	
-	private void finishGame() throws IOException{
+	@Override
+	public void finishGame() throws IOException {
 		if(this.control) {				//finestra che permette di uscire o tornare al menu iniziale
-			this.CharacterList.get(this.setting.get().getTurn());
-			System.out.println("finish");
+			this.viewGeneral.setWinner(this.CharacterList.get(this.setting.get().getTurn()));
+			this.viewGeneral.end();
 			this.control = false;
 		} else {
 			throw new IllegalStateException();
@@ -134,7 +115,6 @@ public class ControllerImpl implements Controller {
 		this.table = new TableBuilderImpl(difficulty, dimension);
 		this.numCell = dimension.getDimension();
 		this.CreatePawn();
-		this.checkMultiplayer();
 		this.diceList = diceList;
 		this.faceList = faceList;
 		this.ConvertListDice();
@@ -146,8 +126,6 @@ public class ControllerImpl implements Controller {
 		this.viewGeneral.setController(this);
 		this.StartView();
 		
-		//chiamare view di andre
-		//javafx.application.Application.launch(View.class);
 		
 	}
 	
@@ -201,22 +179,6 @@ public class ControllerImpl implements Controller {
 		return Collections.unmodifiableList(this.CharacterList);
 	}
 	
-	
-	
-	public void checkMultiplayer() {
-		if(this.CharacterList.size() == SINGLEPLAYER) {		//caso single player, creo CPU (ShereKhan o Baghera)
-			this.multiplayer = false;
-			this.PawnsList.add(new PawnsImpl());
-			if((this.CharacterList.get(0).equals(Characters.Baghera)) || (this.CharacterList.get(0).equals(Characters.Baloo))) {
-				this.CharacterList.add(Characters.ShereKhan);
-			} else {
-				this.CharacterList.add(Characters.Baghera);
-			}
-		} else {
-			this.multiplayer = true;
-		}
-	}
-	
 	public List<UpsideDown> getSnakeList() {
 		return this.table.getSnakes();
 	}
@@ -241,7 +203,6 @@ public class ControllerImpl implements Controller {
 
 	@Override
 	public int getNumDice() {
-
 		return this.listOfDice.size();
 	}
 
@@ -250,28 +211,6 @@ public class ControllerImpl implements Controller {
 		this.view=view;
 	}
 
-	@Override
-	public boolean multiPlayer() {
-		return this.multiplayer;
-	}
-
-	private void setUserView(){
-		this.userView=this.getViewNumDice();
-	}
-	
-	private void setIAView(){
-		this.IAView=this.getViewNumDice();
-	}
-	
-	@Override
-	public List<Integer> getUserView() {
-		return this.userView;
-	}
-
-	@Override
-	public List<Integer> getIAView() {
-		return this.IAView;
-	}
 	
 	
 }
