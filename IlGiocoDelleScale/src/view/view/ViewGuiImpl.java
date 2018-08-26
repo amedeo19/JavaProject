@@ -118,7 +118,7 @@ public class ViewGuiImpl implements View{
 				e.printStackTrace();
 			}
 			break;
-		case "KingLouie": this.end = new EndGuiReLuigi();
+		case "King Louie": this.end = new EndGuiReLuigi();
 			try {
 				this.startView(FXML_PATH_END_RELUIGI);
 	            stage.centerOnScreen();
@@ -126,7 +126,7 @@ public class ViewGuiImpl implements View{
 				e.printStackTrace();
 			}
 			break;
-		case "ShereKhan": this.end = new EndGuiShereKhan();
+		case "Shere Khan": this.end = new EndGuiShereKhan();
 			try {
 				this.startView(FXML_PATH_END_SHEREKHAN);
 	            stage.centerOnScreen();
