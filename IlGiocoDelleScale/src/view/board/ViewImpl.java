@@ -43,6 +43,60 @@ public class ViewImpl implements view.board.View {
 	private ImageView pawn4;
 	
 	@FXML
+	private ImageView Ladder1;
+	@FXML
+	private ImageView Ladder2;
+	@FXML
+	private ImageView Ladder3;
+	@FXML
+	private ImageView Ladder4;
+	@FXML
+	private ImageView Ladder5;
+	@FXML
+	private ImageView Ladder6;
+	@FXML
+	private ImageView Ladder7;
+	@FXML
+	private ImageView Ladder8;
+	@FXML
+	private ImageView Ladder9;
+	@FXML
+	private ImageView Ladder10;
+	@FXML
+	private ImageView Ladder11;
+	@FXML
+	private ImageView Ladder12;
+	
+	
+	@FXML
+	private ImageView Snake1;
+	@FXML
+	private ImageView Snake2;
+	@FXML
+	private ImageView Snake3;
+	@FXML
+	private ImageView Snake4;
+	@FXML
+	private ImageView Snake5;
+	@FXML
+	private ImageView Snake6;
+	@FXML
+	private ImageView Snake7;
+	@FXML
+	private ImageView Snake8;
+	@FXML
+	private ImageView Snake9;
+	@FXML
+	private ImageView Snake10;
+	@FXML
+	private ImageView Snake11;
+	@FXML
+	private ImageView Snake12;
+	
+	
+	
+	
+	@FXML
 	private Label viewDice2;
 	@FXML
 	private ImageView imageDice2;
@@ -58,6 +112,8 @@ public class ViewImpl implements view.board.View {
 	@FXML
 	private Button end;
 
+	private List<ImageView> snakes;
+	private List<ImageView> ladders;
 	private List<ImageView> pawnList;
 	private View view;
 	private Controller controller;
@@ -74,10 +130,7 @@ public class ViewImpl implements view.board.View {
 		this.controller.getSnakeList().forEach(e -> this.print.add(e.print()));
 		this.controller.getStairList().forEach(e -> this.print.add(e.print()));
 		this.text.setText(this.print.toString());
-		System.out.println(this.print.toString());
 		this.text.setEditable(false);
-		
-		
 		
 	}
 
@@ -101,7 +154,34 @@ public class ViewImpl implements view.board.View {
 		this.imageDice3.setVisible(false);
 		this.converter = new ConverterViewImpl((int) Math.sqrt(MapDimension.SMALL.getDimension()));
 		this.text.setVisible(true);
-		
+		this.setJumpFalse();
+	}
+	
+	private void setJumpFalse(){
+		this.Snake1.setVisible(false);
+		this.Snake2.setVisible(false);
+		this.Snake3.setVisible(false);
+		this.Snake4.setVisible(false);
+		this.Snake5.setVisible(false);
+		this.Snake6.setVisible(false);
+		this.Snake7.setVisible(false);
+		this.Snake8.setVisible(false);
+		this.Snake9.setVisible(false);
+		this.Snake10.setVisible(false);
+		this.Snake11.setVisible(false);
+		this.Snake12.setVisible(false);
+		this.Ladder1.setVisible(false);
+		this.Ladder2.setVisible(false);
+		this.Ladder3.setVisible(false);
+		this.Ladder4.setVisible(false);
+		this.Ladder5.setVisible(false);
+		this.Ladder6.setVisible(false);
+		this.Ladder7.setVisible(false);
+		this.Ladder8.setVisible(false);
+		this.Ladder9.setVisible(false);
+		this.Ladder10.setVisible(false);
+		this.Ladder11.setVisible(false);
+		this.Ladder12.setVisible(false);
 	}
 
 	@Override
@@ -112,9 +192,122 @@ public class ViewImpl implements view.board.View {
 		this.setImageDiceVisible();
 		this.setInitialImageDice();
 		this.setImagePawn();
-		
+		this.setViewUpsideDown();
 	}
 
+	private void setViewUpsideDown(){
+		this.snakes = new ArrayList<>();
+		for (int i = START; i < this.controller.getSnakeList().size(); i++) {
+			switch (i) {
+			case 0:
+				this.snakes.add(Snake1);
+				this.grid.setColumnIndex(Snake1, this.controller.getSnakeList().get(i).getStart().getX());
+				this.grid.setRowIndex(Snake1, this.converter.getHeight(this.controller.getSnakeList().get(i).getStart().getY()));
+				this.snakes.add(Snake2);
+				this.grid.setColumnIndex(Snake2, this.controller.getSnakeList().get(i).getTarget().getX());
+				this.grid.setRowIndex(Snake2, this.converter.getHeight(this.controller.getSnakeList().get(i).getTarget().getY()));
+				break;
+			case 1:
+				this.snakes.add(Snake3);
+				this.grid.setColumnIndex(Snake3, this.controller.getSnakeList().get(i).getStart().getX());
+				this.grid.setRowIndex(Snake3, this.converter.getHeight(this.controller.getSnakeList().get(i).getStart().getY()));
+				this.snakes.add(Snake4);
+				this.grid.setColumnIndex(Snake4, this.controller.getSnakeList().get(i).getTarget().getX());
+				this.grid.setRowIndex(Snake4, this.converter.getHeight(this.controller.getSnakeList().get(i).getTarget().getY()));
+				break;
+			case 2:
+				this.snakes.add(Snake5);
+				this.grid.setColumnIndex(Snake5, this.controller.getSnakeList().get(i).getStart().getX());
+				this.grid.setRowIndex(Snake5, this.converter.getHeight(this.controller.getSnakeList().get(i).getStart().getY()));
+				this.snakes.add(Snake6);
+				this.grid.setColumnIndex(Snake6, this.controller.getSnakeList().get(i).getTarget().getX());
+				this.grid.setRowIndex(Snake6, this.converter.getHeight(this.controller.getSnakeList().get(i).getTarget().getY()));
+				break;
+			case 3:
+				this.snakes.add(Snake7);
+				this.grid.setColumnIndex(Snake7, this.controller.getSnakeList().get(i).getStart().getX());
+				this.grid.setRowIndex(Snake7, this.converter.getHeight(this.controller.getSnakeList().get(i).getStart().getY()));
+				this.snakes.add(Snake8);
+				this.grid.setColumnIndex(Snake8, this.controller.getSnakeList().get(i).getTarget().getX());
+				this.grid.setRowIndex(Snake8, this.converter.getHeight(this.controller.getSnakeList().get(i).getTarget().getY()));
+				break;
+			case 4:
+				this.snakes.add(Snake9);
+				this.grid.setColumnIndex(Snake9, this.controller.getSnakeList().get(i).getStart().getX());
+				this.grid.setRowIndex(Snake9, this.converter.getHeight(this.controller.getSnakeList().get(i).getStart().getY()));
+				this.snakes.add(Snake10);
+				this.grid.setColumnIndex(Snake10, this.controller.getSnakeList().get(i).getTarget().getX());
+				this.grid.setRowIndex(Snake10, this.converter.getHeight(this.controller.getSnakeList().get(i).getTarget().getY()));
+				break;
+			case 5:
+				this.snakes.add(Snake11);
+				this.grid.setColumnIndex(Snake11, this.controller.getSnakeList().get(i).getStart().getX());
+				this.grid.setRowIndex(Snake11, this.converter.getHeight(this.controller.getSnakeList().get(i).getStart().getY()));
+				this.snakes.add(Snake12);
+				this.grid.setColumnIndex(Snake12, this.controller.getSnakeList().get(i).getTarget().getX());
+				this.grid.setRowIndex(Snake12, this.converter.getHeight(this.controller.getSnakeList().get(i).getTarget().getY()));
+				break;
+			}
+		}
+		this.snakes.forEach(e -> e.setVisible(true));
+		this.snakes.forEach(e->e.setImage(this.readImage("file://../res/SnakeNLadder/snake.png").getImage()));
+		this.ladders = new ArrayList<>();
+		for (int i = START; i < this.controller.getStairList().size(); i++) {
+			switch (i) {
+			case 0:
+				this.ladders.add(Ladder1);
+				this.grid.setColumnIndex(Ladder1, this.controller.getStairList().get(i).getStart().getX());
+				this.grid.setRowIndex(Ladder1, this.converter.getHeight(this.controller.getStairList().get(i).getStart().getY()));
+				this.ladders.add(Ladder2);
+				this.grid.setColumnIndex(Ladder2, this.controller.getStairList().get(i).getTarget().getX());
+				this.grid.setRowIndex(Ladder2, this.converter.getHeight(this.controller.getStairList().get(i).getTarget().getY()));
+				break;
+			case 1:
+				this.ladders.add(Ladder3);
+				this.grid.setColumnIndex(Ladder3, this.controller.getStairList().get(i).getStart().getX());
+				this.grid.setRowIndex(Ladder3, this.converter.getHeight(this.controller.getStairList().get(i).getStart().getY()));
+				this.ladders.add(Ladder4);
+				this.grid.setColumnIndex(Ladder4, this.controller.getStairList().get(i).getTarget().getX());
+				this.grid.setRowIndex(Ladder4, this.converter.getHeight(this.controller.getStairList().get(i).getTarget().getY()));
+				break;
+			case 2:
+				this.ladders.add(Ladder5);
+				this.grid.setColumnIndex(Ladder5, this.controller.getStairList().get(i).getStart().getX());
+				this.grid.setRowIndex(Ladder5, this.converter.getHeight(this.controller.getStairList().get(i).getStart().getY()));
+				this.ladders.add(Ladder6);
+				this.grid.setColumnIndex(Ladder6, this.controller.getStairList().get(i).getTarget().getX());
+				this.grid.setRowIndex(Ladder6, this.converter.getHeight(this.controller.getStairList().get(i).getTarget().getY()));
+				break;
+			case 3:
+				this.ladders.add(Ladder7);
+				this.grid.setColumnIndex(Ladder7, this.controller.getStairList().get(i).getStart().getX());
+				this.grid.setRowIndex(Ladder7, this.converter.getHeight(this.controller.getStairList().get(i).getStart().getY()));
+				this.ladders.add(Ladder8);
+				this.grid.setColumnIndex(Ladder8, this.controller.getStairList().get(i).getTarget().getX());
+				this.grid.setRowIndex(Ladder8, this.converter.getHeight(this.controller.getStairList().get(i).getTarget().getY()));
+				break;
+			case 4:
+				this.ladders.add(Ladder9);
+				this.grid.setColumnIndex(Ladder9, this.controller.getStairList().get(i).getStart().getX());
+				this.grid.setRowIndex(Ladder9, this.converter.getHeight(this.controller.getStairList().get(i).getStart().getY()));
+				this.ladders.add(Ladder10);
+				this.grid.setColumnIndex(Ladder10, this.controller.getStairList().get(i).getTarget().getX());
+				this.grid.setRowIndex(Ladder10, this.converter.getHeight(this.controller.getStairList().get(i).getTarget().getY()));
+				break;
+			case 5:
+				this.ladders.add(Ladder11);
+				this.grid.setColumnIndex(Ladder11, this.controller.getStairList().get(i).getStart().getX());
+				this.grid.setRowIndex(Ladder11, this.converter.getHeight(this.controller.getStairList().get(i).getStart().getY()));
+				this.ladders.add(Ladder12);
+				this.grid.setColumnIndex(Ladder12, this.controller.getStairList().get(i).getTarget().getX());
+				this.grid.setRowIndex(Ladder12, this.converter.getHeight(this.controller.getStairList().get(i).getTarget().getY()));
+				break;
+			}
+		}
+		this.ladders.forEach(e -> e.setVisible(true));
+		this.ladders.forEach(e->e.setImage(this.readImage("file://../res/SnakeNLadder/ladder.png").getImage()));
+	}
+	
 	private void setImageDiceVisible() {
 		this.images = new ArrayList<>();
 		this.labels = new ArrayList<>();
@@ -134,7 +327,6 @@ public class ViewImpl implements view.board.View {
 				break;
 			}
 		}
-		imageDice1.setVisible(true);
 		this.images.forEach(e -> e.setVisible(true));
 		this.labels.forEach(e -> e.setVisible(true));
 	}
