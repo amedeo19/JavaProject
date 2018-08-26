@@ -15,6 +15,7 @@ public class TableBuilderImpl implements TableBuilder{
 	private final int tableWidth;
 	private final MapDifficulty difficulty;
 	private final static int LOW=4;
+	private final static int MEDIUM=5;
 	private final static int HIGH=6;
 	private final UdStrategy snake;
 	private final UdStrategy stair;
@@ -41,10 +42,10 @@ public class TableBuilderImpl implements TableBuilder{
 			}
 			break;
 		case MEDIUM:
-			for(int i=0; i<HIGH; i++) {
+			for(int i=0; i<MEDIUM; i++) {
 				this.snakes.add(this.snake.getObject());
 			}
-			for(int i=0; i<HIGH; i++) {
+			for(int i=0; i<MEDIUM; i++) {
 				this.stairs.add(this.stair.getObject());
 			}
 			break;
@@ -58,9 +59,26 @@ public class TableBuilderImpl implements TableBuilder{
 			break;
 		}
 		
+		this.eraseStart();
+		
 		this.jump.addAll(this.snakes);
 		this.jump.addAll(this.stairs);
 		
+	}
+	
+	private void eraseStart(){
+		List<Integer> erasedList = new ArrayList<>();
+		for (int i=0;i<this.stairs.size();i++){
+			for (int j=0;j<this.snakes.size();j++){
+				if ((this.stairs.get(i).getStart().getX() == this.snakes.get(j).getStart().getX()) && 
+						(this.stairs.get(i).getStart().getY() == this.snakes.get(j).getStart().getY())){
+					erasedList.add(j);
+				}
+			}
+		}
+		for (int k=0;k<erasedList.size();k++){
+			this.snakes.remove(erasedList.get(k));
+		}
 	}
 	
 	@Override
