@@ -159,7 +159,7 @@ public class ControllerImpl implements Controller {
 				this.listOfDice.add(diceBuilder.totalPersonalized(this.mapSpecial, this.faceList.get(i).get()));
 				break;
 			case "Special Dice":
-				this.listOfDice.add(diceBuilder.totalPersonalized(this.mapSpecial, this.faceList.get(i).get()));
+				this.listOfDice.add(diceBuilder.specialClassicDice(this.mapSpecial));
 				break;
 			case "Special Twenty":
 				this.listOfDice.add(diceBuilder.specialTwentyDice(this.mapSpecial));
