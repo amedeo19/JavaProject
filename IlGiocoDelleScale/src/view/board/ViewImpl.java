@@ -250,7 +250,7 @@ public class ViewImpl implements view.board.View {
 			}
 		}
 		this.snakes.forEach(e -> e.setVisible(true));
-		this.snakes.forEach(e->e.setImage(this.readImage("file://../res/SnakeNLadder/snake.png").getImage()));
+		this.snakes.forEach(e->e.setImage(this.readImage("/SnakeNLadder/snake.png").getImage()));
 		this.ladders = new ArrayList<>();
 		for (int i = START; i < this.controller.getStairList().size(); i++) {
 			switch (i) {
@@ -305,7 +305,7 @@ public class ViewImpl implements view.board.View {
 			}
 		}
 		this.ladders.forEach(e -> e.setVisible(true));
-		this.ladders.forEach(e->e.setImage(this.readImage("file://../res/SnakeNLadder/ladder.png").getImage()));
+		this.ladders.forEach(e->e.setImage(this.readImage("/SnakeNLadder/ladder.png").getImage()));
 	}
 	
 	private void setImageDiceVisible() {
@@ -372,16 +372,16 @@ public class ViewImpl implements view.board.View {
 			
 			switch (this.controller.getCharacterList().get(i).toString()){
 			case "Shere Khan":
-				this.pawnList.get(i).setImage(this.readImage("file://../res/Pawns/shereKhan.png").getImage());
+				this.pawnList.get(i).setImage(this.readImage("/Pawns/shereKhan.png").getImage());
 				break;
 			case "Baloo":
-				this.pawnList.get(i).setImage(this.readImage("file://../res/Pawns/Balooo.png").getImage());
+				this.pawnList.get(i).setImage(this.readImage("/Pawns/Balooo.png").getImage());
 				break;
 			case "King Louie":
-				this.pawnList.get(i).setImage(this.readImage("file://../res/Pawns/reLuigi.png").getImage());
+				this.pawnList.get(i).setImage(this.readImage("/Pawns/reLuigi.png").getImage());
 				break;
 			case "Baghera":
-				this.pawnList.get(i).setImage(this.readImage("file://../res/Pawns/bagheraLaPanteraNera.png").getImage());
+				this.pawnList.get(i).setImage(this.readImage("/Pawns/bagheraLaPanteraNera.png").getImage());
 				break;
 			}
 			
