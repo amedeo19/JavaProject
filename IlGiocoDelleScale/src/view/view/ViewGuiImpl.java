@@ -7,8 +7,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import model.pawns.Pawns;
-import utilities.Coordinate;
 import view.board.ViewImpl;
 import view.end.EndGuiBaghera;
 import view.end.EndGuiBaloo;

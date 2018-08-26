@@ -1,12 +1,9 @@
 package view.view;
 
 import java.io.IOException;
-
 import controller.Controller;
 import enumeration.Characters;
 import javafx.stage.Stage;
-import model.pawns.Pawns;
-import utilities.Coordinate;
 
 public interface View {
 
