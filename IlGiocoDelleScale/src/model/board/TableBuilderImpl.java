@@ -66,7 +66,7 @@ public class TableBuilderImpl implements TableBuilder{
 		
 	}
 	
-	private void eraseStart(){
+	private void eraseStart(){   // preference to stair
 		List<Integer> erasedList = new ArrayList<>();
 		for (int i=0;i<this.stairs.size();i++){
 			for (int j=0;j<this.snakes.size();j++){
