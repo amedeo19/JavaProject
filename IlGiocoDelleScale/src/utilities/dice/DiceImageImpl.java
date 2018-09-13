@@ -3,7 +3,7 @@ package utilities.dice;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-public class DiceImageImpl implements DiceImage{
+public class DiceImageImpl implements DiceImage{// UNUSED
 
 	private ImageView image; 
 	private final static int Default=1; 
