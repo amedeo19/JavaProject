@@ -11,7 +11,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.image.ImageViewBuilder;
 import javafx.stage.Stage;
 
-public class Test2 extends Application {
+public class Test2 extends Application { // UNUSED
 
 
 	 

@@ -4,7 +4,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class DiceMapImpl{
+public class DiceMapImpl{// UNUSED
 
 	private static Map<Integer,String> diceMap;
 	private static final int Start=1;
