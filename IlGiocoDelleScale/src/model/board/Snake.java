@@ -23,8 +23,8 @@ public class Snake extends AbstractObject{
 	}
 
 	private void changeStart(Coordinate start){
-		if ((start.getX()==(super.tableWidth-FINAL))&&(start.getY()==(super.getHeight()-FINAL))){
-			start = new Coordinate((super.tableWidth-(2*FINAL)),(super.getHeight()-(FINAL)));
+		if ((start.getX()==START)&&(start.getY()==(super.getHeight()-FINAL))){
+			start = new Coordinate(FINAL,(super.getHeight()-(FINAL)));
 		}
 	}
 	
