@@ -15,11 +15,17 @@ public class Snake extends AbstractObject{
 		Coordinate stop = null;
 		do { 
 			start = new Coordinate(this.randNum(START,super.tableWidth-FINAL), this.randNum(FINAL,super.tableHeight-FINAL));
+			this.changeStart(start);
 			stop = new Coordinate(this.randNum(START,super.tableWidth-FINAL), this.randNum(START,start.getY()));
 		}while (start.equals(stop));
 		
 		return new UpsideDownImpl(start, stop, UpsideDownType.SNAKE);
 	}
 
-
+	private void changeStart(Coordinate start){
+		if ((start.getX()==(super.tableWidth-FINAL))&&(start.getY()==(super.getHeight()-FINAL))){
+			start = new Coordinate((super.tableWidth-(2*FINAL)),(super.getHeight()-(FINAL)));
+		}
+	}
+	
 }
